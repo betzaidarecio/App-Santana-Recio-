@@ -14,6 +14,7 @@
  --yellow:#ffd83d;
  --green:#21a789;
  --blue:#56aee8;
+ --orange:#f59b42;
  --ink:#403647;
  --muted:#7c747d;
  --bg:#fbf7fb;
@@ -23,18 +24,31 @@
  --shadow:0 5px 20px rgba(50,30,60,.08)
 }
 
-*{box-sizing:border-box}
+*{
+ box-sizing:border-box
+}
 
 html,body{
  margin:0;
  padding:0;
+ min-height:100%;
  background:#191a20;
  color:var(--ink);
  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
-button,input,select{font:inherit}
-button{cursor:pointer}
+button,input,select{
+ font:inherit
+}
+
+button{
+ cursor:pointer
+}
+
+button:disabled{
+ cursor:not-allowed;
+ opacity:.85
+}
 
 .app{
  max-width:720px;
@@ -42,7 +56,7 @@ button{cursor:pointer}
  margin:auto;
  background:linear-gradient(#fffafd,#faf7fb);
  padding-bottom:92px;
- position:relative
+ overflow:hidden
 }
 
 .topbar{
@@ -98,13 +112,20 @@ button{cursor:pointer}
  font-size:29px
 }
 
-main{padding:16px 18px}
+main{
+ padding:16px 18px
+}
 
 .child-tabs{
  display:flex;
  gap:8px;
  overflow:auto;
- margin:0 0 14px
+ margin:0 0 14px;
+ scrollbar-width:none
+}
+
+.child-tabs::-webkit-scrollbar{
+ display:none
 }
 
 .child-tab{
@@ -360,16 +381,14 @@ main{padding:16px 18px}
 .btn.yellow{background:var(--yellow);color:#654d00}
 .btn.green{background:var(--green)}
 .btn.blue{background:var(--blue)}
-.btn.dark{background:#34313a}
+.btn.orange{background:var(--orange)}
 
 .full{
  width:100%;
  margin-top:8px
 }
 
-/* =========================
-   APRENDER
-========================= */
+/* APRENDER */
 
 .subject-grid{
  display:grid;
@@ -412,11 +431,11 @@ main{padding:16px 18px}
 }
 
 .question h2{
- margin-top:0
+ margin-top:10px
 }
 
 .question-answer{
- font-size:22px;
+ font-size:20px;
  font-weight:900;
  margin:16px 0
 }
@@ -470,20 +489,12 @@ main{padding:16px 18px}
 }
 
 .listen-row{
- display:flex;
- gap:8px;
- margin:10px 0;
- flex-wrap:wrap
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px
 }
 
-.listen-row button{
- flex:1;
- min-width:130px
-}
-
-/* =========================
-   MASCOTA
-========================= */
+/* MASCOTA */
 
 .pet-card{
  background:linear-gradient(135deg,#ecfaff,#fff)
@@ -492,18 +503,11 @@ main{padding:16px 18px}
 .pet-stage{
  position:relative;
  width:280px;
- height:245px;
+ height:250px;
  margin:5px auto 8px;
  display:flex;
  align-items:center;
- justify-content:center;
- overflow:hidden;
- border-radius:30px;
- background:
-   radial-gradient(circle at 20% 25%,#fff 0 4px,transparent 5px),
-   radial-gradient(circle at 80% 35%,#fff 0 4px,transparent 5px),
-   linear-gradient(180deg,#e9f9ff,#fefcff);
- border:1px solid #dcecf4
+ justify-content:center
 }
 
 .pet-body{
@@ -512,17 +516,7 @@ main{padding:16px 18px}
  line-height:1;
  z-index:1;
  user-select:none;
- transform-origin:center bottom
-}
-
-.pet-shadow{
- position:absolute;
- bottom:27px;
- width:105px;
- height:20px;
- border-radius:50%;
- background:rgba(60,50,70,.10);
- z-index:0
+ transition:transform .25s ease
 }
 
 .pet-accessory{
@@ -530,52 +524,53 @@ main{padding:16px 18px}
  z-index:3;
  pointer-events:none;
  user-select:none;
- line-height:1
+ line-height:1;
+ transition:transform .25s ease
 }
 
 .acc-glasses{
- top:91px;
+ top:87px;
  left:50%;
  transform:translateX(-50%);
- font-size:58px
+ font-size:57px
 }
 
 .acc-hat{
- top:5px;
+ top:12px;
  left:50%;
  transform:translateX(-50%);
- font-size:75px
+ font-size:73px
 }
 
 .acc-bow{
- top:48px;
- right:45px;
- font-size:55px
+ top:70px;
+ right:44px;
+ font-size:51px
 }
 
 .acc-crown{
- top:0;
+ top:3px;
  left:50%;
  transform:translateX(-50%);
- font-size:62px
+ font-size:60px
 }
 
 .acc-scarf{
- bottom:28px;
+ bottom:27px;
  left:50%;
  transform:translateX(-50%);
- font-size:63px
+ font-size:59px
 }
 
 .acc-butterfly{
- top:25px;
- right:25px;
- font-size:50px
+ top:47px;
+ right:38px;
+ font-size:47px
 }
 
 .acc-sparkles{
- top:15px;
- left:25px;
+ top:22px;
+ left:30px;
  font-size:48px
 }
 
@@ -583,39 +578,4124 @@ main{padding:16px 18px}
  display:none
 }
 
-/* Animaciones */
-
-.pet-stage.idle .pet-body{
- animation:petIdle 2.4s ease-in-out infinite
+.petname{
+ text-align:center;
+ font-size:21px;
+ font-weight:900
 }
 
-.pet-stage.jump .pet-body{
- animation:petJump 1s ease-in-out
+.pet-mood{
+ text-align:center;
+ font-size:16px;
+ margin:6px 0
 }
 
-.pet-stage.hop .pet-body{
- animation:petHop 1.1s ease-in-out
+.bar{
+ margin:9px 0
 }
 
-.pet-stage.fly .pet-body{
- animation:petFly 1.7s ease-in-out
+.barline{
+ display:flex;
+ justify-content:space-between;
+ font-size:12px;
+ font-weight:800
 }
 
-.pet-stage.run .pet-body{
- animation:petRun 1.5s ease-in-out
+.meter{
+ height:10px;
+ border-radius:20px;
+ background:#eee;
+ overflow:hidden
 }
 
-.pet-stage.roll .pet-body{
- animation:petRoll 1.5s ease-in-out
+.meter i{
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,var(--green),var(--yellow))
 }
 
-.pet-stage.walk .pet-body{
- animation:petWalk 2s ease-in-out
+.accessory-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:9px
 }
 
-.pet-stage.play .pet-body{
- animation:petPlay 1.5s ease-in-out
+.accessory-btn{
+ border:1px solid var(--line);
+ background:white;
+ border-radius:17px;
+ padding:12px 5px;
+ font-size:30px
 }
 
-@keyframes petIdle{
- 0%,100%
+.accessory-btn small{
+ display:block;
+ font-size:10px;
+ font-weight:800;
+ color:var(--muted)
+}
+
+/* ANIMACIONES */
+
+.pet-action .pet-body{
+ animation:petBounce .8s ease-in-out 2
+}
+
+.pet-fly .pet-body{
+ animation:petFly 1.5s ease-in-out 1
+}
+
+.pet-run .pet-body{
+ animation:petRun 1.1s ease-in-out 1
+}
+
+.pet-hop .pet-body{
+ animation:petHop .8s ease-in-out 2
+}
+
+.pet-spin .pet-body{
+ animation:petSpin 1s ease-in-out 1
+}
+
+.pet-swim .pet-body{
+ animation:petSwim 1.2s ease-in-out 1
+}
+
+@keyframes petBounce{
+ 0%,100%{transform:translateY(0) scale(1)}
+ 50%{transform:translateY(-35px) scale(1.05)}
+}
+
+@keyframes petFly{
+ 0%{transform:translate(0,0) rotate(0)}
+ 35%{transform:translate(70px,-35px) rotate(-8deg)}
+ 70%{transform:translate(-55px,-15px) rotate(8deg)}
+ 100%{transform:translate(0,0) rotate(0)}
+}
+
+@keyframes petRun{
+ 0%{transform:translateX(0)}
+ 35%{transform:translateX(70px)}
+ 70%{transform:translateX(-60px)}
+ 100%{transform:translateX(0)}
+}
+
+@keyframes petHop{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-45px)}
+}
+
+@keyframes petSpin{
+ 0%{transform:rotate(0)}
+ 50%{transform:rotate(15deg) scale(1.08)}
+ 100%{transform:rotate(0)}
+}
+
+@keyframes petSwim{
+ 0%,100%{transform:translateX(0)}
+ 50%{transform:translateX(35px) rotate(-5deg)}
+}
+
+/* RECORDATORIO */
+
+.pet-reminder{
+ position:fixed;
+ inset:0;
+ background:rgba(25,20,30,.55);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ z-index:100;
+ padding:20px
+}
+
+.pet-reminder.show{
+ display:flex
+}
+
+.reminder-box{
+ position:relative;
+ width:min(440px,100%);
+ background:white;
+ border-radius:30px;
+ padding:25px;
+ text-align:center;
+ box-shadow:0 20px 70px rgba(0,0,0,.3);
+ overflow:hidden
+}
+
+.reminder-pet{
+ font-size:110px;
+ margin:5px auto;
+ animation:reminderPet 1.2s ease-in-out infinite
+}
+
+@keyframes reminderPet{
+ 0%,100%{transform:translateY(0) rotate(-3deg)}
+ 50%{transform:translateY(-15px) rotate(3deg)}
+}
+
+.reminder-close{
+ position:absolute;
+ top:12px;
+ right:12px;
+ border:0;
+ background:#f5edf6;
+ border-radius:50%;
+ width:40px;
+ height:40px;
+ font-size:23px
+}
+
+/* MODALES */
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(25,20,30,.6);
+ display:none;
+ align-items:flex-end;
+ z-index:50
+}
+
+.modal.show{
+ display:flex
+}
+
+.sheet{
+ width:min(720px,100%);
+ max-height:92vh;
+ overflow:auto;
+ background:#fff;
+ border-radius:28px 28px 0 0;
+ padding:22px
+}
+
+.close{
+ float:right;
+ border:0;
+ background:#f5edf6;
+ border-radius:50%;
+ width:40px;
+ height:40px;
+ font-size:23px
+}
+
+.reward{
+ position:fixed;
+ inset:0;
+ background:rgba(30,20,35,.72);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ z-index:80
+}
+
+.reward.show{
+ display:flex
+}
+
+.rewardbox{
+ background:#fff;
+ border-radius:32px;
+ text-align:center;
+ padding:26px;
+ width:min(500px,100%);
+ box-shadow:0 20px 60px #0005
+}
+
+.bigstar{
+ font-size:140px;
+ line-height:1;
+ animation:starPulse 1s ease-in-out infinite
+}
+
+@keyframes starPulse{
+ 50%{transform:scale(1.08)}
+}
+
+input,select{
+ width:100%;
+ padding:12px;
+ border:1px solid var(--line);
+ border-radius:13px;
+ margin:5px 0 10px;
+ background:#fff;
+ color:var(--ink)
+}
+
+label{
+ font-size:12px;
+ font-weight:900
+}
+
+.status{
+ padding:10px;
+ border-radius:14px;
+ background:#f4edf8;
+ margin-top:10px;
+ font-weight:700
+}
+
+.voice-status{
+ text-align:center;
+ margin-top:8px;
+ font-size:13px;
+ color:var(--muted)
+}
+
+@media(max-width:520px){
+
+ .brand h1{font-size:25px}
+ .brand .star{font-size:48px}
+ .profile h2{font-size:25px}
+
+ .avatar{
+   width:86px;
+   height:86px;
+   font-size:53px
+ }
+
+ .subject-grid{
+   grid-template-columns:1fr 1fr
+ }
+
+ .pet-stage{
+   width:250px
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="topbar">
+ ‹ &nbsp; Mis Pequeñas Misiones
+</div>
+
+<header class="header">
+
+ <div class="brand">
+
+  <div class="star">⭐</div>
+
+  <div>
+   <h1>Mis Pequeñas Misiones</h1>
+   <p>Pequeñas acciones, grandes hábitos</p>
+  </div>
+
+ </div>
+
+ <button class="iconbtn" onclick="notify()">
+  🔔
+ </button>
+
+</header>
+
+<main id="screen"></main>
+
+<nav class="bottom">
+
+ <button id="nav-home" onclick="go('home')">
+  <b>🏠</b>Inicio
+ </button>
+
+ <button id="nav-learn" onclick="go('learn')">
+  <b>🎯</b>Aprender
+ </button>
+
+ <button id="nav-prize" onclick="go('prize')">
+  <b>🏆</b>Premios
+ </button>
+
+ <button id="nav-pet" onclick="go('pet')">
+  <b>🐾</b>Mascota
+ </button>
+
+ <button onclick="openMom()">
+  <b>🔐</b>Mamá
+ </button>
+
+</nav>
+
+</div>
+
+<div id="modal" class="modal">
+ <div id="sheet" class="sheet"></div>
+</div>
+
+<div id="reward" class="reward">
+
+ <div class="rewardbox">
+
+  <div class="bigstar">⭐</div>
+
+  <h2>¡REGALO DESBLOQUEADO!</h2>
+
+  <p id="rewardText"></p>
+
+  <button class="btn" onclick="closeReward()">
+   ¡Genial! 🎉
+  </button>
+
+ </div>
+
+</div>
+
+<div id="petReminder" class="pet-reminder">
+
+ <div class="reminder-box">
+
+  <button
+   class="reminder-close"
+   onclick="closeReminder()">
+   ×
+  </button>
+
+  <div id="reminderPet" class="reminder-pet">
+   🐾
+  </div>
+
+  <h2 id="reminderTitle">
+   ¡Ey! 👋
+  </h2>
+
+  <p id="reminderMessage"></p>
+
+  <button
+   class="btn purple full"
+   onclick="closeReminder();go('home')">
+   Vamos a hacerlo 💪
+  </button>
+
+ </div>
+
+</div>
+
+<script>
+
+/* ==========================================================
+   DATOS
+========================================================== */
+
+const KEY='MPM_FINAL_V6';
+
+const initial={
+
+ pin:'2580',
+
+ reward:'¡Ganaste un helado! 🍦',
+
+ child:'violeta',
+
+ kids:{
+
+  violeta:{
+   name:'Violeta',
+   age:13,
+   level:7,
+   stars:48,
+   streak:6,
+   ach:4,
+   avatar:'👧',
+
+   pet:{
+    emoji:'🦜',
+    name:'Copito',
+    happy:89,
+    food:80,
+    energy:88,
+    clean:92,
+    accessory:'🧢'
+   },
+
+   learningLanguage:'ingles'
+  },
+
+  eliseo:{
+   name:'Eliseo',
+   age:9,
+   level:5,
+   stars:42,
+   streak:8,
+   ach:3,
+   avatar:'👦',
+
+   pet:{
+    emoji:'🐱',
+    name:'Milo',
+    happy:91,
+    food:85,
+    energy:90,
+    clean:88,
+    accessory:'🕶️'
+   },
+
+   learningLanguage:'ingles'
+  },
+
+  misael:{
+   name:'Misael',
+   age:7,
+   level:3,
+   stars:38,
+   streak:4,
+   ach:2,
+   avatar:'👦',
+
+   pet:{
+    emoji:'🐰',
+    name:'Nube',
+    happy:86,
+    food:80,
+    energy:92,
+    clean:93,
+    accessory:'🎩'
+   },
+
+   learningLanguage:'ingles'
+  }
+
+ },
+
+ missions:[
+
+  {
+   id:1,
+   n:'Alimentación saludable',
+   d:'Come frutas y toma agua',
+   t:'13:00',
+   s:2,
+   i:'🍎',
+   done:false
+  },
+
+  {
+   id:2,
+   n:'Dientes y baño',
+   d:'Cepíllate los dientes y báñate',
+   t:'18:00',
+   s:2,
+   i:'🪥',
+   done:false
+  },
+
+  {
+   id:3,
+   n:'Apagar luces y TV',
+   d:'Apaga lo que no se usa',
+   t:'19:30',
+   s:2,
+   i:'💡',
+   done:false
+  },
+
+  {
+   id:4,
+   n:'Prepararse para dormir',
+   d:'Pijama, dientes y a la cama',
+   t:'20:30',
+   s:3,
+   i:'🌙',
+   done:false
+  },
+
+  {
+   id:5,
+   n:'Ve a la escuela',
+   d:'Mochila lista y llegar a tiempo',
+   t:'07:15',
+   s:2,
+   i:'🎒',
+   done:false
+  },
+
+  {
+   id:6,
+   n:'Hora de limpiar',
+   d:'Ordena tus cosas y colabora en casa',
+   t:'17:00',
+   s:2,
+   i:'🧹',
+   done:false
+  },
+
+  {
+   id:7,
+   n:'Hacer tareas / repasar',
+   d:'Completa tus deberes escolares',
+   t:'16:00',
+   s:3,
+   i:'📚',
+   done:false
+  },
+
+  {
+   id:8,
+   n:'Cena saludable',
+   d:'Cena y descubre un tip',
+   t:'19:00',
+   s:2,
+   i:'🥗',
+   done:false
+  },
+
+  {
+   id:9,
+   n:'Actividad física',
+   d:'Muévete 15 minutos',
+   t:'17:30',
+   s:2,
+   i:'🏃',
+   done:false
+  },
+
+  {
+   id:10,
+   n:'Cuidar animales',
+   d:'Alimenta gallinas y periquitos',
+   t:'08:00',
+   s:2,
+   i:'🐔',
+   done:false
+  }
+
+ ],
+
+ history:[]
+
+};
+
+
+/* ==========================================================
+   CARGA Y MIGRACIÓN
+========================================================== */
+
+function cloneInitial(){
+
+ return JSON.parse(
+  JSON.stringify(initial)
+ );
+
+}
+
+function normalizeData(raw){
+
+ const d=
+  raw&&typeof raw==='object'
+   ?raw
+   :cloneInitial();
+
+ const base=cloneInitial();
+
+ if(!d.kids||typeof d.kids!=='object'){
+  d.kids=base.kids;
+ }
+
+ Object.keys(base.kids).forEach(k=>{
+
+  const b=base.kids[k];
+  const c=d.kids[k]||{};
+
+  c.name=c.name||b.name;
+  c.age=Number(c.age)||b.age;
+  c.level=Number(c.level)||b.level;
+
+  c.stars=
+   Number.isFinite(Number(c.stars))
+    ?Number(c.stars)
+    :b.stars;
+
+  c.streak=
+   Number.isFinite(Number(c.streak))
+    ?Number(c.streak)
+    :b.streak;
+
+  c.ach=
+   Number.isFinite(Number(c.ach))
+    ?Number(c.ach)
+    :b.ach;
+
+  c.avatar=c.avatar||b.avatar;
+
+  c.pet=Object.assign({},b.pet,c.pet||{});
+
+  ['happy','food','energy','clean'].forEach(x=>{
+
+   c.pet[x]=
+    Number.isFinite(Number(c.pet[x]))
+     ?Number(c.pet[x])
+     :b.pet[x];
+
+  });
+
+  c.pet.name=
+   c.pet.name||b.pet.name;
+
+  c.pet.emoji=
+   c.pet.emoji||b.pet.emoji;
+
+  if(typeof c.pet.accessory!=='string'){
+   c.pet.accessory='';
+  }
+
+  c.learningLanguage=
+   c.learningLanguage||
+   b.learningLanguage||
+   'ingles';
+
+  d.kids[k]=c;
+
+ });
+
+ d.pin=
+  /^\d{4}$/.test(String(d.pin||''))
+   ?String(d.pin)
+   :base.pin;
+
+ d.reward=
+  String(d.reward||base.reward);
+
+ d.child=
+  d.kids[d.child]
+   ?d.child
+   :base.child;
+
+ d.missions=
+  Array.isArray(d.missions)
+   ?d.missions
+   :base.missions;
+
+ d.history=
+  Array.isArray(d.history)
+   ?d.history
+   :[];
+
+ return d;
+
+}
+
+let D;
+
+try{
+
+ const old=
+  localStorage.getItem(KEY)||
+  localStorage.getItem('MPM5_FINAL_DATA')||
+  localStorage.getItem('MPM5DATA');
+
+ D=normalizeData(
+  old?JSON.parse(old):null
+ );
+
+ localStorage.setItem(
+  KEY,
+  JSON.stringify(D)
+ );
+
+}catch(e){
+
+ console.error(e);
+
+ D=cloneInitial();
+
+ try{
+  localStorage.setItem(
+   KEY,
+   JSON.stringify(D)
+  );
+ }catch(err){}
+
+}
+
+function save(){
+
+ try{
+
+  localStorage.setItem(
+   KEY,
+   JSON.stringify(D)
+  );
+
+ }catch(e){
+
+  console.warn(
+   'No se pudo guardar localStorage',
+   e
+  );
+
+ }
+
+}
+
+function C(){
+
+ return D.kids[D.child]||
+        D.kids.violeta;
+
+}
+
+
+/* ==========================================================
+   UTILIDADES SEGURAS
+========================================================== */
+
+function esc(t){
+
+ return String(t??'')
+  .replace(/&/g,'&amp;')
+  .replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;')
+  .replace(/'/g,'&#039;');
+
+}
+
+function escapeAttr(t){
+
+ return String(t??'')
+  .replace(/\\/g,'\\\\')
+  .replace(/'/g,"\\'");
+}
+
+function normalizeAnswer(t){
+
+ return String(t||'')
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g,'')
+  .replace(/[¿?¡!.,]/g,'')
+  .replace(/\s+/g,' ')
+  .trim();
+
+}
+
+function fmt(t){
+
+ if(!t)return'';
+
+ let parts=t.split(':');
+
+ let h=Number(parts[0]);
+ let m=Number(parts[1]);
+
+ return(
+  (h%12||12)+':'+
+  String(m).padStart(2,'0')+
+  ' '+
+  (h>=12?'PM':'AM')
+ );
+
+}
+
+
+/* ==========================================================
+   NAVEGACIÓN
+========================================================== */
+
+function go(page){
+
+ document
+  .querySelectorAll('.bottom button')
+  .forEach(x=>x.classList.remove('active'));
+
+ const nav=
+  document.getElementById('nav-'+page);
+
+ if(nav){
+  nav.classList.add('active');
+ }
+
+ try{
+
+  if(page==='home')home();
+  else if(page==='learn')learn();
+  else if(page==='prize')prize();
+  else if(page==='pet')pet();
+
+ }catch(error){
+
+  console.error(error);
+
+  showRecovery();
+
+ }
+
+}
+
+
+/* ==========================================================
+   RECUPERACIÓN
+========================================================== */
+
+function showRecovery(){
+
+ document.getElementById('screen').innerHTML=`
+
+ <section class="card">
+
+  <h2>✨ La aplicación está recuperándose</h2>
+
+  <p>
+   Hubo un pequeño problema al mostrar esta sección.
+   Tus datos guardados no se han eliminado.
+  </p>
+
+  <button
+   class="btn purple full"
+   onclick="location.reload()">
+   Recargar aplicación
+  </button>
+
+ </section>
+
+ `;
+
+}
+
+
+/* ==========================================================
+   HIJOS
+========================================================== */
+
+function childTabs(){
+
+ return`
+
+ <div class="child-tabs">
+
+ ${
+  Object.entries(D.kids).map(
+   ([k,c])=>`
+
+   <button
+    class="child-tab ${
+     D.child===k?'active':''
+    }"
+    onclick="setChild('${k}')">
+
+    ${esc(c.name)}<br>
+    <small>${c.age} años</small>
+
+   </button>
+
+  `
+  ).join('')
+ }
+
+ </div>
+
+ `;
+
+}
+
+function setChild(k){
+
+ if(!D.kids[k])return;
+
+ D.child=k;
+
+ save();
+
+ go('home');
+
+}
+
+
+/* ==========================================================
+   PERFIL
+========================================================== */
+
+function profile(){
+
+ const c=C();
+
+ return`
+
+ <section class="card profile">
+
+  <div class="avatar">
+   ${esc(c.avatar)}
+  </div>
+
+  <div>
+
+   <h2>
+    ¡Hola, ${esc(c.name)}! 🌟
+   </h2>
+
+   <div class="age">
+    ${c.age} años · Nivel ${c.level}
+   </div>
+
+   <div class="chips">
+
+    <span class="chip">
+     ⭐ ${c.stars} estrellas
+    </span>
+
+    <span class="chip">
+     🔥 ${c.streak} días
+    </span>
+
+    <span class="chip">
+     🏆 ${c.ach} logros
+    </span>
+
+   </div>
+
+  </div>
+
+ </section>
+
+ `;
+
+}
+
+
+/* ==========================================================
+   MISIONES
+========================================================== */
+
+function missionList(){
+
+ return`
+
+ <section class="card">
+
+  <div class="section-head">
+
+   <h2>📋 Misiones del día</h2>
+
+   <button
+    class="outline"
+    onclick="showAll()">
+
+    Ver todas
+
+   </button>
+
+  </div>
+
+  ${
+   D.missions
+    .slice(0,6)
+    .map(m=>`
+
+   <div class="mission">
+
+    <div class="mi">
+     ${esc(m.i)}
+    </div>
+
+    <div>
+
+     <h3>${esc(m.n)}</h3>
+
+     <p>${esc(m.d)}</p>
+
+     <div class="meta">
+      ⏰ ${fmt(m.t)} · ⭐ ${m.s}
+     </div>
+
+    </div>
+
+    <button
+     class="${m.done?'check':'plus'}"
+     onclick="complete(${Number(m.id)})">
+
+     ${m.done?'✓':'+'}
+
+    </button>
+
+   </div>
+
+  `).join('')
+  }
+
+ </section>
+
+ `;
+
+}
+
+function complete(id){
+
+ const m=
+  D.missions.find(x=>Number(x.id)===Number(id));
+
+ const c=C();
+
+ if(!m||m.done)return;
+
+ m.done=true;
+
+ c.stars+=Number(m.s)||0;
+ c.streak=Math.max(c.streak,1);
+ c.ach++;
+
+ D.history.unshift({
+
+  kid:D.child,
+
+  text:'Completó '+m.n,
+
+  stars:Number(m.s)||0,
+
+  date:new Date().toLocaleString()
+
+ });
+
+ save();
+
+ petSay(
+  getPetPhrase('mission'),
+  'es'
+ );
+
+ home();
+
+ if(
+  D.missions.length>0&&
+  D.missions.every(x=>x.done)
+ ){
+
+  setTimeout(showReward,300);
+
+ }
+
+}
+
+function showAll(){
+
+ document.getElementById('screen').innerHTML=
+
+ childTabs()+`
+
+ <section class="card">
+
+  <div class="section-head">
+
+   <h2>📋 Todas las misiones</h2>
+
+   <button
+    class="outline"
+    onclick="go('home')">
+    ← Inicio
+   </button>
+
+  </div>
+
+  ${
+   D.missions.map(m=>`
+
+   <div class="mission">
+
+    <div class="mi">
+     ${esc(m.i)}
+    </div>
+
+    <div>
+
+     <h3>${esc(m.n)}</h3>
+
+     <p>${esc(m.d)}</p>
+
+     <div class="meta">
+      ⏰ ${fmt(m.t)} · ⭐ ${m.s}
+     </div>
+
+    </div>
+
+    <button
+     class="${m.done?'check':'plus'}"
+     onclick="complete(${Number(m.id)})">
+
+     ${m.done?'✓':'+'}
+
+    </button>
+
+   </div>
+
+  `).join('')
+  }
+
+ </section>
+
+ `;
+
+}
+
+
+/* ==========================================================
+   INICIO
+========================================================== */
+
+function dailyTip(age){
+
+ const a=
+  age<10
+   ?[
+    'Ordena tus cosas después de jugar. 🧸',
+    'Toma agua durante el día. 💧',
+    'Cepíllate los dientes con calma. 🪥',
+    'Aprende una palabra nueva hoy. 📚'
+   ]
+   :[
+    'Organiza tu tiempo antes de empezar tus tareas. ⏱️',
+    'Ayudar en casa también es una forma de responsabilidad. 🏠',
+    'Practica un idioma 10 minutos hoy. 🌍',
+    'Antes de dormir, prepara lo que necesitarás mañana. 🎒'
+   ];
+
+ return a[
+  new Date().getDate()%a.length
+ ];
+
+}
+
+function home(){
+
+ const c=C();
+
+ document.getElementById('screen').innerHTML=
+
+ childTabs()+
+ profile()+
+ missionList()+
+
+ `<div class="banner">
+
+  ¡Completa tus misiones y gana estrellas extra!
+
+  <span>🎁</span>
+
+ </div>
+
+ <section class="card learn-card">
+
+  <div class="section-head">
+
+   <h2>📚 Aprende hoy</h2>
+
+   <span class="pill">
+    Adaptado a tu edad
+   </span>
+
+  </div>
+
+  <p>
+   Hoy tienes preguntas diferentes de Español,
+   Matemáticas, Ciencias e Inglés.
+  </p>
+
+  <button
+   class="btn purple full"
+   onclick="go('learn')">
+
+   Empezar a aprender →
+
+  </button>
+
+ </section>
+
+ <section class="card">
+
+  <div class="section-head">
+
+   <h2>💡 Consejo de hoy</h2>
+
+   <button
+    class="outline"
+    onclick="tip()">
+
+    Otro consejo ✨
+
+   </button>
+
+  </div>
+
+  <p id="tipText">
+   ${dailyTip(c.age)}
+  </p>
+
+ </section>
+
+ ${petMini(c)}
+
+ `;
+
+}
+
+function tip(){
+
+ const el=
+  document.getElementById('tipText');
+
+ if(el){
+
+  el.textContent=
+   '✨ '+dailyTip(C().age)+
+   ' ¡Tú puedes!';
+
+ }
+
+}
+
+
+/* ==========================================================
+   MASCOTA
+========================================================== */
+
+function accessoryClass(a){
+
+ if(['🕶️','👓'].includes(a))
+  return'acc-glasses';
+
+ if(['🧢','🎩'].includes(a))
+  return'acc-hat';
+
+ if(a==='🎀')
+  return'acc-bow';
+
+ if(a==='👑')
+  return'acc-crown';
+
+ if(a==='🧣')
+  return'acc-scarf';
+
+ if(a==='🦋')
+  return'acc-butterfly';
+
+ if(a==='✨')
+  return'acc-sparkles';
+
+ return'acc-none';
+
+}
+
+function petStage(p,action=''){
+
+ const ac=p.accessory||'';
+
+ return`
+
+ <div
+  class="pet-stage ${
+   action?'pet-'+action:''
+  }">
+
+  <div class="pet-body">
+   ${esc(p.emoji)}
+  </div>
+
+  <div
+   class="pet-accessory ${accessoryClass(ac)}">
+
+   ${esc(ac)}
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+function petMini(c){
+
+ const p=c.pet;
+
+ return`
+
+ <section class="card pet-card">
+
+  <h2 style="text-align:center">
+   🐾 Mi mascota
+  </h2>
+
+  ${petStage(p)}
+
+  <div class="petname">
+   ${esc(p.name)}
+  </div>
+
+  <p class="pet-mood">
+   ❤️ ${p.happy}% felicidad
+  </p>
+
+  <button
+   class="btn green full"
+   onclick="go('pet')">
+
+   Cuidarla →
+
+  </button>
+
+ </section>
+
+ `;
+
+}
+
+function petMood(p){
+
+ const avg=
+  (p.happy+p.food+p.energy+p.clean)/4;
+
+ if(avg>80)
+  return'🥰 ¡Estoy feliz y bien cuidada!';
+
+ if(avg>55)
+  return'🙂 Necesito un poquito de atención.';
+
+ return'😟 ¡No me olvides! Necesito cuidados.';
+
+}
+
+function bar(name,v){
+
+ return`
+
+ <div class="bar">
+
+  <div class="barline">
+
+   <span>${name}</span>
+   <span>${v}%</span>
+
+  </div>
+
+  <div class="meter">
+
+   <i style="width:${Math.max(0,Math.min(100,v))}%"></i>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+function pet(){
+
+ const c=C();
+ const p=c.pet;
+
+ document.getElementById('screen').innerHTML=
+
+ childTabs()+`
+
+ <section class="card pet-card">
+
+  <h2 style="text-align:center">
+   🐾 Mascota de ${esc(c.name)}
+  </h2>
+
+  <div id="petMainStage">
+
+   ${petStage(p)}
+
+  </div>
+
+  <div class="petname">
+   ${esc(p.name)}
+  </div>
+
+  <div class="pet-mood">
+   ${petMood(p)}
+  </div>
+
+  ${bar('❤️ Felicidad',p.happy)}
+  ${bar('🍖 Alimentación',p.food)}
+  ${bar('⚡ Energía',p.energy)}
+  ${bar('🧼 Higiene',p.clean)}
+
+  <div class="grid">
+
+   <button
+    class="btn green"
+    onclick="care('food')">
+    🍎 Alimentar
+   </button>
+
+   <button
+    class="btn purple"
+    onclick="care('clean')">
+    🧼 Limpiar
+   </button>
+
+   <button
+    class="btn yellow"
+    onclick="care('play')">
+    🎮 Jugar
+   </button>
+
+   <button
+    class="btn"
+    onclick="care('walk')">
+    🦮 Pasear
+   </button>
+
+  </div>
+
+  <button
+   class="btn blue full"
+   onclick="petSpeakLearning()">
+
+   🗣️ Mi mascota habla
+
+  </button>
+
+ </section>
+
+ <section class="card">
+
+  <h3>🎀 Personalizar mascota</h3>
+
+  <p>
+   El accesorio queda colocado directamente
+   sobre el cuerpo/cabeza de tu mascota.
+  </p>
+
+  <div class="accessory-grid">
+
+   ${[
+    ['','❌','Sin accesorio'],
+    ['🕶️','🕶️','Lentes'],
+    ['🧢','🧢','Gorra'],
+    ['🎩','🎩','Sombrero'],
+    ['👑','👑','Corona'],
+    ['🎀','🎀','Moño'],
+    ['🧣','🧣','Bufanda'],
+    ['🦋','🦋','Mariposa'],
+    ['✨','✨','Brillitos']
+   ].map(a=>`
+
+    <button
+     class="accessory-btn"
+     onclick="setAccessory('${escapeAttr(a[0])}')">
+
+     ${a[1]}
+
+     <small>
+      ${a[2]}
+     </small>
+
+    </button>
+
+   `).join('')}
+
+  </div>
+
+ </section>
+
+ <section class="card">
+
+  <h3>🐶🐱🐰🦊🐼 Elegir mascota</h3>
+
+  <div class="grid">
+
+   ${[
+    ['🐶','Perrito'],
+    ['🐱','Gatito'],
+    ['🐰','Conejito'],
+    ['🦊','Zorrito'],
+    ['🐼','Panda'],
+    ['🦜','Periquito'],
+    ['🐢','Tortuguita'],
+    ['🐹','Hámster']
+   ].map(a=>`
+
+    <button
+     class="tile"
+     onclick="setPet('${a[0]}')">
+
+     <span class="ico">
+      ${a[0]}
+     </span>
+
+     <strong>
+      ${a[1]}
+     </strong>
+
+    </button>
+
+   `).join('')}
+
+  </div>
+
+ </section>
+
+ <section class="card">
+
+  <h3>✏️ Nombre de la mascota</h3>
+
+  <label>Nombre</label>
+
+  <input
+   id="petname"
+   value="${esc(p.name)}"
+   maxlength="20">
+
+  <button
+   class="btn full"
+   onclick="savePetName()">
+
+   Guardar nombre
+
+  </button>
+
+ </section>
+
+ `;
+
+}
+
+function setAccessory(a){
+
+ C().pet.accessory=a;
+
+ save();
+
+ pet();
+
+ playPetSound(C().pet.emoji);
+
+}
+
+function setPet(e){
+
+ C().pet.emoji=e;
+
+ save();
+
+ pet();
+
+ playPetSound(e);
+
+}
+
+function savePetName(){
+
+ const input=
+  document.getElementById('petname');
+
+ const name=
+  input?.value.trim()||
+  C().pet.name||
+  'Copito';
+
+ C().pet.name=name;
+
+ save();
+
+ pet();
+
+}
+
+function care(type){
+
+ const p=C().pet;
+
+ let animation='action';
+
+ if(type==='food'){
+
+  p.food=Math.min(100,p.food+16);
+  p.happy=Math.min(100,p.happy+5);
+
+ }
+
+ if(type==='clean'){
+
+  p.clean=Math.min(100,p.clean+16);
+  p.happy=Math.min(100,p.happy+5);
+
+ }
+
+ if(type==='play'){
+
+  p.happy=Math.min(100,p.happy+12);
+  p.energy=Math.max(0,p.energy-5);
+
+  animation=
+   animalAnimation(p.emoji);
+
+ }
+
+ if(type==='walk'){
+
+  p.happy=Math.min(100,p.happy+10);
+  p.energy=Math.max(0,p.energy-8);
+
+  animation=
+   animalAnimation(p.emoji);
+
+ }
+
+ save();
+
+ pet();
+
+ setTimeout(()=>{
+
+  const stage=
+   document.getElementById('petMainStage');
+
+  if(stage){
+
+   stage.innerHTML=
+    petStage(p,animation);
+
+  }
+
+  playPetSound(p.emoji);
+
+  petSay(
+   getPetPhrase(
+    type==='play'?'play':'care'
+   ),
+   getLearningLanguage()
+  );
+
+ },80);
+
+}
+
+function animalAnimation(emoji){
+
+ if(emoji==='🦜')
+  return'fly';
+
+ if(emoji==='🐢')
+  return'swim';
+
+ if(emoji==='🐰')
+  return'hop';
+
+ if(
+  ['🐶','🐱','🦊','🐹'].includes(emoji)
+ )
+  return'run';
+
+ return'action';
+
+}
+
+
+/* ==========================================================
+   FRASES DE LA MASCOTA
+========================================================== */
+
+function getLearningLanguage(){
+
+ return C().learningLanguage||
+        'ingles';
+
+}
+
+function getPetPhrase(type){
+
+ const lang=getLearningLanguage();
+
+ if(lang==='espanol'){
+
+  const list={
+   mission:[
+    '¡Tú puedes! Vamos a completar esa misión.',
+    '¡Muy bien! Me encanta verte aprender.',
+    '¡Lo estás haciendo genial!'
+   ],
+   play:[
+    '¡Vamos a jugar!',
+    '¡Qué divertido!',
+    '¡Otra vez, otra vez!'
+   ],
+   care:[
+    'Gracias por cuidarme.',
+    '¡Me siento muy feliz!',
+    '¡Eres un excelente cuidador!'
+   ]
+  };
+
+  const a=list[type]||list.care;
+
+  return a[
+   Math.floor(Math.random()*a.length)
+  ];
+
+ }
+
+ const list={
+
+  mission:[
+   'You can do it!',
+   'Let’s complete the mission!',
+   'Great job! Keep going!'
+  ],
+
+  play:[
+   'Let’s play!',
+   'That is so much fun!',
+   'Come on! Let’s play!'
+  ],
+
+  care:[
+   'Thank you for taking care of me!',
+   'I am so happy!',
+   'You are a great pet friend!'
+  ]
+
+ };
+
+ const a=list[type]||list.care;
+
+ return a[
+  Math.floor(Math.random()*a.length)
+ ];
+
+}
+
+function petSpeakLearning(){
+
+ const text=
+  getPetPhrase('play');
+
+ petSay(
+  text,
+  getLearningLanguage()
+ );
+
+}
+
+function petSay(text,lang){
+
+ if(!text)return;
+
+ playPetSound(C().pet.emoji);
+
+ speakText(
+  text,
+  lang==='ingles'?'en-US':'es-ES',
+  .82
+ );
+
+}
+
+
+/* ==========================================================
+   SONIDOS DE MASCOTAS
+========================================================== */
+
+/*
+ No depende de archivos externos.
+ Crea pequeños sonidos mediante Web Audio.
+ */
+
+function playPetSound(emoji){
+
+ try{
+
+  const AudioContext=
+   window.AudioContext||
+   window.webkitAudioContext;
+
+  if(!AudioContext)return;
+
+  const ctx=new AudioContext();
+
+  const now=ctx.currentTime;
+
+  const osc=ctx.createOscillator();
+  const gain=ctx.createGain();
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  let f1=440;
+  let f2=600;
+  let duration=.22;
+
+  if(emoji==='🐶'){
+   f1=280;
+   f2=190;
+   duration=.18;
+  }
+
+  else if(emoji==='🐱'){
+   f1=700;
+   f2=950;
+   duration=.28;
+  }
+
+  else if(emoji==='🐰'){
+   f1=500;
+   f2=750;
+   duration=.15;
+  }
+
+  else if(emoji==='🦜'){
+   f1=900;
+   f2=1250;
+   duration=.22;
+  }
+
+  else if(emoji==='🐢'){
+   f1=250;
+   f2=300;
+   duration=.3;
+  }
+
+  else if(emoji==='🐹'){
+   f1=650;
+   f2=800;
+   duration=.18;
+  }
+
+  else if(emoji==='🦊'){
+   f1=380;
+   f2=500;
+   duration=.2;
+  }
+
+  else if(emoji==='🐼'){
+   f1=330;
+   f2=430;
+   duration=.22;
+  }
+
+  osc.frequency.setValueAtTime(f1,now);
+  osc.frequency.linearRampToValueAtTime(f2,now+duration);
+
+  gain.gain.setValueAtTime(.0001,now);
+  gain.gain.exponentialRampToValueAtTime(.12,now+.02);
+  gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
+
+  osc.start(now);
+  osc.stop(now+duration+.03);
+
+  setTimeout(()=>{
+   try{ctx.close()}catch(e){}
+  },500);
+
+ }catch(e){
+
+  console.log(
+   'Audio de mascota no disponible',
+   e
+  );
+
+ }
+
+}
+
+
+/* ==========================================================
+   APRENDIZAJE
+========================================================== */
+
+const subjectNames={
+
+ espanol:'🇪🇸 Español',
+ matematicas:'🔢 Matemáticas',
+ ciencias:'🌱 Ciencias',
+ ingles:'🇺🇸 Inglés'
+
+};
+
+
+/*
+ Banco amplio.
+ La selección aleatoria hace que las preguntas
+ cambien también en Español y Ciencias.
+ */
+
+const questionBank={
+
+ espanol:[
+
+  {
+   q:'La abeja produce ____.',
+   options:['miel','leche','pan','sal'],
+   answer:'miel'
+  },
+
+  {
+   q:'¿Cuál palabra es un animal?',
+   options:['perro','mesa','casa','lápiz'],
+   answer:'perro'
+  },
+
+  {
+   q:'¿Cuál es el plural de “flor”?',
+   options:['flores','flors','flor','florés'],
+   answer:'flores'
+  },
+
+  {
+   q:'¿Cuál palabra está escrita correctamente?',
+   options:['árbol','arbolz','harbol','árvol'],
+   answer:'árbol'
+  },
+
+  {
+   q:'¿Cuál es un verbo?',
+   options:['correr','azul','mesa','rápido'],
+   answer:'correr'
+  },
+
+  {
+   q:'¿Cuál es el antónimo de “grande”?',
+   options:['pequeño','alto','largo','fuerte'],
+   answer:'pequeño'
+  },
+
+  {
+   q:'¿Cuál palabra es un sustantivo?',
+   options:['casa','correr','rápido','azul'],
+   answer:'casa'
+  },
+
+  {
+   q:'¿Cuál oración está correctamente escrita?',
+   options:[
+    'María juega en el parque.',
+    'maría juega en el parque',
+    'María juega en el parque',
+    'maría juega en el Parque.'
+   ],
+   answer:'María juega en el parque.'
+  },
+
+  {
+   q:'¿Cuál es un sinónimo de “feliz”?',
+   options:['contento','triste','enojado','cansado'],
+   answer:'contento'
+  },
+
+  {
+   q:'¿Cuál palabra rima con “casa”?',
+   options:['taza','perro','sol','mar'],
+   answer:'taza'
+  }
+
+ ],
+
+ matematicas:[
+
+  {
+   q:'¿Cuánto es 7 + 8?',
+   options:['13','14','15','16'],
+   answer:'15'
+  },
+
+  {
+   q:'¿Cuánto es 12 - 5?',
+   options:['5','6','7','8'],
+   answer:'7'
+  },
+
+  {
+   q:'¿Cuánto es 6 × 4?',
+   options:['20','22','24','26'],
+   answer:'24'
+  },
+
+  {
+   q:'¿Cuánto es 20 ÷ 5?',
+   options:['2','3','4','5'],
+   answer:'4'
+  },
+
+  {
+   q:'Si tienes 10 caramelos y regalas 3, ¿cuántos quedan?',
+   options:['6','7','8','9'],
+   answer:'7'
+  },
+
+  {
+   q:'¿Cuál número es mayor?',
+   options:['18','21','19','20'],
+   answer:'21'
+  },
+
+  {
+   q:'¿Cuánto es 9 + 6?',
+   options:['13','14','15','16'],
+   answer:'15'
+  },
+
+  {
+   q:'¿Cuánto es 30 - 12?',
+   options:['16','17','18','19'],
+   answer:'18'
+  },
+
+  {
+   q:'¿Cuánto es 8 × 3?',
+   options:['21','24','27','28'],
+   answer:'24'
+  },
+
+  {
+   q:'¿Cuánto es 36 ÷ 6?',
+   options:['5','6','7','8'],
+   answer:'6'
+  },
+
+  {
+   q:'¿Qué número falta? 5, 10, 15, __, 25',
+   options:['18','20','22','24'],
+   answer:'20'
+  },
+
+  {
+   q:'Si tienes 4 grupos de 5 lápices, ¿cuántos lápices tienes?',
+   options:['9','15','20','25'],
+   answer:'20'
+  }
+
+ ],
+
+ ciencias:[
+
+  {
+   q:'¿Qué necesitan las plantas para crecer?',
+   options:[
+    'Agua y luz',
+    'Solo piedras',
+    'Solo oscuridad',
+    'Juguetes'
+   ],
+   answer:'Agua y luz'
+  },
+
+  {
+   q:'¿Cuál es el planeta donde vivimos?',
+   options:['Marte','Tierra','Venus','Júpiter'],
+   answer:'Tierra'
+  },
+
+  {
+   q:'¿Qué órgano usamos principalmente para respirar?',
+   options:['Pulmones','Estómago','Corazón','Huesos'],
+   answer:'Pulmones'
+  },
+
+  {
+   q:'¿Cuál animal pone huevos?',
+   options:['Gallina','Perro','Gato','Caballo'],
+   answer:'Gallina'
+  },
+
+  {
+   q:'¿En qué estado está el hielo?',
+   options:['Sólido','Líquido','Gas','Plasma'],
+   answer:'Sólido'
+  },
+
+  {
+   q:'¿Qué estrella ilumina nuestro planeta?',
+   options:['La Luna','El Sol','Venus','Marte'],
+   answer:'El Sol'
+  },
+
+  {
+   q:'¿Qué parte de la planta absorbe agua del suelo?',
+   options:['Raíz','Flor','Fruto','Hoja'],
+   answer:'Raíz'
+  },
+
+  {
+   q:'¿Cuál de estos animales es mamífero?',
+   options:['Perro','Gallina','Pez','Mariposa'],
+   answer:'Perro'
+  },
+
+  {
+   q:'¿Qué necesitamos para ver?',
+   options:['Luz','Oscuridad total','Hielo','Arena'],
+   answer:'Luz'
+  },
+
+  {
+   q:'¿Cuál es una fuente de energía?',
+   options:['Sol','Piedra pequeña','Lápiz','Cuaderno'],
+   answer:'Sol'
+  },
+
+  {
+   q:'¿Qué órgano bombea la sangre?',
+   options:['Corazón','Pulmón','Estómago','Cerebro'],
+   answer:'Corazón'
+  },
+
+  {
+   q:'¿Qué ocurre con el agua cuando se congela?',
+   options:[
+    'Se convierte en hielo',
+    'Se convierte en fuego',
+    'Desaparece',
+    'Se convierte en arena'
+   ],
+   answer:'Se convierte en hielo'
+  }
+
+ ],
+
+ ingles:[
+
+  {
+   q:'What does “apple” mean?',
+   options:['Manzana','Casa','Perro','Agua'],
+   answer:'Manzana',
+   speak:'apple'
+  },
+
+  {
+   q:'What does “school” mean?',
+   options:['Escuela','Amigo','Comida','Libro'],
+   answer:'Escuela',
+   speak:'school'
+  },
+
+  {
+   q:'What does “friend” mean?',
+   options:['Amigo','Gato','Agua','Familia'],
+   answer:'Amigo',
+   speak:'friend'
+  },
+
+  {
+   q:'Choose the correct answer: “Hello!”',
+   options:['¡Hola!','¡Adiós!','Gracias','Agua'],
+   answer:'¡Hola!',
+   speak:'Hello!'
+  },
+
+  {
+   q:'What does “water” mean?',
+   options:['Agua','Leche','Pan','Sol'],
+   answer:'Agua',
+   speak:'water'
+  },
+
+  {
+   q:'What does “dog” mean?',
+   options:['Perro','Gato','Pez','Pájaro'],
+   answer:'Perro',
+   speak:'dog'
+  },
+
+  {
+   q:'What does “book” mean?',
+   options:['Libro','Mesa','Zapato','Escuela'],
+   answer:'Libro',
+   speak:'book'
+  },
+
+  {
+   q:'What does “red” mean?',
+   options:['Rojo','Azul','Verde','Amarillo'],
+   answer:'Rojo',
+   speak:'red'
+  },
+
+  {
+   q:'What does “house” mean?',
+   options:['Casa','Escuela','Parque','Familia'],
+   answer:'Casa',
+   speak:'house'
+  },
+
+  {
+   q:'Choose the correct answer: “Good morning!”',
+   options:['¡Buenos días!','Buenas noches','Gracias','Adiós'],
+   answer:'¡Buenos días!',
+   speak:'Good morning!'
+  },
+
+  {
+   q:'What does “cat” mean?',
+   options:['Gato','Perro','Pez','Pájaro'],
+   answer:'Gato',
+   speak:'cat'
+  },
+
+  {
+   q:'What does “water” mean?',
+   options:['Agua','Sol','Casa','Libro'],
+   answer:'Agua',
+   speak:'water'
+  },
+
+  {
+   q:'Choose the correct answer: “Thank you!”',
+   options:['¡Gracias!','¡Hola!','¡Corre!','¡Adiós!'],
+   answer:'¡Gracias!',
+   speak:'Thank you!'
+  },
+
+  {
+   q:'What does “school” mean?',
+   options:['Escuela','Casa','Comida','Animal'],
+   answer:'Escuela',
+   speak:'school'
+  },
+
+  {
+   q:'Choose the correct answer: “How are you?”',
+   options:[
+    '¿Cómo estás?',
+    '¿Dónde vives?',
+    'Tengo hambre.',
+    'Hasta mañana.'
+   ],
+   answer:'¿Cómo estás?',
+   speak:'How are you?'
+  }
+
+ ]
+
+};
+
+
+/* ==========================================================
+   ESTADO DE APRENDIZAJE
+========================================================== */
+
+let currentSubject='espanol';
+let currentQuestion=null;
+let questionIndex=0;
+let answered=false;
+let lastQuestionBySubject={};
+
+function randomQuestion(subject){
+
+ const list=
+  Array.isArray(questionBank[subject])
+   ?questionBank[subject]
+   :[];
+
+ if(!list.length)return null;
+
+ let q;
+
+ if(list.length===1){
+  q=list[0];
+ }else{
+
+  let attempts=0;
+
+  do{
+
+   q=
+    list[
+     Math.floor(
+      Math.random()*list.length
+     )
+    ];
+
+   attempts++;
+
+  }while(
+   lastQuestionBySubject[subject]&&
+   q.q===lastQuestionBySubject[subject].q&&
+   attempts<20
+  );
+
+ }
+
+ lastQuestionBySubject[subject]=q;
+
+ return q;
+
+}
+
+
+/* ==========================================================
+   LEARN
+========================================================== */
+
+function learn(){
+
+ try{
+
+  const c=C();
+
+  if(
+   !currentQuestion||
+   !questionBank[currentSubject]
+  ){
+
+   currentQuestion=
+    randomQuestion(currentSubject);
+
+  }
+
+  answered=false;
+
+  document.getElementById('screen').innerHTML=
+
+  `<section class="card">
+
+   <div class="section-head">
+
+    <h2>📚 Aprender hoy</h2>
+
+    <span class="pill">
+     ${esc(c.name)} · ${c.age} años
+    </span>
+
+   </div>
+
+   <p>
+    Las preguntas cambian para que puedas
+    practicar diferentes cosas cada vez.
+   </p>
+
+   <div class="subject-grid">
+
+    ${Object.entries(subjectNames).map(
+     ([k,v])=>`
+
+     <button
+      class="subject ${
+       currentSubject===k?'selected':''
+      }"
+      onclick="selectSubject('${k}')">
+
+      <div class="bigico">
+       ${v.split(' ')[0]}
+      </div>
+
+      <strong>
+       ${v.substring(v.indexOf(' ')+1)}
+      </strong>
+
+      <small>
+       ${
+        k==='ingles'
+         ?'Escucha, responde y habla'
+         :'Preguntas diferentes'
+       }
+      </small>
+
+     </button>
+
+    `).join('')}
+
+   </div>
+
+  </section>
+
+  ${questionUI()}
+
+  <section class="card">
+
+   <h3>⭐ Progreso</h3>
+
+   <div class="xpbox">
+    ${c.stars} ⭐ estrellas ·
+    ${c.streak} 🔥 días de racha
+   </div>
+
+  </section>
+
+  `;
+
+ }catch(error){
+
+  console.error(error);
+
+  showRecovery();
+
+ }
+
+}
+
+function selectSubject(s){
+
+ if(!questionBank[s])return;
+
+ currentSubject=s;
+
+ currentQuestion=
+  randomQuestion(s);
+
+ answered=false;
+
+ learn();
+
+}
+
+
+/* ==========================================================
+   UI DE PREGUNTA
+========================================================== */
+
+function questionUI(){
+
+ const q=currentQuestion;
+
+ if(!q){
+
+  return`
+
+  <section class="card">
+
+   <h2>📚 Preparando pregunta...</h2>
+
+  </section>
+
+  `;
+
+ }
+
+ return`
+
+ <section class="card question">
+
+  <div class="pill">
+   ${subjectNames[currentSubject]}
+  </div>
+
+  <h2>
+   ${esc(q.q)}
+  </h2>
+
+  ${
+   currentSubject==='ingles'
+    ?`
+
+    <div class="listen-row">
+
+     <button
+      class="btn blue"
+      onclick="speakEnglish('${escapeAttr(q.speak)}')">
+
+      🔊 Escuchar
+
+     </button>
+
+     <button
+      class="btn purple"
+      onclick="pronunciation()">
+
+      🎤 Pronunciar
+
+     </button>
+
+    </div>
+
+    <div class="voice-status">
+     Escucha la pregunta o practica la pronunciación.
+    </div>
+
+    `
+    :''
+  }
+
+  <div class="question-answer">
+   Elige la respuesta correcta:
+  </div>
+
+  <div id="answers">
+
+   ${q.options.map(
+    (o,i)=>`
+
+    <button
+     class="option"
+     id="option-${i}"
+     onclick="answerQuestion(${i})">
+
+     ${esc(o)}
+
+    </button>
+
+   `).join('')}
+
+  </div>
+
+  <div id="feedback"></div>
+
+ </section>
+
+ `;
+
+}
+
+
+/* ==========================================================
+   RESPUESTAS
+========================================================== */
+
+function answerQuestion(index){
+
+ if(answered)return;
+
+ const q=currentQuestion;
+
+ if(!q)return;
+
+ const selected=
+  q.options[index];
+
+ const correct=
+  normalizeAnswer(selected)===
+  normalizeAnswer(q.answer);
+
+ const buttons=
+  document.querySelectorAll('.option');
+
+ buttons.forEach((b,i)=>{
+
+  b.disabled=true;
+
+  if(i===index){
+
+   b.classList.add(
+    correct?'correct':'wrong'
+   );
+
+  }
+
+  if(
+   normalizeAnswer(q.options[i])===
+   normalizeAnswer(q.answer)
+  ){
+
+   b.classList.add('correct');
+
+  }
+
+ });
+
+ answered=true;
+
+ const feedback=
+  document.getElementById('feedback');
+
+ if(!feedback)return;
+
+ if(correct){
+
+  const c=C();
+
+  /*
+   PUNTOS SOLAMENTE SI ES CORRECTO.
+  */
+
+  c.stars+=1;
+
+  D.history.unshift({
+
+   kid:D.child,
+
+   text:
+    'Respondió correctamente en '+
+    subjectNames[currentSubject],
+
+   stars:1,
+
+   date:new Date().toLocaleString()
+
+  });
+
+  save();
+
+  feedback.innerHTML=`
+
+   <div class="feedback good">
+    🎉 ¡Correcto! +1 ⭐
+   </div>
+
+   <button
+    class="btn purple full"
+    onclick="nextQuestion()">
+
+    Siguiente pregunta →
+
+   </button>
+
+  `;
+
+  petSay(
+   getPetPhrase('mission'),
+   getLearningLanguage()
+  );
+
+ }else{
+
+  feedback.innerHTML=`
+
+   <div class="feedback bad">
+
+    ❌ No es correcto.
+
+    <br>
+
+    La respuesta correcta es:
+
+    <b>${esc(q.answer)}</b>
+
+   </div>
+
+   <button
+    class="outline full"
+    onclick="nextQuestion()">
+
+    Intentar otra pregunta
+
+   </button>
+
+  `;
+
+ }
+
+}
+
+function nextQuestion(){
+
+ currentQuestion=
+  randomQuestion(currentSubject);
+
+ answered=false;
+
+ learn();
+
+}
+
+
+/* ==========================================================
+   VOZ
+========================================================== */
+
+function speakText(text,lang='en-US',rate=.85){
+
+ if(
+  !('speechSynthesis' in window)
+ ){
+
+  alert(
+   'El navegador de este teléfono no permite reproducir voz.'
+  );
+
+  return false;
+
+ }
+
+ try{
+
+  window.speechSynthesis.cancel();
+
+  const u=
+   new SpeechSynthesisUtterance(
+    String(text)
+   );
+
+  u.lang=lang;
+  u.rate=rate;
+  u.pitch=1;
+
+  /*
+   Esperamos un pequeño momento para
+   que Android cargue las voces.
+  */
+
+  setTimeout(()=>{
+
+   try{
+    window.speechSynthesis.speak(u);
+   }catch(e){
+    console.error(e);
+   }
+
+  },80);
+
+  return true;
+
+ }catch(e){
+
+  console.error(e);
+
+  alert(
+   'No se pudo reproducir el audio.'
+  );
+
+  return false;
+
+ }
+
+}
+
+function speakEnglish(text){
+
+ return speakText(
+  text,
+  'en-US',
+  .78
+ );
+
+}
+
+
+/* ==========================================================
+   MICRÓFONO REAL
+========================================================== */
+
+let activeRecognition=null;
+
+function startEnglishMic(){
+
+ const Recognition=
+  window.SpeechRecognition||
+  window.webkitSpeechRecognition;
+
+ if(!Recognition){
+
+  alert(
+   'El reconocimiento de voz no está disponible en este navegador. '+
+   'Prueba Chrome en Android y permite el micrófono.'
+  );
+
+  return;
+
+ }
+
+ const q=currentQuestion;
+
+ if(
+  !q||
+  currentSubject!=='ingles'||
+  !q.speak
+ ){
+
+  return;
+
+ }
+
+ if(activeRecognition){
+
+  try{
+   activeRecognition.stop();
+  }catch(e){}
+
+  activeRecognition=null;
+
+ }
+
+ const r=new Recognition();
+
+ activeRecognition=r;
+
+ r.lang='en-US';
+ r.interimResults=false;
+ r.maxAlternatives=3;
+ r.continuous=false;
+
+ const status=
+  document.getElementById('micStatus');
+
+ if(status){
+
+  status.textContent=
+   '🎤 Escuchando... habla ahora.';
+
+ }
+
+ try{
+
+  r.onstart=function(){
+
+   if(status){
+
+    status.textContent=
+     '🎤 ¡Te estoy escuchando! Di la palabra en inglés.';
+
+   }
+
+  };
+
+  r.onresult=function(event){
+
+   const results=
+    event.results[0];
+
+   let best='';
+
+   for(let i=0;i<results.length;i++){
+
+    if(
+     results[i].confidence>
+     (best?0:0)
+    ){
+     best=results[i].transcript;
+    }
+
+   }
+
+   best=
+    best||
+    results[0]?.transcript||
+    '';
+
+   const said=
+    String(best).trim();
+
+   const target=
+    String(q.speak).trim();
+
+   /*
+    La pronunciación debe coincidir
+    realmente con la palabra/frase.
+   */
+
+   const ok=
+    normalizeAnswer(said)===
+    normalizeAnswer(target);
+
+   if(status){
+
+    status.innerHTML=
+     ok
+
+      ?'🎉 ¡Muy bien! La pronunciación coincide.'
+
+      :'❌ Escuché: “'+
+       esc(said)+
+       '”. Intenta nuevamente.';
+
+   }
+
+   /*
+    IMPORTANTE:
+    NO se suman estrellas por simplemente
+    tocar el micrófono.
+   */
+
+   if(ok){
+
+    const c=C();
+
+    c.stars+=1;
+
+    D.history.unshift({
+
+     kid:D.child,
+
+     text:
+      'Pronunció correctamente: '+
+      target,
+
+     stars:1,
+
+     date:new Date().toLocaleString()
+
+    });
+
+    save();
+
+    if(status){
+
+     status.innerHTML+=
+      '<br><b>⭐ +1 estrella</b>';
+
+    }
+
+   }
+
+  };
+
+  r.onerror=function(event){
+
+   console.error(
+    'SpeechRecognition:',
+    event
+   );
+
+   if(status){
+
+    if(
+     event.error==='not-allowed'||
+     event.error==='service-not-allowed'
+    ){
+
+     status.innerHTML=
+      '🔒 El micrófono está bloqueado. '+
+      'Permite el micrófono para este sitio en los ajustes del navegador.';
+
+    }
+
+    else if(event.error==='no-speech'){
+
+     status.textContent=
+      '😕 No escuché ninguna palabra. '+
+      'Pulsa Hablar e inténtalo otra vez.';
+
+    }
+
+    else{
+
+     status.textContent=
+      '⚠️ No pude escuchar. Intenta nuevamente.';
+
+    }
+
+   }
+
+  };
+
+  r.onend=function(){
+
+   activeRecognition=null;
+
+   if(
+    status&&
+    status.textContent.includes('Escuchando')
+   ){
+
+    status.textContent=
+     '🎤 Micrófono terminado.';
+
+   }
+
+  };
+
+  r.start();
+
+ }catch(e){
+
+  console.error(e);
+
+  activeRecognition=null;
+
+  if(status){
+
+   status.textContent=
+    '⚠️ No se pudo activar el micrófono.';
+
+  }
+
+ }
+
+}
+
+
+/* ==========================================================
+   PRONUNCIACIÓN
+========================================================== */
+
+function pronunciation(){
+
+ const q=currentQuestion;
+
+ if(
+  !q||
+  currentSubject!=='ingles'
+ ){
+
+  return;
+
+ }
+
+ document.getElementById('screen').innerHTML=
+
+ `<section class="card">
+
+  <div class="section-head">
+
+   <h2>🇺🇸 Pronunciación</h2>
+
+   <button
+    class="outline"
+    onclick="learn()">
+
+    ← Volver
+
+   </button>
+
+  </div>
+
+  <div class="question">
+
+   <h2>
+    Repite esta palabra o frase:
+   </h2>
+
+   <div
+    style="
+     font-size:34px;
+     font-weight:900;
+     text-align:center;
+     padding:20px">
+
+    ${esc(q.speak)}
+
+   </div>
+
+   <button
+    class="btn blue full"
+    onclick="speakEnglish('${escapeAttr(q.speak)}')">
+
+    🔊 Escuchar pronunciación
+
+   </button>
+
+   <button
+    class="btn purple full"
+    onclick="startEnglishMic()">
+
+    🎤 Hablar al micrófono
+
+   </button>
+
+   <div
+    id="micStatus"
+    class="status">
+
+    Pulsa “Hablar al micrófono”
+    y pronuncia la palabra.
+
+   </div>
+
+  </div>
+
+ </section>
+
+ <section class="card">
+
+  <h3>💡 Consejo</h3>
+
+  <p>
+   Primero escucha la pronunciación.
+   Después pulsa el micrófono y repite exactamente
+   la palabra o frase en inglés.
+  </p>
+
+  <p>
+   🔒 La primera vez tendrás que permitir
+   el acceso al micrófono.
+  </p>
+
+ </section>
+
+ `;
+
+}
+
+
+/* ==========================================================
+   PREMIOS
+========================================================== */
+
+function prize(){
+
+ document.getElementById('screen').innerHTML=
+
+ `<section class="card">
+
+  <h2>🏆 Premios y logros</h2>
+
+  <div class="grid">
+
+   <div class="tile">
+    🔥
+    <strong>Rachas</strong>
+    <small>Premios por constancia</small>
+   </div>
+
+   <div class="tile">
+    🌍
+    <strong>Idiomas</strong>
+    <small>XP y desafíos</small>
+   </div>
+
+   <div class="tile">
+    🏠
+    <strong>Ayudante</strong>
+    <small>Misiones de casa</small>
+   </div>
+
+   <div class="tile">
+    🐾
+    <strong>Cuidador</strong>
+    <small>Mascota saludable</small>
+   </div>
+
+  </div>
+
+ </section>
+
+ <section class="card">
+
+  <h3>🎁 Regalo final</h3>
+
+  <p>
+   Al completar todas las misiones se abre
+   una estrella gigante con el mensaje elegido
+   por mamá.
+  </p>
+
+  <button
+   class="btn yellow"
+   onclick="showReward()">
+
+   Ver demostración ⭐
+
+  </button>
+
+ </section>
+
+ <section class="card">
+
+  <h3>📜 Historial de estrellas</h3>
+
+  ${
+   D.history.slice(0,15).map(h=>`
+
+    <p>
+
+     ⭐${Number(h.stars)||0} ·
+     ${esc(D.kids[h.kid]?.name||h.kid)}
+
+     <br>
+
+     <small>
+      ${esc(h.text)} · ${esc(h.date)}
+     </small>
+
+    </p>
+
+   `).join('')
+
+   ||
+
+   '<p>Todavía no hay movimientos.</p>'
+  }
+
+ </section>
+
+ `;
+
+}
+
+
+/* ==========================================================
+   PANEL DE MAMÁ
+========================================================== */
+
+function openMom(){
+
+ document
+  .getElementById('modal')
+  .classList.add('show');
+
+ pinUI();
+
+}
+
+let pinIn='';
+
+function pinUI(){
+
+ pinIn='';
+
+ document.getElementById('sheet').innerHTML=
+
+ `<button
+  class="close"
+  onclick="closeModal()">
+
+  ×
+
+ </button>
+
+ <h2>🔐 Panel de Mamá</h2>
+
+ <p>
+  Ingresa tu clave de 4 dígitos para continuar.
+ </p>
+
+ <div
+  id="dots"
+  style="
+   text-align:center;
+   color:var(--pink);
+   font-size:24px;
+   letter-spacing:6px">
+
+  ○ ○ ○ ○
+
+ </div>
+
+ <div
+  style="
+   display:grid;
+   grid-template-columns:repeat(3,1fr);
+   gap:10px">
+
+  ${[
+   1,2,3,
+   4,5,6,
+   7,8,9,
+   '×',0,'⌫'
+  ].map(x=>`
+
+   <button
+    onclick="pin('${x}')"
+    style="
+     padding:16px;
+     border:1px solid #efb3c7;
+     background:#fff;
+     border-radius:22px;
+     color:#d94e7d;
+     font-weight:900;
+     font-size:19px">
+
+    ${x}
+
+   </button>
+
+  `).join('')}
+
+ </div>
+
+ `;
+
+}
+
+function pin(x){
+
+ if(x==='×'){
+
+  closeModal();
+
+  return;
+
+ }
+
+ if(x==='⌫'){
+
+  pinIn=pinIn.slice(0,-1);
+
+ }else if(
+  /^\d$/.test(String(x))&&
+  pinIn.length<4
+ ){
+
+  pinIn+=String(x);
+
+ }
+
+ const dots=
+  document.getElementById('dots');
+
+ if(dots){
+
+  dots.textContent=
+   '• '.repeat(pinIn.length)+
+   '○ '.repeat(4-pinIn.length);
+
+ }
+
+ if(pinIn.length===4){
+
+  if(pinIn===D.pin){
+
+   dashboard();
+
+  }else{
+
+   alert('Clave incorrecta.');
+
+   pinUI();
+
+  }
+
+ }
+
+}
+
+function closeModal(){
+
+ document
+  .getElementById('modal')
+  .classList.remove('show');
+
+}
+
+function dashboard(){
+
+ document.getElementById('sheet').innerHTML=
+
+ `<button
+  class="close"
+  onclick="closeModal()">
+
+  ×
+
+ </button>
+
+ <h2>💗 Panel de Mamá</h2>
+
+ <p>
+  Administra misiones, horarios,
+  estrellas, progreso y premios.
+ </p>
+
+ <div class="grid">
+
+  <button
+   class="tile"
+   onclick="extraStars()">
+
+   ⭐
+
+   <strong>
+    Otorgar estrellas
+   </strong>
+
+   <small>
+    Acciones especiales
+   </small>
+
+  </button>
+
+  <button
+   class="tile"
+   onclick="manage()">
+
+   📅
+
+   <strong>
+    Misiones y horarios
+   </strong>
+
+   <small>
+    Crear y editar
+   </small>
+
+  </button>
+
+  <button
+   class="tile"
+   onclick="progress()">
+
+   📊
+
+   <strong>
+    Progreso
+   </strong>
+
+   <small>
+    Por niño
+   </small>
+
+  </button>
+
+  <button
+   class="tile"
+   onclick="history()">
+
+   🕘
+
+   <strong>
+    Historial
+   </strong>
+
+   <small>
+    Movimientos
+   </small>
+
+  </button>
+
+ </div>
+
+ <section class="card">
+
+  <h3>🎁 Premio personalizable</h3>
+
+  <label>
+   Mensaje de la estrella gigante
+  </label>
+
+  <input
+   id="rewardInput"
+   value="${esc(D.reward)}">
+
+  <button
+   class="btn full"
+   onclick="saveReward()">
+
+   Guardar premio
+
+  </button>
+
+ </section>
+
+ <section class="card">
+
+  <h3>🔔 Recordatorios</h3>
+
+  <p>
+   Permite que la aplicación envíe recordatorios
+   del navegador cuando sea compatible.
+  </p>
+
+  <button
+   class="btn blue full"
+   onclick="requestNotifications()">
+
+   Activar notificaciones 📱
+
+  </button>
+
+ </section>
+
+ <section class="card">
+
+  <h3>🔑 Cambiar clave</h3>
+
+  <input
+   id="newpin"
+   maxlength="4"
+   inputmode="numeric"
+   value="${esc(D.pin)}">
+
+  <button
+   class="btn purple full"
+   onclick="changePin()">
+
+   Cambiar clave
+
+  </button>
+
+ </section>
+
+ `;
+
+}
+
+function saveReward(){
+
+ D.reward=
+  document.getElementById('rewardInput')
+   ?.value.trim()||
+  '¡Premio!';
+
+ save();
+
+ dashboard();
+
+}
+
+function changePin(){
+
+ const p=
+  document.getElementById('newpin')
+   ?.value;
+
+ if(!/^\d{4}$/.test(p)){
+
+  alert(
+   'Usa exactamente 4 dígitos.'
+  );
+
+  return;
+
+ }
+
+ D.pin=p;
+
+ save();
+
+ dashboard();
+
+}
+
+function extraStars(){
+
+ let k=prompt(
+  'Escribe: violeta, eliseo o misael',
+  'violeta'
+ );
+
+ if(!D.kids[k]){
+
+  alert('No encontrado.');
+
+  return;
+
+ }
+
+ let n=Number(
+  prompt(
+   '¿Cuántas estrellas? 1, 2, 3 o 5',
+   '3'
+  )
+ );
+
+ if(![1,2,3,5].includes(n))
+  return;
+
+ let reason=
+  prompt(
+   'Motivo',
+   'Ayudó sin que se lo pidieran'
+  )||
+  'Acción extra';
+
+ D.kids[k].stars+=n;
+
+ D.history.unshift({
+
+  kid:k,
+
+  text:reason,
+
+  stars:n,
+
+  date:new Date().toLocaleString()
+
+ });
+
+ save();
+
+ dashboard();
+
+}
+
+function manage(){
+
+ document.getElementById('sheet').innerHTML=
+
+ `<button
+  class="close"
+  onclick="dashboard()">
+
+  ←
+
+ </button>
+
+ <h2>📅 Misiones y horarios</h2>
+
+ ${
+  D.missions.map(m=>`
+
+  <div class="mission">
+
+   <div class="mi">
+    ${esc(m.i)}
+   </div>
+
+   <div>
+
+    <h3>${esc(m.n)}</h3>
+
+    <p>${esc(m.d)}</p>
+
+    <div class="meta">
+     ${fmt(m.t)} · ⭐${m.s}
+    </div>
+
+   </div>
+
+   <button
+    class="${m.done?'check':'plus'}"
+    onclick="toggleMission(${Number(m.id)})">
+
+    ${m.done?'✓':'+'}
+
+   </button>
+
+  </div>
+
+ `).join('')
+ }
+
+ <section class="card">
+
+  <h3>➕ Agregar nueva misión</h3>
+
+  <label>Nombre</label>
+
+  <input
+   id="mn"
+   placeholder="Ej. Leer 20 minutos">
+
+  <label>Hora</label>
+
+  <input
+   id="mt"
+   type="time"
+   value="17:00">
+
+  <label>Estrellas</label>
+
+  <select id="ms">
+
+   <option value="1">1</option>
+   <option value="2">2</option>
+   <option value="3">3</option>
+   <option value="5">5</option>
+
+  </select>
+
+  <button
+   class="btn full"
+   onclick="addMission()">
+
+   Agregar misión
+
+  </button>
+
+ </section>
+
+ `;
+
+}
+
+function toggleMission(id){
+
+ const m=
+  D.missions.find(
+   x=>Number(x.id)===Number(id)
+  );
+
+ if(m){
+
+  m.done=!m.done;
+
+  save();
+
+  manage();
+
+ }
+
+}
+
+function addMission(){
+
+ const n=
+  document.getElementById('mn')
+   ?.value.trim();
+
+ if(!n)return;
+
+ const time=
+  document.getElementById('mt')
+   ?.value||'17:00';
+
+ const stars=
+  Number(
+   document.getElementById('ms')
+    ?.value||2
+  );
+
+ D.missions.push({
+
+  id:Date.now(),
+
+  n:n,
+
+  d:'Misión personalizada',
+
+  t:time,
+
+  s:stars,
+
+  i:'✨',
+
+  done:false
+
+ });
+
+ save();
+
+ manage();
+
+}
+
+function progress(){
+
+ document.getElementById('sheet').innerHTML=
+
+ `<button
+  class="close"
+  onclick="dashboard()">
+
+  ←
+
+ </button>
+
+ <h2>📊 Progreso de los niños</h2>
+
+ ${
+  Object.values(D.kids).map(c=>`
+
+  <section class="card">
+
+   <h3>
+    ${esc(c.avatar)}
+    ${esc(c.name)}
+   </h3>
+
+   <p>
+    ⭐ ${c.stars} ·
+    🔥 ${c.streak} días ·
+    Nivel ${c.level}
+   </p>
+
+   <label>
+    Progreso de nivel
+   </label>
+
+   <div class="meter">
+
+    <i
+     style="
+      width:${(c.stars*3)%100}%
+     ">
+    </i>
+
+   </div>
+
+  </section>
+
+ `).join('')
+ }
+
+ `;
+
+}
+
+function history(){
+
+ document.getElementById('sheet').innerHTML=
+
+ `<button
+  class="close"
+  onclick="dashboard()">
+
+  ←
+
+ </button>
+
+ <h2>🕘 Historial</h2>
+
+ ${
+  D.history.map(h=>`
+
+   <section class="card">
+
+    <b>
+
+     ${esc(
+      D.kids[h.kid]?.name||
+      h.kid
+     )}
+
+     · ⭐${Number(h.stars)||0}
+
+    </b>
+
+    <p>
+     ${esc(h.text)}
+    </p>
+
+    <small>
+     ${esc(h.date)}
+    </small>
+
+   </section>
+
+  `).join('')
+
+  ||
+
+  '<p>No hay movimientos.</p>'
+ }
+
+ `;
+
+}
+
+
+/* ==========================================================
+   NOTIFICACIONES
+========================================================== */
+
+function requestNotifications(){
+
+ if(!('Notification' in window)){
+
+  alert(
+   'Este navegador no permite notificaciones del sistema.'
+  );
+
+  return;
+
+ }
+
+ Notification.requestPermission()
+  .then(permission=>{
+
+   if(permission==='granted'){
+
+    alert(
+     '🔔 ¡Listo! Las notificaciones están activadas.'
+    );
+
+   }else{
+
+    alert(
+     'Las notificaciones no fueron permitidas.'
+    );
+
+   }
+
+  })
+  .catch(()=>{
+
+   alert(
+    'No fue posible activar las notificaciones.'
+   );
+
+  });
+
+}
+
+function notify(){
+
+ const c=C();
+ const p=c.pet;
+
+ const pending=
+  D.missions.filter(
+   m=>!m.done
+  );
+
+ let message;
+
+ if(pending.length){
+
+  const m=pending[0];
+
+  message=
+   p.name+
+   ' dice: “¡Ey, '+
+   c.name+
+   '! Acuérdate de: '+
+   m.n+
+   ' 🐾”';
+
+ }else{
+
+  message=
+   p.name+
+   ' dice: “¡Todo al día! ¿Jugamos juntos? 🐾”';
+
+ }
+
+ showReminder(
+  p.emoji,
+  '🔔 ¡Hey, '+c.name+'!',
+  message
+ );
+
+ if(
+  'Notification' in window&&
+  Notification.permission==='granted'
+ ){
+
+  try{
+
+   new Notification(
+    '🐾 '+p.name+
+    ' tiene un recordatorio',
+    {
+     body:message,
+     icon:''
+    }
+   );
+
+  }catch(e){}
+
+ }
+
+}
+
+function showReminder(emoji,title,message){
+
+ const box=
+  document.getElementById('petReminder');
+
+ const petEl=
+  document.getElementById('reminderPet');
+
+ const titleEl=
+  document.getElementById('reminderTitle');
+
+ const msgEl=
+  document.getElementById('reminderMessage');
+
+ if(!box)return;
+
+ petEl.textContent=emoji||'🐾';
+
+ titleEl.textContent=title||'🔔 ¡Ey!';
+
+ msgEl.textContent=message||'';
+
+ /*
+  La mascota aparece en una posición
+  visual diferente cada vez.
+ */
+
+ const positions=[
+  'translateX(-15px)',
+  'translateX(12px)',
+  'translateY(-5px)',
+  'translateX(0)'
+ ];
+
+ const pos=
+  positions[
+   Math.floor(
+    Math.random()*positions.length
+   )
+  ];
+
+ petEl.style.transform=pos;
+
+ box.classList.add('show');
+
+ playPetSound(emoji);
+
+}
+
+function closeReminder(){
+
+ document
+  .getElementById('petReminder')
+  .classList.remove('show');
+
+}
+
+
+/* ==========================================================
+   RECORDATORIO AUTOMÁTICO
+========================================================== */
+
+function automaticReminder(){
+
+ const pending=
+  D.missions.filter(
+   m=>!m.done
+  );
+
+ if(!pending.length)return;
+
+ /*
+  Solo mostramos un recordatorio automático
+  ocasionalmente, no cada segundo.
+ */
+
+ const now=Date.now();
+
+ const last=
+  Number(
+   localStorage.getItem(
+    'MPM_LAST_REMINDER'
+   )||0
+  );
+
+ if(
+  now-last<
+  60*60*1000
+ ){
+
+  return;
+
+ }
+
+ localStorage.setItem(
+  'MPM_LAST_REMINDER',
+  String(now)
+ );
+
+ const c=C();
+ const p=c.pet;
+ const m=pending[0];
+
+ showReminder(
+  p.emoji,
+  '🔔 ¡Acuérdate!',
+  p.name+
+   ' te recuerda: '+
+   m.n+
+   ' 🐾'
+ );
+
+}
+
+
+/* ==========================================================
+   RECOMPENSA
+========================================================== */
+
+function showReward(){
+
+ document.getElementById('rewardText')
+  .textContent=D.reward;
+
+ document
+  .getElementById('reward')
+  .classList.add('show');
+
+}
+
+function closeReward(){
+
+ document
+  .getElementById('reward')
+  .classList.remove('show');
+
+}
+
+
+/* ==========================================================
+   ARRANQUE
+========================================================== */
+
+try{
+
+ home();
+
+ setTimeout(
+  automaticReminder,
+  1800
+ );
+
+}catch(error){
+
+ console.error(
+  'Error de arranque:',
+  error
+ );
+
+ showRecovery();
+
+}
+
+</script>
+
+</body>
+</html>
