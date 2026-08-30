@@ -1,732 +1,621 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#e85b88">
-<meta name="description" content="Mis Pequeñas Misiones 5.0 - hábitos, aprendizaje, idiomas, mascotas y premios">
-<link rel="manifest" href="manifest.json">
-<title>Mis Pequeñas Misiones 5.0</title>
+<meta name="theme-color" content="#191a20">
+<title>Mis Pequeñas Misiones</title>
+
 <style>
 :root{
- --pink:#e85b88;--purple:#8062c8;--gold:#f5bf31;--green:#25a88a;--blue:#54a9d8;
- --red:#e85b5b;--ink:#3d3040;--muted:#776d78;--bg:#fff8fb;--card:#fff;--line:#eadfea
+ --pink:#ec5b89;
+ --pink2:#f6a4bc;
+ --purple:#7953bd;
+ --yellow:#ffd83d;
+ --green:#21a789;
+ --blue:#56aee8;
+ --ink:#403647;
+ --muted:#7c747d;
+ --bg:#fbf7fb;
+ --line:#e9dfe8;
+ --card:#fff;
+ --soft:#fff2f7;
+ --shadow:0 5px 20px rgba(50,30,60,.08)
 }
+
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:linear-gradient(180deg,#fff8fb,#f5f2ff);color:var(--ink);
-font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input,select,textarea{font:inherit}
+
+html,body{
+ margin:0;
+ padding:0;
+ background:#191a20;
+ color:var(--ink);
+ font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+
+button,input,select{font:inherit}
 button{cursor:pointer}
-.app{max-width:1100px;margin:auto;min-height:100vh;padding-bottom:92px}
-header{position:sticky;top:0;z-index:10;background:rgba(255,250,252,.96);backdrop-filter:blur(12px);
-display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:10px}.brand .star{font-size:31px}.brand h1{font-size:21px;margin:0}.brand small{display:block;color:var(--muted);font-size:11px}
-.iconbtn{border:0;background:#fff;border-radius:16px;padding:10px 13px;font-size:23px;box-shadow:0 3px 12px #0000000d}
-.childbar{display:flex;gap:9px;padding:13px 16px;overflow:auto}
-.childbtn{min-width:112px;border:2px solid var(--line);background:#fff;border-radius:18px;padding:9px 12px;font-weight:800}
-.childbtn.active{border-color:var(--pink);background:#fff0f5;color:#b43f69}
-.hero{margin:0 16px 14px;background:linear-gradient(135deg,#fff,#fff0f6);border:1px solid #f0d9e2;border-radius:24px;
-padding:16px;display:flex;align-items:center;gap:15px;box-shadow:0 7px 24px #6d456e12}
-.avatar{width:72px;height:72px;border-radius:22px;display:grid;place-items:center;font-size:43px;background:#f1e7ff}
-.hero h2{margin:0 0 2px;font-size:22px}.hero p{margin:0;color:var(--muted)}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px}
-.pill{background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px 9px;font-weight:800;font-size:12px}
-.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;padding:0 16px}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:15px;box-shadow:0 5px 18px #4b385b0a}
-.card h3{margin:0 0 11px}
-.mission{display:grid;grid-template-columns:44px 1fr auto;gap:11px;align-items:center;padding:12px 0;border-bottom:1px solid #f0ebf1}
-.mission:last-child{border-bottom:0}
-.mi{width:44px;height:44px;border-radius:14px;background:#fff5c9;display:grid;place-items:center;font-size:23px}
-.mission h4{margin:0;font-size:14px}.mission p{margin:3px 0;color:var(--muted);font-size:12px}
-.time{font-weight:800;color:var(--green);font-size:12px}
-.complete{border:0;background:#e9f8f3;color:#16856d;border-radius:50%;width:36px;height:36px;font-weight:900}
-.complete.done{background:#d8f3e8}.complete.late{background:#ffe5e5;color:#c33}
-.sectionTitle{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.btn{border:0;border-radius:13px;padding:10px 14px;font-weight:800}
-.primary{background:linear-gradient(135deg,#e85b88,#d84879);color:white}
-.purple{background:linear-gradient(135deg,#8b69d4,#7654bb);color:white}
-.gold{background:#fff0b7;color:#795900}.outline{background:#fff;border:1px solid var(--line)}
-.progress{height:10px;background:#eee8f0;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;
-background:linear-gradient(90deg,#e85b88,#f5bf31);border-radius:99px}
-.tip{background:linear-gradient(135deg,#fff3bb,#fff9df);border-color:#f3dfa0}
-.learning{display:flex;gap:8px;flex-wrap:wrap}
-.learn{flex:1;min-width:120px;padding:12px;border:1px solid var(--line);border-radius:15px;background:#fff;text-align:left}
-.learn b{display:block}.learn small{color:var(--muted)}
-.pet{text-align:center;background:linear-gradient(180deg,#eefaff,#fff)}
-.petEmoji{font-size:74px}.stars{color:#e6aa00;font-weight:900}
-.bottom{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fff;border-top:1px solid var(--line)}
-.bottom .inner{width:min(1100px,100%);margin:auto;display:grid;grid-template-columns:repeat(5,1fr)}
-.navbtn{border:0;background:white;padding:9px 4px;color:#716675;font-size:11px}.navbtn b{display:block;font-size:21px}
-.navbtn.active{color:var(--pink);font-weight:900}
-.modal{position:fixed;inset:0;background:#0007;display:none;align-items:flex-end;justify-content:center;z-index:50}
-.modal.show{display:flex}.sheet{width:min(700px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:25px 25px 0 0;padding:20px}
-.sheet h2{margin-top:0}.row{display:flex;gap:9px;flex-wrap:wrap}
-.field{margin:10px 0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:5px}
-.field input,.field select,.field textarea{width:100%;padding:11px;border:1px solid #ddd2df;border-radius:12px;background:#fff}
-.keydots{display:flex;justify-content:center;gap:10px;margin:15px}.dot{width:15px;height:15px;border:1px solid var(--pink);border-radius:50%}.dot.on{background:var(--pink)}
-.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.key{padding:14px;border:1px solid #f0b2c7;background:#fff7fa;border-radius:15px}
-.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:#3d3040;color:#fff;padding:12px 17px;
-border-radius:99px;opacity:0;pointer-events:none;transition:.25s;z-index:100;max-width:90%;text-align:center}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:12px}.tab{border:1px solid var(--line);background:#fff;padding:9px 13px;border-radius:99px}
-.tab.active{background:#f1e9ff;color:#6545a6;border-color:#cdb9f2}
-.history{display:grid;gap:8px}.historyItem{padding:11px;border:1px solid var(--line);border-radius:14px;display:flex;justify-content:space-between;gap:8px}
-.good{color:#16856d}.danger{color:#c33}
-.petGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.petChoice{border:1px solid var(--line);background:#fff;border-radius:16px;padding:10px;font-size:28px}
-.accessoryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.accessory{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px;font-size:24px}
-.rewardStar{font-size:105px;text-align:center;animation:starPop .7s ease both}.rewardBox{text-align:center;background:linear-gradient(135deg,#fff7c7,#fff);border:2px solid #f3d96d;border-radius:25px;padding:20px}
-@keyframes starPop{0%{transform:scale(.1) rotate(-30deg);opacity:0}70%{transform:scale(1.15) rotate(8deg);opacity:1}100%{transform:scale(1) rotate(0)}}
-.chatBubble{background:#eef8ff;border-radius:18px;padding:12px;text-align:left;margin:8px 0}
-.badge{display:inline-block;padding:5px 8px;border-radius:99px;background:#f2ecff;color:#6545a6;font-size:11px;font-weight:800}
-.langCard{border:1px solid var(--line);border-radius:18px;padding:13px;margin:8px 0;background:#fff}
-.score{font-size:30px;font-weight:900;color:var(--purple)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.smallNote{font-size:11px;color:var(--muted)}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.hero{margin-top:4px}.brand h1{font-size:18px}.two{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<div class="app">
-<header>
-  <div class="brand"><span class="star">⭐</span><div><h1>Mis Pequeñas Misiones</h1><small>Pequeñas acciones, grandes hábitos</small></div></div>
-  <button class="iconbtn" onclick="showAlerts()">🔔</button>
-</header>
 
-<div class="childbar" id="childBar"></div>
-<section class="hero" id="hero"></section>
-
-<div class="grid">
-<div>
-<section class="card">
-  <div class="sectionTitle"><h3>📋 Misiones del día</h3><button class="btn outline" onclick="showAllMissions()">Ver todas</button></div>
-  <div id="missions"></div>
-</section>
-
-<section class="card" style="margin-top:14px">
-  <div class="sectionTitle"><h3>📚 Aprende hoy</h3><span class="pill">Adaptado a tu edad</span></div>
-  <div class="learning" id="learning"></div>
-</section>
-
-<section class="card" style="margin-top:14px">
-  <div class="sectionTitle"><h3>🌎 Academia de Idiomas</h3><span class="badge">Duolingo-style</span></div>
-  <p class="smallNote">Lecciones por niveles, conversación, escucha, pronunciación, historias y desafíos semanales.</p>
-  <div id="academyMini"></div>
-  <button class="btn purple" style="width:100%;margin-top:8px" onclick="showAcademy()">Entrar a la Academia</button>
-</section>
-</div>
-
-<div>
-<section class="card tip"><h3>💡 Consejo de hoy</h3><p id="tip"></p><button class="btn gold" onclick="newTip()">Otro consejo ✨</button></section>
-
-<section class="card pet" style="margin-top:14px">
-  <h3>🐾 Mi mascota</h3><div class="petEmoji" id="petEmoji">🐶</div><b id="petName"></b>
-  <p>❤️ <span id="petHappy">80</span>% felicidad</p>
-  <div class="progress"><i id="petBar" style="width:80%"></i></div>
-  <p id="petAlert" class="smallNote"></p>
-  <button class="btn primary" onclick="showPet()">Cuidar y personalizar</button>
-</section>
-
-<section class="card" style="margin-top:14px"><h3>📈 Progreso semanal</h3>
-<div class="progress"><i id="progressBar" style="width:0%"></i></div><p id="progressText"></p></section>
-
-<section class="card" style="margin-top:14px"><h3>🎁 Regalos</h3>
-<p>Completa tus objetivos para desbloquear una estrella gigante y el premio que mamá haya elegido.</p>
-<button class="btn gold" style="width:100%" onclick="showRewards()">Ver premios</button>
-</section>
-</div>
-</div>
-</div>
-
-<nav class="bottom"><div class="inner">
-<button class="navbtn active" onclick="goHome()"><b>🏠</b>Inicio</button>
-<button class="navbtn" onclick="showAcademy()"><b>🎯</b>Aprender</button>
-<button class="navbtn" onclick="showRewards()"><b>🏆</b>Premios</button>
-<button class="navbtn" onclick="showPet()"><b>🐾</b>Mascota</button>
-<button class="navbtn" onclick="openParent()"><b>🔐</b>Mamá</button>
-</div></nav>
-
-<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
-<div class="toast" id="toast"></div>
-
-<script>
-"use strict";
-
-/* =========================
-   DATOS
-========================= */
-const DEFAULT_CHILDREN={
-  violeta:{name:"Violeta",age:13,avatar:"👧🏻",stars:48,streak:6,pet:"🐱",petName:"Nala",happy:86,level:7,petFood:70,petClean:80,petPlay:75,accessories:[""]},
-  elizeo:{name:"Elizeo",age:9,avatar:"👦🏻",stars:42,streak:8,pet:"🐶",petName:"Max",happy:78,level:6,petFood:70,petClean:80,petPlay:75,accessories:[""]},
-  misael:{name:"Misael",age:7,avatar:"🧒🏻",stars:38,streak:4,pet:"🐰",petName:"Copito",happy:92,level:5,petFood:70,petClean:80,petPlay:75,accessories:[""]}
-};
-
-let children=JSON.parse(JSON.stringify(DEFAULT_CHILDREN));
-let current="violeta";
-let parentAuthed=false;
-let pin="2580";
-let history=[];
-let tipIndex=0;
-let academy={
-  English:{level:1,xp:0,weekly:0},
-  Francais:{level:1,xp:0,weekly:0},
-  Italiano:{level:1,xp:0,weekly:0},
-  Portugues:{level:1,xp:0,weekly:0},
-  Deutsch:{level:1,xp:0,weekly:0},
-  Japanese:{level:1,xp:0,weekly:0}
-};
-let rewards=[
- {id:1,title:"Ganaste un helado 🍦",stars:100,claimed:false},
- {id:2,title:"Ganaste 50 pesos 💵",stars:150,claimed:false},
- {id:3,title:"Ganaste una salida al parque 🌳",stars:200,claimed:false}
-];
-
-let missions=[
- {id:1,n:"Alimentación saludable",d:"Come frutas y toma agua",t:"13:00",s:2,icon:"🍎",done:false},
- {id:2,n:"Dientes y baño",d:"Cepíllate los dientes y báñate",t:"18:00",s:2,icon:"🪥",done:false},
- {id:3,n:"Apagar luces y TV",d:"Apaga lo que no se usa",t:"19:30",s:2,icon:"💡",done:false},
- {id:4,n:"Prepararse para dormir",d:"Pijama, dientes y a la cama",t:"20:30",s:3,icon:"🌙",done:false},
- {id:5,n:"Ve a la escuela",d:"Mochila lista y salir a tiempo",t:"07:00",s:2,icon:"🎒",done:false},
- {id:6,n:"Hora de limpiar",d:"Organiza tus cosas y colabora en casa",t:"17:30",s:3,icon:"🧹",done:false},
- {id:7,n:"Tareas / repasar clases",d:"Completa tu aprendizaje del día",t:"17:00",s:3,icon:"📚",done:false},
- {id:8,n:"Cuidar animalitos",d:"Alimenta y revisa a tus animalitos",t:"08:00",s:2,icon:"🐔",done:false}
-];
-
-const tips=[
-"Tomar agua durante el día ayuda a mantener tu cuerpo activo. 💧",
-"Ordenar tus cosas hace más fácil empezar la siguiente tarea. 🧸",
-"Aprender una palabra nueva cada día puede ayudarte a comunicarte con más personas. 🌎",
-"Leer 10 minutos al día puede llevarte a lugares increíbles. 📖",
-"Una buena noche de sueño ayuda a tu cerebro a aprender y recordar. 🌙",
-"Preguntar “¿por qué?” es una gran forma de aprender. 🔎",
-"Ser amable y ayudar en casa también es una gran misión. ❤️",
-"Practicar un idioma un poquito cada día ayuda a crear una buena racha. 🗣️"
-];
-
-const languageData={
- English:{flag:"🇺🇸",name:"Inglés",say:"Hello, my friend!",meaning:"Hola, mi amigo.",voice:"en-US"},
- Francais:{flag:"🇫🇷",name:"Francés",say:"Bonjour, mon ami!",meaning:"¡Hola, mi amigo!",voice:"fr-FR"},
- Italiano:{flag:"🇮🇹",name:"Italiano",say:"Ciao, amico mio!",meaning:"¡Hola, amigo mío!",voice:"it-IT"},
- Portugues:{flag:"🇧🇷",name:"Portugués",say:"Olá, meu amigo!",meaning:"¡Hola, mi amigo!",voice:"pt-BR"},
- Deutsch:{flag:"🇩🇪",name:"Alemán",say:"Hallo, mein Freund!",meaning:"¡Hola, mi amigo!",voice:"de-DE"},
- Japanese:{flag:"🇯🇵",name:"Japonés",say:"こんにちは！",meaning:"¡Hola!",voice:"ja-JP"}
-};
-
-/* =========================
-   GUARDADO
-========================= */
-function save(){
- try{
-  localStorage.setItem("MPM5",JSON.stringify({children,missions,history,pin,academy,rewards,current}));
- }catch(e){console.warn("No se pudo guardar",e);}
-}
-function load(){
- try{
-  const raw=localStorage.getItem("MPM5");
-  if(!raw)return;
-  const x=JSON.parse(raw);
-  if(x.children)Object.assign(children,x.children);
-  if(x.missions&&Array.isArray(x.missions))missions=x.missions;
-  if(x.history&&Array.isArray(x.history))history=x.history;
-  if(x.pin)pin=x.pin;
-  if(x.academy)academy=Object.assign(academy,x.academy);
-  if(x.rewards&&Array.isArray(x.rewards))rewards=x.rewards;
-  if(x.current&&children[x.current])current=x.current;
- }catch(e){console.warn("Datos anteriores no válidos; se usan valores iniciales.",e);}
+.app{
+ max-width:720px;
+ min-height:100vh;
+ margin:auto;
+ background:linear-gradient(#fffafd,#faf7fb);
+ padding-bottom:92px;
+ position:relative
 }
 
-/* =========================
-   RENDER PRINCIPAL
-========================= */
-function render(){
- const c=children[current];
- const bar=document.getElementById("childBar");
- bar.innerHTML=Object.entries(children).map(([k,v])=>
-  `<button class="childbtn ${k===current?"active":""}" onclick="selectChild('${k}')">${v.avatar} ${escapeHtml(v.name)}</button>`
- ).join("");
-
- document.getElementById("hero").innerHTML=
-  `<div class="avatar">${c.avatar}</div><div style="flex:1">
-   <h2>¡Hola, ${escapeHtml(c.name)}! 🌟</h2>
-   <p>${c.age} años · Nivel ${c.level}</p>
-   <div class="stats">
-    <span class="pill">⭐ ${c.stars} estrellas</span>
-    <span class="pill">🔥 ${c.streak} días</span>
-    <span class="pill">🏆 ${Math.floor(c.stars/10)} logros</span>
-   </div>
-  </div>`;
-
- document.getElementById("missions").innerHTML=missions.slice(0,6).map(m=>missionHtml(m)).join("");
- document.getElementById("learning").innerHTML=learningFor(c.age).map(x=>
-  `<button class="learn" onclick="lesson('${x.key}')"><span>${x.flag}</span><b>${x.title}</b><small>${x.desc}</small></button>`
- ).join("");
-
- const next=languageData.English;
- const a=academy.English;
- document.getElementById("academyMini").innerHTML=
-  `<div class="langCard"><b>${next.flag} ${next.name} · Nivel ${a.level}</b>
-   <p style="margin:5px 0">XP ${a.xp}/100 · Conversación · Escucha · Pronunciación</p>
-   <div class="progress"><i style="width:${Math.min(100,a.xp)}%"></i></div>
-  </div>`;
-
- document.getElementById("tip").textContent=tips[tipIndex];
- document.getElementById("petEmoji").textContent=petDisplay(c);
- document.getElementById("petName").textContent=c.petName;
- document.getElementById("petHappy").textContent=c.happy;
- document.getElementById("petBar").style.width=c.happy+"%";
- document.getElementById("petAlert").textContent=petReminder(c);
-
- const done=missions.filter(m=>m.done).length;
- document.getElementById("progressBar").style.width=(missions.length?done/missions.length*100:0)+"%";
- document.getElementById("progressText").textContent=`${done} de ${missions.length} misiones completadas hoy`;
+.topbar{
+ height:58px;
+ background:#191a20;
+ color:white;
+ display:flex;
+ align-items:center;
+ padding:0 18px;
+ font-weight:800;
+ font-size:18px
 }
 
-/* =========================
-   MISIONES
-========================= */
-function missionHtml(m){
- const status=getMissionStatus(m);
- return `<div class="mission">
-  <div class="mi">${m.icon}</div>
-  <div><h4>${escapeHtml(m.n)}</h4><p>${escapeHtml(m.d)}</p>
-  <span class="time">⏰ ${formatTime(m.t)} · ⭐${m.s} ${status}</span></div>
-  <button class="complete ${m.done?"done":""} ${status.includes("⚠️")?"late":""}" ${m.done?"disabled":""} onclick="completeMission(${m.id})">${m.done?"✓":"+"}</button>
- </div>`;
-}
-function getMissionStatus(m){
- if(m.done)return "· completada";
- const now=new Date();
- const [h,min]=String(m.t).split(":").map(Number);
- const due=new Date();due.setHours(h,min,0,0);
- const diff=due-now;
- if(diff<0)return "· ⚠️ pendiente";
- if(diff<=60*60*1000)return "· 🔔 próxima";
- return "";
-}
-function completeMission(id){
- const m=missions.find(x=>x.id===id);if(!m||m.done)return;
- m.done=true;
- const c=children[current];c.stars+=Number(m.s)||0;c.streak=Math.max(c.streak,1);
- history.unshift({date:new Date().toLocaleString(),child:current,delta:m.s,reason:"Completó "+m.n});
- save();render();showToast(`¡Excelente! +${m.s} ⭐`);
- checkRewardUnlock();
-}
-function showAllMissions(){
- openSheet(`<h2>📋 Todas las misiones</h2><p>Estas son las actividades configuradas para ${escapeHtml(children[current].name)}.</p>
- <div>${missions.map(m=>missionHtml(m)).join("")}</div>`);
-}
-function formatTime(t){
- const [hh,mm]=String(t).split(":").map(Number);let h=hh%12||12;return `${h}:${String(mm).padStart(2,"0")} ${hh>=12?"PM":"AM"}`;
+.header{
+ background:#fffafd;
+ border-bottom:1px solid var(--line);
+ padding:20px 24px 18px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between
 }
 
-/* =========================
-   APRENDIZAJE GENERAL
-========================= */
-function learningFor(age){
- if(age>=13)return[
-  {key:"English",flag:"🇺🇸",title:"Inglés",desc:"Speaking · vocabulario"},
-  {key:"Francais",flag:"🇫🇷",title:"Francés",desc:"Básico · práctica"},
-  {key:"Matematicas",flag:"🧮",title:"Matemáticas",desc:"Problemas y lógica"},
-  {key:"Ciencias",flag:"🔬",title:"Ciencias",desc:"Trivia científica"}
- ];
- if(age>=9)return[
-  {key:"English",flag:"🇺🇸",title:"Inglés",desc:"Speaking · palabras"},
-  {key:"Español",flag:"🇪🇸",title:"Español",desc:"Comprensión"},
-  {key:"Matematicas",flag:"🧮",title:"Matemáticas",desc:"Retos rápidos"},
-  {key:"Ciencias",flag:"🌱",title:"Ciencias",desc:"Curiosidades"}
- ];
- return[
-  {key:"English",flag:"🇺🇸",title:"Inglés",desc:"5 palabras"},
-  {key:"Español",flag:"🔤",title:"Español",desc:"Completa palabras"},
-  {key:"Matematicas",flag:"🔢",title:"Matemáticas",desc:"Juego numérico"},
-  {key:"Ciencias",flag:"🐾",title:"Ciencias",desc:"Animales y naturaleza"}
- ];
+.brand{
+ display:flex;
+ align-items:center;
+ gap:13px
 }
-function lesson(subject){
- const c=children[current];
- let content={
-  English:["🎤 Practica pronunciación","Di en voz alta: “Hello, my friend!”","Básico · Interactivo"],
-  Francais:["🗣️ Mot du jour","Bonjour = Hola · Repítelo 3 veces","Básico"],
-  Español:["📖 Mini reto","Completa: La abeja produce _____.","Comprensión"],
-  Matematicas:["🧮 Reto rápido",`${Math.floor(Math.random()*9)+2} × ${Math.floor(Math.random()*8)+2} = ?`,"Responde mentalmente"],
-  Ciencias:["🔬 ¿Sabías que...?","Las plantas usan la luz para fabricar su alimento. 🌱","Curiosidad"]
- }[subject]||["🎯 Reto","¡Sigue aprendiendo!",""];
- openSheet(`<h2>${content[0]} ${escapeHtml(subject)}</h2><p>${content[1]}</p><span class="pill">${content[2]}</span>
- <div class="field"><label>Tu respuesta / práctica</label><input id="lessonInput" placeholder="Escribe o usa el micrófono 🎙️"></div>
- <div class="row"><button class="btn primary" onclick="finishLesson('${subject}')">Completar +2 ⭐</button>
- <button class="btn outline" onclick="speak(${JSON.stringify(content[1])})">🔊 Escuchar</button>
- <button class="btn outline" onclick="voicePractice('${subject}')">🎙️ Hablar</button></div>`);
+
+.brand .star{
+ font-size:54px;
+ line-height:1
 }
-function finishLesson(subject){
- children[current].stars+=2;
- history.unshift({date:new Date().toLocaleString(),child:current,delta:2,reason:"Completó reto de "+subject});
- save();closeModal();render();showToast("📚 ¡Aprendizaje completado! +2 ⭐");
+
+.brand h1{
+ font-size:28px;
+ margin:0 0 2px;
+ letter-spacing:-.6px
 }
-function speak(text,lang){
- if("speechSynthesis"in window){
-  const u=new SpeechSynthesisUtterance(text);if(lang)u.lang=lang;speechSynthesis.cancel();speechSynthesis.speak(u);
- }else showToast("🔊 Tu navegador no admite lectura de voz");
+
+.brand p{
+ margin:0;
+ color:#817985;
+ font-size:16px
 }
-function voicePractice(subject){
- const R=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!R){showToast("🎙️ Este navegador no admite reconocimiento de voz");return;}
- const lang=(languageData[subject]||languageData.English).voice;
- const r=new R();r.lang=lang;r.interimResults=false;r.maxAlternatives=1;
- r.onresult=e=>{
-  const text=e.results[0][0].transcript;
-  const input=document.getElementById("lessonInput");if(input)input.value=text;
-  showToast("🎤 ¡Te escuché! Ahora revisa tu respuesta.");
- };
- r.onerror=()=>showToast("No pude escuchar. Inténtalo de nuevo.");
- r.start();
+
+.iconbtn{
+ border:0;
+ background:white;
+ border-radius:22px;
+ width:58px;
+ height:58px;
+ box-shadow:var(--shadow);
+ font-size:29px
+}
+
+main{padding:16px 18px}
+
+.child-tabs{
+ display:flex;
+ gap:8px;
+ overflow:auto;
+ margin:0 0 14px
+}
+
+.child-tab{
+ border:1px solid var(--line);
+ background:#fff;
+ border-radius:18px;
+ padding:10px 15px;
+ min-width:108px;
+ font-weight:800;
+ color:var(--muted)
+}
+
+.child-tab.active{
+ background:#fff0f6;
+ border:2px solid var(--pink);
+ color:var(--pink)
+}
+
+.card{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:25px;
+ box-shadow:var(--shadow);
+ padding:17px;
+ margin:12px 0
+}
+
+.profile{
+ display:flex;
+ gap:16px;
+ align-items:center;
+ background:linear-gradient(135deg,#fff,#fff1f7);
+ padding:19px
+}
+
+.avatar{
+ width:94px;
+ height:94px;
+ border-radius:28px;
+ background:#eee4ff;
+ display:grid;
+ place-items:center;
+ font-size:59px;
+ flex:none
+}
+
+.profile h2{
+ margin:0;
+ font-size:28px
+}
+
+.profile .age{
+ color:var(--muted);
+ font-size:17px;
+ margin:2px 0 10px
+}
+
+.chips{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap
+}
+
+.chip{
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:18px;
+ padding:7px 11px;
+ font-weight:800;
+ font-size:14px
+}
+
+.section-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin-bottom:8px
+}
+
+.section-head h2{
+ margin:0;
+ font-size:23px
+}
+
+.outline{
+ border:1px solid var(--line);
+ background:#fff;
+ border-radius:16px;
+ padding:11px 16px;
+ font-weight:800
+}
+
+.banner{
+ background:linear-gradient(135deg,#ffe889,#fff3c5);
+ border:1px solid #efd66a;
+ border-radius:21px;
+ padding:14px;
+ text-align:center;
+ font-weight:900;
+ font-size:16px
+}
+
+.banner span{
+ font-size:29px;
+ margin-left:10px
+}
+
+.learn-card{
+ background:linear-gradient(135deg,#f5edff,#fff)
+}
+
+.pill{
+ display:inline-block;
+ background:#eee5fb;
+ color:#6b46a7;
+ border-radius:16px;
+ padding:6px 10px;
+ font-size:12px;
+ font-weight:800
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
+}
+
+.tile{
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:19px;
+ padding:15px;
+ text-align:left
+}
+
+.tile .ico{
+ font-size:28px
+}
+
+.tile strong{
+ display:block;
+ margin-top:5px
+}
+
+.tile small{
+ color:var(--muted)
+}
+
+.mission{
+ display:grid;
+ grid-template-columns:52px 1fr 44px;
+ gap:12px;
+ align-items:center;
+ padding:13px 0;
+ border-bottom:1px solid #eee
+}
+
+.mission:last-child{
+ border-bottom:0
+}
+
+.mi{
+ width:52px;
+ height:52px;
+ border-radius:18px;
+ background:#fff4bd;
+ display:grid;
+ place-items:center;
+ font-size:29px
+}
+
+.mission h3{
+ margin:0;
+ font-size:17px
+}
+
+.mission p{
+ margin:2px 0 0;
+ color:var(--muted);
+ font-size:14px
+}
+
+.meta{
+ color:var(--green);
+ font-weight:800;
+ font-size:13px;
+ margin-top:5px
+}
+
+.plus,.check{
+ width:43px;
+ height:43px;
+ border:0;
+ border-radius:50%;
+ font-weight:900;
+ font-size:25px
+}
+
+.plus{
+ background:#eaf8f4;
+ color:var(--green)
+}
+
+.check{
+ background:#dff6ed;
+ color:var(--green)
+}
+
+.bottom{
+ position:fixed;
+ bottom:0;
+ left:50%;
+ transform:translateX(-50%);
+ width:min(720px,100%);
+ height:82px;
+ background:#fff;
+ border-top:1px solid var(--line);
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ z-index:20
+}
+
+.bottom button{
+ border:0;
+ background:white;
+ color:#746d75;
+ font-size:12px;
+ padding:6px
+}
+
+.bottom b{
+ display:block;
+ font-size:25px;
+ margin-bottom:2px
+}
+
+.bottom .active{
+ color:var(--pink);
+ font-weight:900
+}
+
+.btn{
+ border:0;
+ border-radius:15px;
+ padding:12px 15px;
+ background:var(--pink);
+ color:white;
+ font-weight:900
+}
+
+.btn.purple{background:var(--purple)}
+.btn.yellow{background:var(--yellow);color:#654d00}
+.btn.green{background:var(--green)}
+.btn.blue{background:var(--blue)}
+.btn.dark{background:#34313a}
+
+.full{
+ width:100%;
+ margin-top:8px
 }
 
 /* =========================
-   ACADEMIA DE IDIOMAS
+   APRENDER
 ========================= */
-function showAcademy(){
- const langs=Object.keys(languageData);
- openSheet(`<h2>🎓 Academia de Idiomas</h2>
- <p>Una ruta de aprendizaje que se adapta automáticamente a la edad y al progreso.</p>
- <div class="tabs">${langs.map(k=>`<button class="tab" onclick="openLanguage('${k}')">${languageData[k].flag} ${languageData[k].name}</button>`).join("")}</div>
- <div class="langCard"><h3>🚀 Ruta recomendada</h3>
- <p>Lecciones por niveles · conversaciones · escucha · pronunciación con puntuación · historias · desafíos semanales.</p>
- <div class="row"><span class="badge">Nivel 1 → 20+</span><span class="badge">XP</span><span class="badge">Racha 🔥</span><span class="badge">Desafío semanal</span></div></div>
- <h3>📅 Desafío semanal</h3><p>Completa 5 actividades de idioma esta semana.</p>
- <div class="progress"><i style="width:${Math.min(100,children[current].stars%6/5*100)}%"></i></div>
- <button class="btn primary" style="width:100%;margin-top:10px" onclick="openLanguage('English')">Comenzar lección 🇺🇸</button>`);
+
+.subject-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px
 }
-function openLanguage(key){
- const d=languageData[key],a=academy[key];
- openSheet(`<h2>${d.flag} Academia · ${d.name}</h2>
- <p><b>Nivel ${a.level}</b> · ${a.xp}/100 XP</p><div class="progress"><i style="width:${a.xp}%"></i></div>
- <div class="two" style="margin-top:12px">
-  <button class="btn primary" onclick="languageLesson('${key}','lesson')">📘 Lección</button>
-  <button class="btn outline" onclick="languageLesson('${key}','conversation')">🗣️ Conversación</button>
-  <button class="btn outline" onclick="languageLesson('${key}','listening')">🎧 Escucha</button>
-  <button class="btn outline" onclick="languageLesson('${key}','pronunciation')">🎤 Pronunciación</button>
-  <button class="btn purple" onclick="languageLesson('${key}','story')">📖 Historia</button>
-  <button class="btn gold" onclick="languageLesson('${key}','challenge')">🏆 Desafío semanal</button>
- </div>
- <p class="smallNote" style="margin-top:14px">Contenido adaptado para ${children[current].age} años.</p>`);
+
+.subject{
+ border:2px solid var(--line);
+ border-radius:22px;
+ background:#fff;
+ padding:18px;
+ text-align:left
 }
-function languageLesson(key,type){
- const d=languageData[key];
- const texts={
-  lesson:`Aprende esta frase: “${d.say}”`,
-  conversation:`🤖 Tutor: “${d.say}”<br>Ahora responde con una frase corta.`,
-  listening:`Escucha y reconoce: “${d.say}”<br><span class="smallNote">${d.meaning}</span>`,
-  pronunciation:`Pronuncia: “${d.say}”<br>Después recibirás una puntuación orientativa.`,
-  story:`📖 Mini historia: Hoy ${children[current].name} encuentra una nueva palabra en ${d.name}. La usa, sonríe y gana XP. ⭐`,
-  challenge:`🏆 Desafío: practica esta frase, escucha su pronunciación y responde una pregunta.`
- }[type];
- openSheet(`<h2>${d.flag} ${d.name} · ${typeLabel(type)}</h2>
- <div class="chatBubble">${texts}</div>
- <button class="btn outline" style="width:100%;margin:8px 0" onclick="speak(${JSON.stringify(d.say)},'${d.voice}')">🔊 Escuchar frase</button>
- <div class="field"><label>Escribe tu respuesta</label><input id="langAnswer" placeholder="Tu respuesta..."></div>
- <div class="row">
-  <button class="btn primary" onclick="completeLanguage('${key}','${type}')">Completar +10 XP</button>
-  <button class="btn outline" onclick="voicePractice('${key}')">🎙️ Pronunciar</button>
- </div>`);
+
+.subject.selected{
+ border-color:var(--purple);
+ background:#f6f0ff
 }
-function typeLabel(t){return({lesson:"Lección",conversation:"Conversación",listening:"Escucha",pronunciation:"Pronunciación",story:"Historia",challenge:"Desafío semanal"})[t]||"Actividad";}
-function completeLanguage(key,type){
- let a=academy[key];a.xp+=10;a.weekly+=1;
- if(a.xp>=100){a.level+=1;a.xp-=100;showToast(`🎉 ¡Nivel ${a.level} desbloqueado!`);}
- children[current].stars+=3;
- history.unshift({date:new Date().toLocaleString(),child:current,delta:3,reason:`Academia de Idiomas · ${languageData[key].name} · ${typeLabel(type)}`});
- save();closeModal();render();showToast("🌎 +10 XP · +3 ⭐");
+
+.subject .bigico{
+ font-size:38px
+}
+
+.subject strong{
+ display:block;
+ font-size:19px;
+ margin-top:5px
+}
+
+.subject small{
+ color:var(--muted)
+}
+
+.question{
+ background:#f8f4ff;
+ border-radius:22px;
+ padding:20px;
+ margin-top:14px
+}
+
+.question h2{
+ margin-top:0
+}
+
+.question-answer{
+ font-size:22px;
+ font-weight:900;
+ margin:16px 0
+}
+
+.option{
+ width:100%;
+ border:1px solid var(--line);
+ background:#fff;
+ border-radius:16px;
+ padding:14px;
+ margin:7px 0;
+ text-align:left;
+ font-weight:800
+}
+
+.option.correct{
+ background:#dff6ed;
+ border-color:var(--green);
+ color:#087b5f
+}
+
+.option.wrong{
+ background:#ffe1e9;
+ border-color:var(--pink);
+ color:#b52e59
+}
+
+.feedback{
+ padding:12px;
+ border-radius:15px;
+ margin-top:10px;
+ font-weight:800
+}
+
+.feedback.good{
+ background:#dff6ed;
+ color:#087b5f
+}
+
+.feedback.bad{
+ background:#ffe1e9;
+ color:#a52d55
+}
+
+.xpbox{
+ background:#fff4bd;
+ border-radius:18px;
+ padding:12px;
+ font-weight:900;
+ margin-top:12px
+}
+
+.listen-row{
+ display:flex;
+ gap:8px;
+ margin:10px 0;
+ flex-wrap:wrap
+}
+
+.listen-row button{
+ flex:1;
+ min-width:130px
 }
 
 /* =========================
    MASCOTA
 ========================= */
-function petDisplay(c){
- const acc=(c.accessories||[]).filter(Boolean).join("");
- return c.pet+acc;
-}
-function petReminder(c){
- if(c.petFood<35)return "🍎 Tu mascota tiene hambre. ¡Recuerda alimentarla!";
- if(c.petClean<35)return "🧼 Tu mascota necesita cuidados y limpieza.";
- if(c.petPlay<35)return "🎮 Tu mascota quiere jugar contigo.";
- return "✨ Todo bien. ¡Tu mascota está esperando tu próxima misión!";
-}
-function showPet(){
- const c=children[current];
- const pets=["🐶","🐱","🐰","🐹","🦜","🐢","🐼","🦊"];
- const acc=["","🕶️","🎩","🧢","👓","🎀","🧣","👑","🧢🕶️"];
- openSheet(`<h2>🐾 ${escapeHtml(c.petName)}</h2>
- <div style="text-align:center;font-size:92px">${petDisplay(c)}</div>
- <p style="text-align:center">❤️ Felicidad: ${c.happy}%</p>
- <div class="progress"><i style="width:${c.happy}%"></i></div>
- <div class="two" style="margin-top:12px">
-  <button class="btn primary" onclick="carePet('food')">🍎 Alimentar</button>
-  <button class="btn outline" onclick="carePet('clean')">🧼 Limpiar</button>
-  <button class="btn outline" onclick="carePet('play')">🎮 Jugar</button>
-  <button class="btn gold" onclick="petActivity()">⭐ Actividad</button>
- </div>
- <h3 style="margin-top:18px">🎨 Personalizar mascota</h3>
- <div class="petGrid">${pets.map(p=>`<button class="petChoice" onclick="changePet('${p}')">${p}</button>`).join("")}</div>
- <p class="smallNote">Accesorios: correa, lentes, sombreros y más.</p>
- <div class="accessoryGrid">${acc.map(a=>`<button class="accessory" onclick="addAccessory('${a}')">${a||"❌"}</button>`).join("")}</div>
- <div class="field"><label>Nombre de mascota</label><input id="newPetName" value="${escapeHtml(c.petName)}"></div>
- <button class="btn primary" style="width:100%" onclick="savePetName()">Guardar personalización</button>
- <hr><p class="smallNote">Los niveles de comida, limpieza y juego bajan si se descuidan. Cuidarla los mejora y también puede otorgar estrellas.</p>`);
-}
-function carePet(type){
- const c=children[current];
- if(type==="food"){c.petFood=Math.min(100,c.petFood+25);c.happy=Math.min(100,c.happy+8);}
- else if(type==="clean"){c.petClean=Math.min(100,c.petClean+25);c.happy=Math.min(100,c.happy+7);}
- else if(type==="play"){c.petPlay=Math.min(100,c.petPlay+25);c.happy=Math.min(100,c.happy+10);}
- else {c.happy=Math.min(100,c.happy+8);}
- c.stars+=1;
- history.unshift({date:new Date().toLocaleString(),child:current,delta:1,reason:"Cuidó a su mascota"});
- save();render();showToast("🐾 Tu mascota está más feliz · +1 ⭐");
-}
-function petActivity(){
- const c=children[current];c.petPlay=Math.min(100,c.petPlay+15);c.happy=Math.min(100,c.happy+5);c.stars+=2;
- history.unshift({date:new Date().toLocaleString(),child:current,delta:2,reason:"Completó actividad con su mascota"});
- save();render();showToast("🎮 ¡Actividad completada! +2 ⭐");
-}
-function changePet(p){children[current].pet=p;save();showPet();render();}
-function addAccessory(a){children[current].accessories=a? [a]:[];save();showPet();render();}
-function savePetName(){
- const v=(document.getElementById("newPetName")||{}).value||"";
- if(v.trim())children[current].petName=v.trim();
- save();showPet();render();showToast("🐾 Personalización guardada");
+
+.pet-card{
+ background:linear-gradient(135deg,#ecfaff,#fff)
 }
 
-/* =========================
-   ALERTAS / RECORDATORIOS
-========================= */
-function showAlerts(){
- const pending=missions.filter(m=>!m.done);
- const c=children[current];
- openSheet(`<h2>🔔 Alertas de ${escapeHtml(c.name)}</h2>
- <div class="chatBubble">🐾 ${petReminder(c)}</div>
- <div class="chatBubble">📋 Tienes ${pending.length} misión(es) pendiente(s).</div>
- <p>Las alertas identifican actividades próximas y pendientes. La mascota puede recordarte: “Ve a revisar tu panel de actividades” o “Recuerda alimentar tus animalitos”.</p>
- <button class="btn primary" style="width:100%" onclick="closeModal();showToast('🐾 Ve a revisar tu panel de actividades')">Revisar panel</button>`);
+.pet-stage{
+ position:relative;
+ width:280px;
+ height:245px;
+ margin:5px auto 8px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow:hidden;
+ border-radius:30px;
+ background:
+   radial-gradient(circle at 20% 25%,#fff 0 4px,transparent 5px),
+   radial-gradient(circle at 80% 35%,#fff 0 4px,transparent 5px),
+   linear-gradient(180deg,#e9f9ff,#fefcff);
+ border:1px solid #dcecf4
 }
 
-/* =========================
-   PREMIOS / ESTRELLA GIGANTE
-========================= */
-function showRewards(){
- const c=children[current];
- openSheet(`<h2>🏆 Premios de ${escapeHtml(c.name)}</h2><p>Tienes <b class="stars">⭐ ${c.stars}</b>.</p>
- <div class="rewardBox"><div class="rewardStar">⭐</div><h3>Desbloquea una estrella gigante</h3>
- <p>El premio lo personaliza mamá.</p></div>
- <h3 style="margin-top:16px">🎁 Premios configurados</h3>
- ${rewards.map(r=>`<div class="historyItem"><span>🎁 ${escapeHtml(r.title)}<br><small>${r.stars} ⭐</small></span>
- <button class="btn ${c.stars>=r.stars?"gold":"outline"}" onclick="claimReward(${r.id})">${c.stars>=r.stars?"Abrir ⭐":"Faltan "+(r.stars-c.stars)+" ⭐"}</button></div>`).join("")}`);
-}
-function checkRewardUnlock(){render();}
-function claimReward(id){
- const r=rewards.find(x=>x.id===id);if(!r)return;
- if(children[current].stars<r.stars){showToast("⭐ Sigue completando misiones para abrirlo");return;}
- openSheet(`<div class="rewardBox"><div class="rewardStar">⭐</div><h2>🎉 ¡GANASTE!</h2><h3>${escapeHtml(r.title)}</h3>
- <p>¡Excelente trabajo, ${escapeHtml(children[current].name)}!</p>
- <button class="btn primary" style="width:100%" onclick="closeModal()">Cerrar regalo</button></div>`);
+.pet-body{
+ position:absolute;
+ font-size:145px;
+ line-height:1;
+ z-index:1;
+ user-select:none;
+ transform-origin:center bottom
 }
 
-/* =========================
-   PANEL DE MAMÁ
-========================= */
-function openParent(){
- if(parentAuthed)return parentDashboard();
- window._digits=[];
- openSheet(`<h2 style="text-align:center;color:#d84d7b">🔐 Panel de Mamá</h2>
- <p style="text-align:center">Ingresa tu clave para continuar</p>
- <div class="keydots" id="dots">${[0,1,2,3].map(i=>`<i class="dot" id="d${i}"></i>`).join("")}</div>
- <div class="keypad">${[1,2,3,4,5,6,7,8,9,"×",0,"⌫"].map(x=>`<button class="key" onclick="keyPress('${x}')">${x}</button>`).join("")}</div>
- <p style="text-align:center"><button class="btn outline" onclick="showToast('La clave inicial es 2580. Puedes cambiarla en el Panel de Mamá.')">¿Olvidaste tu clave?</button></p>`);
-}
-function keyPress(x){
- if(!window._digits)window._digits=[];
- if(x==="×")window._digits=[];
- else if(x==="⌫")window._digits.pop();
- else if(window._digits.length<4)window._digits.push(String(x));
- document.querySelectorAll(".dot").forEach((d,i)=>d.classList.toggle("on",i<window._digits.length));
- if(window._digits.length===4){
-  if(window._digits.join("")===pin){parentAuthed=true;parentDashboard();}
-  else{showToast("❌ Clave incorrecta");window._digits=[];document.querySelectorAll(".dot").forEach(d=>d.classList.remove("on"));}
- }
-}
-function parentDashboard(){
- openSheet(`<h2>👩‍👧‍👦 Panel de Mamá</h2><p>Administra misiones, horarios, estrellas, aprendizaje, mascotas y recompensas.</p>
- <div class="two">
-  <button class="btn primary" onclick="grantStars()">⭐ Otorgar estrellas</button>
-  <button class="btn purple" onclick="manageMissions()">📅 Misiones y horarios</button>
-  <button class="btn outline" onclick="showProgress()">📊 Progreso</button>
-  <button class="btn outline" onclick="showHistory()">🕐 Historial</button>
-  <button class="btn gold" onclick="manageProfiles()">👤 Perfiles</button>
-  <button class="btn outline" onclick="manageRewards()">🎁 Premios</button>
-  <button class="btn outline" onclick="showAcademyParent()">🎓 Academia</button>
-  <button class="btn outline" onclick="changePin()">🔑 Cambiar clave</button>
- </div>
- <hr><h3>Resumen de los niños</h3>
- ${Object.entries(children).map(([k,c])=>`<div class="historyItem"><span>${c.avatar} ${escapeHtml(c.name)}</span><b>⭐ ${c.stars} · 🔥 ${c.streak}</b></div>`).join("")}`);
-}
-function grantStars(){
- openSheet(`<h2>⭐ Otorgar estrellas extra</h2>
- <div class="field"><label>Niño</label><select id="gChild">${Object.entries(children).map(([k,c])=>`<option value="${k}">${escapeHtml(c.name)}</option>`).join("")}</select></div>
- <div class="field"><label>Cantidad</label><div class="row">${[1,2,3,5,10].map(n=>`<button class="btn gold" onclick="setGrant(${n})">+${n} ⭐</button>`).join("")}</div></div>
- <input type="hidden" id="gAmount" value="1">
- <div class="field"><label>Motivo</label><textarea id="gReason" placeholder="Ej. Ayudó sin que se lo pidieran"></textarea></div>
- <button class="btn primary" style="width:100%" onclick="doGrant()">Otorgar estrellas ✨</button>`);
-}
-function setGrant(n){document.getElementById("gAmount").value=n;showToast(`Seleccionado +${n} ⭐`);}
-function doGrant(){
- const k=document.getElementById("gChild").value,n=Number(document.getElementById("gAmount").value)||1;
- const r=document.getElementById("gReason").value||"Acción especial";
- children[k].stars+=n;history.unshift({date:new Date().toLocaleString(),child:k,delta:n,reason:r});
- save();closeModal();render();showToast(`⭐ +${n} para ${children[k].name}`);
-}
-function manageMissions(){
- openSheet(`<h2>📅 Misiones y horarios</h2>
- ${missions.map(m=>`<div class="historyItem"><span>${m.icon} <b>${escapeHtml(m.n)}</b><br><small>${formatTime(m.t)} · ⭐${m.s}</small></span>
- <button class="btn outline" onclick="editMission(${m.id})">Editar</button></div>`).join("")}
- <button class="btn primary" style="width:100%;margin-top:12px" onclick="addMission()">＋ Agregar nueva misión</button>`);
-}
-function addMission(){
- openSheet(`<h2>＋ Nueva misión</h2>
- <div class="field"><label>Nombre</label><input id="mn" placeholder="Ej. Leer 15 minutos"></div>
- <div class="field"><label>Descripción</label><input id="md" placeholder="Pequeña explicación"></div>
- <div class="field"><label>Hora</label><input id="mt" type="time" value="17:00"></div>
- <div class="field"><label>Estrellas</label><input id="ms" type="number" value="1" min="1" max="20"></div>
- <button class="btn primary" style="width:100%" onclick="saveMission()">Guardar misión</button>`);
-}
-function saveMission(){
- missions.push({id:Date.now(),n:document.getElementById("mn").value||"Nueva misión",d:document.getElementById("md").value||"Completa esta misión",
- t:document.getElementById("mt").value||"17:00",s:Number(document.getElementById("ms").value)||1,icon:"🌟",done:false});
- save();manageMissions();render();showToast("📅 Misión creada");
-}
-function editMission(id){
- const m=missions.find(x=>x.id===id);if(!m)return;
- openSheet(`<h2>✏️ Editar misión</h2>
- <div class="field"><label>Nombre</label><input id="en" value="${escapeAttr(m.n)}"></div>
- <div class="field"><label>Descripción</label><input id="ed" value="${escapeAttr(m.d)}"></div>
- <div class="field"><label>Hora</label><input id="et" type="time" value="${m.t}"></div>
- <div class="field"><label>Estrellas</label><input id="es" type="number" value="${m.s}"></div>
- <button class="btn primary" onclick="saveEdit(${id})">Guardar</button>
- <button class="btn outline" onclick="deleteMission(${id})">Eliminar</button>`);
-}
-function saveEdit(id){
- const m=missions.find(x=>x.id===id);if(!m)return;
- m.n=document.getElementById("en").value;m.d=document.getElementById("ed").value;m.t=document.getElementById("et").value;m.s=Number(document.getElementById("es").value)||1;
- save();manageMissions();render();showToast("✅ Misión actualizada");
-}
-function deleteMission(id){missions=missions.filter(x=>x.id!==id);save();manageMissions();render();showToast("🗑️ Misión eliminada");}
-function showProgress(){
- openSheet(`<h2>📊 Progreso de los niños</h2>
- ${Object.values(children).map(c=>`<div class="card" style="margin:10px 0"><b>${c.avatar} ${escapeHtml(c.name)}</b>
- <p>⭐ ${c.stars} · 🔥 ${c.streak} días · Nivel ${c.level}</p>
- <div class="progress"><i style="width:${Math.min(100,c.stars%100)}%"></i></div></div>`).join("")}`);
-}
-function showHistory(){
- openSheet(`<h2>🕐 Historial de estrellas</h2><div class="history">
- ${history.length?history.slice(0,40).map(h=>`<div class="historyItem"><span><b>${children[h.child]?escapeHtml(children[h.child].name):escapeHtml(h.child)}</b><br><small>${escapeHtml(h.reason)}<br>${escapeHtml(h.date)}</small></span>
- <b class="${h.delta>=0?"good":"danger"}">${h.delta>=0?"+":""}${h.delta} ⭐</b></div>`).join(""):"<p>Aún no hay movimientos.</p>"}
- </div>`);
-}
-function manageProfiles(){
- openSheet(`<h2>👤 Perfiles y mascotas</h2>
- ${Object.entries(children).map(([k,c])=>`<div class="historyItem"><span>${c.avatar} <b>${escapeHtml(c.name)}</b><br><small>${c.age} años · ${c.pet} ${escapeHtml(c.petName)}</small></span>
- <button class="btn outline" onclick="editProfile('${k}')">Editar</button></div>`).join("")}`);
-}
-function editProfile(k){
- const c=children[k];
- openSheet(`<h2>👤 ${escapeHtml(c.name)}</h2>
- <div class="field"><label>Nombre</label><input id="cn" value="${escapeAttr(c.name)}"></div>
- <div class="field"><label>Edad</label><input id="ca" type="number" value="${c.age}" min="3" max="18"></div>
- <div class="field"><label>Avatar</label><select id="pa">${["👧🏻","👦🏻","🧒🏻","🧑🏻","👩🏻"].map(a=>`<option ${a===c.avatar?"selected":""}>${a}</option>`).join("")}</select></div>
- <button class="btn primary" onclick="saveProfile('${k}')">Guardar</button>`);
-}
-function saveProfile(k){
- const c=children[k];c.name=document.getElementById("cn").value||c.name;c.age=Number(document.getElementById("ca").value)||c.age;c.avatar=document.getElementById("pa").value;
- save();parentDashboard();render();showToast("👤 Perfil actualizado");
-}
-function manageRewards(){
- openSheet(`<h2>🎁 Personalizar regalos</h2>
- <p>Mamá puede definir el mensaje que aparece dentro de la estrella gigante.</p>
- ${rewards.map(r=>`<div class="langCard"><b>${escapeHtml(r.title)}</b><p>${r.stars} ⭐</p>
- <button class="btn outline" onclick="editReward(${r.id})">Editar</button></div>`).join("")}
- <button class="btn gold" onclick="addReward()">＋ Crear nuevo premio</button>`);
-}
-function editReward(id){
- const r=rewards.find(x=>x.id===id);if(!r)return;
- openSheet(`<h2>✏️ Editar regalo</h2>
- <div class="field"><label>Mensaje del premio</label><input id="rn" value="${escapeAttr(r.title)}"></div>
- <div class="field"><label>Estrellas necesarias</label><input id="rs" type="number" value="${r.stars}" min="1"></div>
- <button class="btn primary" onclick="saveReward(${id})">Guardar</button>`);
-}
-function saveReward(id){
- const r=rewards.find(x=>x.id===id);r.title=document.getElementById("rn").value||r.title;r.stars=Number(document.getElementById("rs").value)||r.stars;
- save();manageRewards();showToast("🎁 Premio actualizado");
-}
-function addReward(){
- openSheet(`<h2>＋ Nuevo regalo</h2>
- <div class="field"><label>Mensaje</label><input id="ar" placeholder="Ej. Ganaste una salida al cine 🎬"></div>
- <div class="field"><label>Estrellas necesarias</label><input id="as" type="number" value="100"></div>
- <button class="btn primary" onclick="saveNewReward()">Crear regalo</button>`);
-}
-function saveNewReward(){
- rewards.push({id:Date.now(),title:document.getElementById("ar").value||"¡Ganaste un premio! 🎁",stars:Number(document.getElementById("as").value)||100,claimed:false});
- save();manageRewards();showToast("🎁 Regalo creado");
-}
-function showAcademyParent(){
- openSheet(`<h2>🎓 Academia de Idiomas</h2>
- <p>Progreso independiente por idioma y por niño.</p>
- ${Object.entries(academy).map(([k,a])=>`<div class="historyItem"><span>${languageData[k].flag} ${languageData[k].name}<br><small>Nivel ${a.level} · ${a.xp}/100 XP · ${a.weekly} actividades semanales</small></span><b>🌎</b></div>`).join("")}`);
-}
-function changePin(){
- openSheet(`<h2>🔑 Cambiar clave de Mamá</h2><div class="field"><label>Nueva clave de 4 dígitos</label>
- <input id="newpin" inputmode="numeric" maxlength="4" placeholder="••••"></div>
- <button class="btn primary" onclick="setPin()">Guardar clave</button>`);
-}
-function setPin(){
- const p=document.getElementById("newpin").value;
- if(!/^\d{4}$/.test(p)){showToast("La clave debe tener 4 dígitos");return;}
- pin=p;save();parentDashboard();showToast("🔐 Clave actualizada");
+.pet-shadow{
+ position:absolute;
+ bottom:27px;
+ width:105px;
+ height:20px;
+ border-radius:50%;
+ background:rgba(60,50,70,.10);
+ z-index:0
 }
 
-/* =========================
-   UTILIDADES
-========================= */
-function selectChild(k){if(!children[k])return;current=k;save();render();showToast(`👋 Hola, ${children[k].name}`);}
-function newTip(){tipIndex=(tipIndex+1)%tips.length;render();}
-function openSheet(html){document.getElementById("sheet").innerHTML=html;document.getElementById("modal").classList.add("show");}
-function closeModal(){document.getElementById("modal").classList.remove("show");}
-document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal();});
-function goHome(){closeModal();window.scrollTo({top:0,behavior:"smooth"});}
-function showToast(t){
- const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.tt);
- window.tt=setTimeout(()=>x.classList.remove("show"),2400);
+.pet-accessory{
+ position:absolute;
+ z-index:3;
+ pointer-events:none;
+ user-select:none;
+ line-height:1
 }
-function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
-function escapeAttr(v){return escapeHtml(v);}
 
-/* Inicialización segura: si localStorage está corrupto, la app sigue funcionando. */
-load();
-render();
+.acc-glasses{
+ top:91px;
+ left:50%;
+ transform:translateX(-50%);
+ font-size:58px
+}
 
-/* Actualización suave de niveles de mascota cada visita, sin servidor. */
-setInterval(()=>{
- const c=children[current];
- c.petFood=Math.max(0,c.petFood-1);
- c.petClean=Math.max(0,c.petClean-0.5);
- c.petPlay=Math.max(0,c.petPlay-0.5);
- const avg=(c.petFood+c.petClean+c.petPlay)/3;
- c.happy=Math.max(0,Math.min(100,Math.round(avg)));
- save();render();
-},60000);
+.acc-hat{
+ top:5px;
+ left:50%;
+ transform:translateX(-50%);
+ font-size:75px
+}
 
-/*
- IMPORTANTE:
- No registramos un service worker aquí para evitar que GitHub Pages conserve
- una versión antigua/brota de la app. Primero dejamos estable la 5.0.
-*/
-</script>
-</body>
-</html>
+.acc-bow{
+ top:48px;
+ right:45px;
+ font-size:55px
+}
+
+.acc-crown{
+ top:0;
+ left:50%;
+ transform:translateX(-50%);
+ font-size:62px
+}
+
+.acc-scarf{
+ bottom:28px;
+ left:50%;
+ transform:translateX(-50%);
+ font-size:63px
+}
+
+.acc-butterfly{
+ top:25px;
+ right:25px;
+ font-size:50px
+}
+
+.acc-sparkles{
+ top:15px;
+ left:25px;
+ font-size:48px
+}
+
+.acc-none{
+ display:none
+}
+
+/* Animaciones */
+
+.pet-stage.idle .pet-body{
+ animation:petIdle 2.4s ease-in-out infinite
+}
+
+.pet-stage.jump .pet-body{
+ animation:petJump 1s ease-in-out
+}
+
+.pet-stage.hop .pet-body{
+ animation:petHop 1.1s ease-in-out
+}
+
+.pet-stage.fly .pet-body{
+ animation:petFly 1.7s ease-in-out
+}
+
+.pet-stage.run .pet-body{
+ animation:petRun 1.5s ease-in-out
+}
+
+.pet-stage.roll .pet-body{
+ animation:petRoll 1.5s ease-in-out
+}
+
+.pet-stage.walk .pet-body{
+ animation:petWalk 2s ease-in-out
+}
+
+.pet-stage.play .pet-body{
+ animation:petPlay 1.5s ease-in-out
+}
+
+@keyframes petIdle{
+ 0%,100%
