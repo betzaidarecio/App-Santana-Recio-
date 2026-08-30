@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7A4A2A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Mis Pequeñas Misiones</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--brown:#7a4a2a;--cream:#fffaf0;--pink:#f29ab0;--green:#6e9c68;--gold:#f3c75b;--blue:#78a9d8;--purple:#8d6ac8}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(#fffaf0,#eef7ee);color:#4b3528}
+button,input,select{font:inherit} header{text-align:center;padding:24px 16px 10px} h1{margin:0;color:var(--brown);font-size:clamp(28px,7vw,44px)}
+header p{margin:8px 0 0;font-size:16px}.wrap{max-width:980px;margin:auto;padding:0 16px}
+.tabs{display:flex;gap:8px;overflow:auto;padding:12px 0}.tab{border:0;background:#fff;border-radius:18px;padding:10px 14px;box-shadow:0 3px 10px #0001;white-space:nowrap;cursor:pointer}.tab.active{background:var(--brown);color:white}
+.profile{background:white;border-radius:24px;padding:15px;box-shadow:0 6px 18px #0001;margin:8px 0 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:29px;background:#f3d6de}.profile h2{margin:0;color:var(--brown)}.profile small{color:#6b5a50}.stats{display:flex;gap:14px;text-align:center}.stat b{display:block;font-size:22px}.stat span{font-size:11px}
+.streak{background:linear-gradient(100deg,#fff0c7,#fff);border-radius:20px;padding:12px 15px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center}.streak strong{font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{border:0;background:white;border-radius:23px;overflow:hidden;box-shadow:0 7px 18px #0002;cursor:pointer;text-align:left;padding:0}.card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}.card .txt{padding:12px 14px 14px}.card h3{margin:0;color:var(--brown)}.card p{margin:5px 0 0;font-size:13px}.done{outline:4px solid #91bd85}.badge{display:inline-block;margin-top:8px;padding:5px 8px;border-radius:12px;background:#edf7ea;color:#497045;font-size:12px;font-weight:bold}
+.panel{background:white;border-radius:24px;padding:16px;margin:18px 0;box-shadow:0 6px 18px #0001}.panel h2{margin-top:0;color:var(--brown)}
+.taskrow{display:grid;grid-template-columns:1fr 95px 88px;gap:8px;align-items:center;border-top:1px solid #eee;padding:11px 0}.taskrow:first-of-type{border-top:0}.taskrow input,.taskrow select{width:100%;padding:8px;border:1px solid #ddd;border-radius:12px}.primary,.secondary,.danger{border:0;border-radius:14px;padding:10px 13px;cursor:pointer}.primary{background:var(--brown);color:white}.secondary{background:#f2eadf;color:var(--brown)}.danger{background:#ffe4e4;color:#9b3f3f}
+.install{display:block;margin:8px auto 18px;border:0;background:var(--brown);color:#fff;padding:11px 18px;border-radius:17px;cursor:pointer}
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:12px;z-index:10}.modal.show{display:flex}.box{background:var(--cream);max-width:720px;width:100%;max-height:94vh;overflow:auto;border-radius:28px;padding:14px;position:relative}.close{position:absolute;right:12px;top:8px;border:0;background:white;border-radius:50%;width:42px;height:42px;font-size:26px;cursor:pointer}.box img{width:100%;border-radius:20px}.box h2{color:var(--brown);font-size:28px;margin:14px 6px 5px}.box p{margin:0 6px 10px}.choices{display:flex;flex-wrap:wrap;gap:8px}.choice{border:2px solid #eadccf;background:#fff;border-radius:15px;padding:11px 13px;cursor:pointer}.result{font-weight:bold;margin-top:12px;min-height:23px}
+.hidden{display:none!important}.empty{padding:20px;text-align:center;color:#6d625c}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.taskrow{grid-template-columns:1fr 90px 78px}.stats{gap:8px}}
+</style>
+</head>
+<body>
+<header>
+<h1>🌟 Mis Pequeñas Misiones</h1>
+<p>Pequeños deberes, grandes aventuras.</p>
+</header>
+
+<div class="wrap">
+  <button class="install" id="installBtn" hidden>📱 Instalar en este teléfono</button>
+  <div class="tabs" id="tabs"></div>
+  <section class="profile" id="profile"></section>
+  <section class="streak"><div>🔥 Racha actual<br><strong id="streak">0 días</strong></div><div id="streakMsg">¡Comencemos!</div></section>
+
+  <div class="grid" id="missions"></div>
+
+  <section class="panel">
+    <h2>⏰ Horarios y deberes</h2>
+    <p>La mamá/papá puede poner la hora de cada misión. La app marca qué toca hoy y guarda las estrellas y la racha.</p>
+    <div id="taskEditor"></div>
+    <button class="primary" onclick="addTask()">＋ Añadir deber</button>
+  </section>
+</div>
+
+<div class="modal" id="modal" onclick="outside(event)">
+<section class="box">
+<button class="close" onclick="closeModal()">×</button>
+<img id="mimg" alt=""><h2 id="mtitle"></h2><p id="msub"></p>
+<div class="panel" style="margin:8px 0"><strong id="q"></strong><div class="choices" id="choices"></div><div class="result" id="result"></div></div>
+</section>
+</div>
+
+<script>
+const missions={
+alimentacion:{title:"¡A comer rico!",sub:"Después: cepillado y baño",img:"images/alimentacion.png",q:"Después de comer, ¿qué debemos hacer?",choices:["Cepillarnos los dientes 🪥","Dormir inmediatamente 😴","Dejar todo tirado 😅"],correct:0},
+higiene:{title:"¡Dientes y baño!",sub:"Sonrisa limpia y cuerpo fresco",img:"images/higiene.png",q:"¿Qué nos ayuda a cuidar nuestra sonrisa?",choices:["Cepillo y pasta 🪥","Más televisión 📺","No lavarnos 😄"],correct:0},
+energia:{title:"¡Todo apagado!",sub:"Luces, TV y más OFF",img:"images/energia.png",q:"Cuando salimos de una habitación, ¿qué podemos apagar?",choices:["La luz y los aparatos 💡","El sol ☀️","El planeta 🌎"],correct:0},
+dormir:{title:"¡A dormir!",sub:"Una rutina tranquila para descansar",img:"images/dormir.png",q:"¿Qué hacemos cuando llega la hora de dormir?",choices:["Vamos a la cama 🌙","Encendemos todas las luces 💡","Jugamos toda la noche 🎮"],correct:0}
+};
+const children=[
+{id:"violeta",name:"Violeta",age:13,emoji:"👧",color:"#eadcff"},
+{id:"elizeo",name:"Elizeo",age:9,emoji:"👦",color:"#dcecff"},
+{id:"misael",name:"Misael",age:7,emoji:"🧒",color:"#dff4df"}
+];
+const defaultTasks=[
+{id:"alimentacion",name:"🍎 Alimentación",time:"13:00",stars:2,enabled:true},
+{id:"higiene",name:"🪥 Dientes y baño",time:"18:00",stars:2,enabled:true},
+{id:"energia",name:"💡 Apagar luces y TV",time:"19:30",stars:2,enabled:true},
+{id:"dormir",name:"🌙 Prepararse para dormir",time:"20:30",stars:3,enabled:true}
+];
+const key="mpm_v2";
+let state=JSON.parse(localStorage.getItem(key)||"null")||{
+selected:"violeta",
+children:Object.fromEntries(children.map(c=>[c.id,{stars:0,streak:0,lastComplete:null,history:{},tasks:JSON.parse(JSON.stringify(defaultTasks))}]))
+};
+for(const c of children){if(!state.children[c.id])state.children[c.id]={stars:0,streak:0,lastComplete:null,history:{},tasks:JSON.parse(JSON.stringify(defaultTasks))};}
+let child=()=>state.children[state.selected];
+function save(){localStorage.setItem(key,JSON.stringify(state));}
+function dateKey(d=new Date()){return d.toISOString().slice(0,10)}
+function prevDate(s){const d=new Date(s+"T12:00:00");d.setDate(d.getDate()-1);return dateKey(d)}
+function today(){return dateKey()}
+function renderTabs(){document.getElementById("tabs").innerHTML=children.map(c=>`<button class="tab ${c.id===state.selected?'active':''}" onclick="selectChild('${c.id}')">${c.emoji} ${c.name}</button>`).join("")}
+function selectChild(id){state.selected=id;save();render()}
+function renderProfile(){
+ const c=children.find(x=>x.id===state.selected), d=child();
+ document.getElementById("profile").innerHTML=`<div style="display:flex;align-items:center;gap:12px"><div class="avatar" style="background:${c.color}">${c.emoji}</div><div><h2>${c.name}</h2><small>${c.age} años · perfil infantil</small></div></div><div class="stats"><div class="stat"><b>⭐ ${d.stars}</b><span>estrellas</span></div><div class="stat"><b>🔥 ${d.streak}</b><span>racha</span></div></div>`;
+ document.getElementById("streak").textContent=`${d.streak} día${d.streak===1?'':'s'}`;
+ document.getElementById("streakMsg").textContent=d.streak>=7?"¡Racha increíble! 🏆":d.streak>=3?"¡Sigue así! 💪":"¡Vamos a conseguirla! 🌟";
+}
+function renderMissions(){
+ const d=child(), day=today();
+ document.getElementById("missions").innerHTML=d.tasks.filter(t=>t.enabled).map(t=>{
+   const done=!!(d.history[day]&&d.history[day][t.id]);
+   const m=missions[t.id]||missions.alimentacion;
+   return `<button class="card ${done?'done':''}" onclick="openMission('${t.id}')"><img src="${m.img}" alt=""><div class="txt"><h3>${m.title}</h3><p>${t.name} · ⏰ ${t.time}</p><span class="badge">${done?'✅ Completada':'⭐ +'+t.stars+' estrellas'}</span></div></button>`
+ }).join("") || `<div class="empty">No hay deberes activos.</div>`;
+}
+function renderEditor(){
+ const d=child();
+ document.getElementById("taskEditor").innerHTML=d.tasks.map((t,i)=>`<div class="taskrow">
+ <input value="${t.name.replace(/"/g,'&quot;')}" onchange="editTask(${i},'name',this.value)">
+ <input type="time" value="${t.time}" onchange="editTask(${i},'time',this.value)">
+ <div style="display:flex;gap:5px"><select onchange="editTask(${i},'stars',Number(this.value))">${[1,2,3,5,10].map(n=>`<option ${n===t.stars?'selected':''} value="${n}">⭐${n}</option>`).join("")}</select>
+ <button class="danger" onclick="removeTask(${i})">×</button></div></div>`).join("");
+}
+function editTask(i,k,v){child().tasks[i][k]=v;save();render()}
+function addTask(){child().tasks.push({id:"custom_"+Date.now(),name:"✨ Nuevo deber",time:"17:00",stars:1,enabled:true});save();render()}
+function removeTask(i){child().tasks.splice(i,1);save();render()}
+function openMission(id){
+ const t=child().tasks.find(x=>x.id===id); if(!t)return;
+ const m=missions[id]||{title:t.name,sub:"Deber personalizado",img:"images/alimentacion.png",q:"¿Completaste este deber?",choices:["Sí, lo hice 🎉","Todavía no"],correct:0};
+ document.getElementById("mimg").src=m.img;document.getElementById("mtitle").textContent=m.title;document.getElementById("msub").textContent=`${t.name} · Hora: ${t.time} · Premio: ⭐ ${t.stars}`;
+ document.getElementById("q").textContent=m.q;document.getElementById("result").textContent="";
+ const c=document.getElementById("choices");c.innerHTML="";
+ m.choices.forEach((x,i)=>{let b=document.createElement("button");b.className="choice";b.textContent=x;b.onclick=()=>answer(id,i,m.correct,t);c.appendChild(b)});
+ document.getElementById("modal").classList.add("show");
+}
+function answer(id,i,correct,t){
+ const d=child(), day=today(); d.history[day]=d.history[day]||{};
+ if(i!==correct){document.getElementById("result").textContent="💛 ¡Inténtalo otra vez!";return}
+ if(d.history[day][id]){document.getElementById("result").textContent="✅ Ya ganaste las estrellas de este deber hoy.";return}
+ d.history[day][id]=true;d.stars+=t.stars;
+ updateStreak();
+ let bonus="";
+ const streakBonus={3:2,7:5,14:10,30:20};
+ if(streakBonus[d.streak]){d.stars+=streakBonus[d.streak];bonus=` + ${streakBonus[d.streak]} ⭐ de bonus por racha de ${d.streak} días!`;}
+ save();render();document.getElementById("result").textContent=`🎉 ¡Excelente! +${t.stars} ⭐${bonus}`;
+}
+function allDone(day){
+ const d=child(), active=d.tasks.filter(t=>t.enabled);
+ return active.length>0 && active.every(t=>d.history[day]&&d.history[day][t.id]);
+}
+function updateStreak(){
+ const d=child(), day=today();
+ if(!allDone(day)) return;
+ if(d.lastComplete===day)return;
+ if(d.lastComplete===prevDate(day))d.streak+=1;else d.streak=1;
+ d.lastComplete=day;
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function outside(e){if(e.target.id==="modal")closeModal()}
+function render(){renderTabs();renderProfile();renderMissions();renderEditor()}
+render();
+
+let deferredPrompt;
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").hidden=false});
+document.getElementById("installBtn").onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").hidden=true}};
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js");
+</script>
+</body>
+</html>
