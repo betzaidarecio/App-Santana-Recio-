@@ -3,1637 +3,237 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#fff7fb">
-<meta name="description" content="Mis Pequeñas Misiones 7.0 — academia, misiones, premios, mascotas y chat educativo.">
-<title>Mis Pequeñas Misiones · v7.0</title>
+<meta name="theme-color" content="#191a20">
+<title>Mis Pequeñas Misiones 5.0</title>
+<link rel="manifest" href="manifest.webmanifest">
 <style>
 :root{
-  --bg:#fff8fb;--card:#fff;--ink:#332b3a;--muted:#756b7d;--pink:#e94f82;--pink2:#ff7da5;
-  --purple:#7a4bc2;--purple2:#a27ae0;--green:#24a88b;--blue:#4aa7df;--yellow:#f8c62e;
-  --line:#eadfea;--shadow:0 12px 30px rgba(67,38,76,.10);--radius:22px;
+ --pink:#ec5b89;--pink2:#f6a4bc;--purple:#7953bd;--yellow:#ffd83d;
+ --green:#21a789;--ink:#403647;--muted:#7c747d;--bg:#fbf7fb;--line:#e9dfe8;
+ --card:#fff;--soft:#fff2f7;--blue:#edfaff;--shadow:0 5px 20px rgba(50,30,60,.08)
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:ui-rounded,"Nunito","Trebuchet MS",system-ui,sans-serif;background:linear-gradient(180deg,#fff8fb 0,#f8f3ff 100%);color:var(--ink)}
-button,input,textarea,select{font:inherit}
-button{border:0;cursor:pointer}
-.app{max-width:1180px;margin:auto;min-height:100vh;padding-bottom:92px}
-.topbar{position:sticky;top:0;z-index:50;background:rgba(255,248,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;align-items:center;gap:12px}
-.iconbtn{width:44px;height:44px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 4px 12px rgba(50,30,60,.06);color:var(--ink);font-size:21px}
-.brand{flex:1;text-align:center;font-weight:900;font-size:19px}
-.brand small{display:block;color:var(--pink);font-size:10px;letter-spacing:.12em}
-main{padding:18px}
-.hero{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:20px;position:relative;overflow:hidden}
-.hero:before,.hero:after{content:"✦";position:absolute;color:#f5c533;font-size:28px;opacity:.75}
-.hero:before{left:22px;top:16px}.hero:after{right:25px;top:28px}
-.hero h1{font-size:clamp(30px,6vw,52px);line-height:.95;margin:8px 0 8px;font-weight:1000}
-.hero h1 span{color:var(--purple)}
-.hero p{margin:0;color:var(--muted);font-size:16px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.stat{padding:14px;border-radius:18px;background:#fff;border:1px solid var(--line);text-align:center}
-.stat b{font-size:25px;display:block}.stat small{color:var(--muted)}
-.section{margin-top:18px}
-.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:0 2px 10px}
-.sectionhead h2{margin:0;font-size:22px}
-.linkbtn{background:transparent;color:var(--purple);font-weight:800}
-.children{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.child{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 7px 20px rgba(50,30,60,.07);transition:.2s}
-.child:hover{transform:translateY(-2px)}
-.childtop{padding:16px 16px 10px;display:flex;align-items:center;gap:12px}
-.avatar{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;font-size:38px;border:1px solid var(--line)}
-.child h3{margin:0;font-size:18px}.child p{margin:3px 0;color:var(--muted);font-size:13px}
-.progress{height:9px;background:#eee7f0;border-radius:999px;margin:0 16px 12px;overflow:hidden}
-.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--purple));border-radius:999px}
-.childfoot{padding:10px 14px;background:#faf5ff;display:flex;justify-content:space-between;font-weight:800;font-size:13px}
-.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
-.card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 7px 22px rgba(50,30,60,.07);padding:18px}
-.missions{display:grid;gap:10px}
-.mission{display:grid;grid-template-columns:42px 1fr auto auto;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:17px;background:#fff}
-.mission.done{background:#f1fbf8}.micon{width:40px;height:40px;border-radius:14px;background:#fff6d9;display:grid;place-items:center;font-size:22px}
-.mission b{display:block;font-size:14px}.mission small{color:var(--muted)}
-.check{width:32px;height:32px;border-radius:50%;border:2px solid #d8d0db;background:#fff;color:#1e9a7d;font-weight:900}
-.done .check{background:#25a88b;color:#fff;border-color:#25a88b}
-.road{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;padding:8px}
-.node{width:72px;height:72px;border-radius:50%;background:#fff;border:5px solid #e5dcf0;display:grid;place-items:center;font-size:25px;position:relative;box-shadow:0 5px 14px rgba(60,35,70,.08)}
-.node.active{border-color:var(--yellow);animation:pulse 1.8s infinite}.node.done{border-color:var(--green);background:#edfbf7}
-.node:after{content:"";position:absolute;width:28px;height:4px;background:#ddd2e8;right:-32px}.node:last-child:after{display:none}
-@keyframes pulse{50%{transform:scale(1.07)}}
-.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:60;width:min(1180px,100%);background:rgba(255,255,255,.96);backdrop-filter:blur(15px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 8px max(8px,env(safe-area-inset-bottom))}
-.navbtn{background:transparent;color:#665d6c;padding:7px 4px;border-radius:14px;font-weight:800;font-size:11px}.navbtn span{display:block;font-size:22px}.navbtn.active{color:var(--pink);background:#fff2f7}
-.page{display:none}.page.active{display:block}
-.subjects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.subject{padding:18px;border:1px solid var(--line);border-radius:22px;background:#fff;min-height:150px;box-shadow:0 7px 18px rgba(50,30,60,.06);text-align:left;position:relative;overflow:hidden}
-.subject .emoji{font-size:38px}.subject h3{margin:8px 0 4px}.subject p{color:var(--muted);margin:0;font-size:13px}.subject .badge{position:absolute;right:12px;top:12px;background:#f7eefc;color:var(--purple);padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900}
-.lesson{margin-top:15px;padding:18px;border-radius:24px;background:linear-gradient(135deg,#fff,#f7efff);border:1px solid #e6d9f2}
-.lesson h3{margin:0 0 7px}.question{font-size:22px;font-weight:900;margin:16px 0}
-.answers{display:grid;gap:9px}.answer{padding:13px;border:2px solid #e4d9e9;background:#fff;border-radius:15px;text-align:left;font-weight:800}.answer.correct{border-color:#27a888;background:#edfbf7}.answer.wrong{border-color:#e36a89;background:#fff0f4}
-.lessonbar{height:10px;background:#e7dfee;border-radius:999px;overflow:hidden}.lessonbar i{height:100%;display:block;background:linear-gradient(90deg,var(--green),var(--blue));width:0}
-.petstage{min-height:360px;border-radius:25px;background:linear-gradient(#bce7fb 0 57%,#a9d987 57%);position:relative;overflow:hidden;border:1px solid #cde4d6}
-.sun{position:absolute;right:13%;top:8%;width:58px;height:58px;border-radius:50%;background:#fff4c7;box-shadow:0 0 0 12px rgba(255,255,255,.28)}
-.cloud{position:absolute;background:#fff;border-radius:999px;width:90px;height:28px;opacity:.72}.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}.cloud:before{width:38px;height:38px;left:15px;top:-17px}.cloud:after{width:48px;height:48px;right:12px;top:-25px}
-.cloud.c1{left:12%;top:18%}.cloud.c2{left:55%;top:11%;transform:scale(.7)}
-.ground{position:absolute;left:-5%;right:-5%;bottom:9%;height:34px;background:#d9bd8b;border-radius:50%}
-.pet2d{position:absolute;left:50%;bottom:16%;transform:translateX(-50%);width:190px;height:145px;animation:bob 2.2s ease-in-out infinite}
-@keyframes bob{50%{transform:translateX(-50%) translateY(-8px)}}
-.body{position:absolute;width:125px;height:86px;border-radius:48% 52% 45% 45%;left:28px;top:45px;background:#32b968;box-shadow:inset -8px -6px rgba(0,0,0,.06)}
-.head{position:absolute;width:82px;height:82px;border-radius:50%;right:5px;top:10px;background:#2fbd69}
-.eye{position:absolute;width:18px;height:18px;background:#1d2430;border-radius:50%;right:24px;top:26px;border:4px solid #fff}
-.beak{position:absolute;right:-12px;top:49px;width:34px;height:23px;background:#ffd335;clip-path:polygon(0 0,100% 50%,0 100%);transform:rotate(-7deg)}
-.wing{position:absolute;left:34px;top:64px;width:65px;height:42px;background:#1789cf;border-radius:70% 20% 65% 35%;transform:rotate(-20deg)}
-.leg{position:absolute;width:17px;height:47px;border-radius:12px;background:#f7f7f7;bottom:-2px}.l1{left:50px}.l2{left:90px}.l3{left:127px}
-.scarf{position:absolute;right:16px;top:0;width:27px;height:55px;background:#ef554d;border-radius:7px 7px 12px 12px;transform:rotate(6deg);z-index:3}
-.scarf:after{content:"";position:absolute;bottom:-13px;left:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:18px solid #ef554d}
-.petmood{position:absolute;left:50%;transform:translateX(-50%);bottom:6px;background:rgba(255,255,255,.92);padding:7px 12px;border-radius:999px;font-weight:900;font-size:13px;white-space:nowrap}
-.petcontrols{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}.petcontrols button{padding:12px;border-radius:16px;background:#fff;border:1px solid var(--line);font-weight:900}
-.petstats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}.barlabel{font-size:11px;font-weight:900}.barmini{height:8px;background:#eee5ef;border-radius:99px;overflow:hidden}.barmini i{display:block;height:100%;background:var(--green)}
-.chat{height:540px;display:flex;flex-direction:column}.messages{flex:1;overflow:auto;padding:4px;display:flex;flex-direction:column;gap:10px}.msg{max-width:84%;padding:12px 14px;border-radius:18px;line-height:1.35}.msg.ai{background:#f2eaff;align-self:flex-start;border-bottom-left-radius:5px}.msg.me{background:#e8faf5;align-self:flex-end;border-bottom-right-radius:5px}.quick{display:flex;gap:7px;overflow:auto;padding:8px 0}.quick button{white-space:nowrap;border-radius:999px;background:#fff;border:1px solid var(--line);padding:8px 10px;color:var(--purple);font-weight:800}.composer{display:flex;gap:8px}.composer input{flex:1;border:1px solid var(--line);border-radius:15px;padding:12px;outline:none}.send{background:var(--pink);color:#fff;border-radius:15px;padding:0 17px;font-weight:900}
-.petcare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.care{padding:16px;border:1px solid var(--line);border-radius:18px;background:#fff}.care h3{margin:0 0 7px}.care p{margin:0;color:var(--muted);font-size:13px}.care button{margin-top:12px;background:#f7edf9;color:var(--purple);padding:9px 12px;border-radius:12px;font-weight:900}
-.parent{max-width:560px;margin:auto}.pin{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.pin button{padding:16px;border-radius:16px;background:#fff;border:1px solid var(--line);font-weight:900;font-size:18px}.pinview{letter-spacing:10px;text-align:center;padding:12px;font-weight:1000;color:var(--pink);min-height:25px}
-.parentdash{display:none}.parentdash.show{display:block}.parent-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.parent-actions button{padding:15px;border:1px solid var(--line);background:#fff;border-radius:17px;font-weight:900}
-.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#332b3a;color:#fff;padding:11px 16px;border-radius:999px;z-index:100;transition:.25s;font-weight:800}.toast.show{opacity:1;transform:translate(-50%,0)}
-.drawer{position:fixed;inset:0;background:rgba(40,25,45,.35);z-index:90;display:none}.drawer.open{display:block}.drawerbox{width:min(330px,88%);height:100%;background:#fff;padding:20px;box-shadow:12px 0 40px rgba(0,0,0,.15)}.drawerbox h2{margin-top:4px}.drawerbox button{display:block;width:100%;text-align:left;padding:13px;border-radius:13px;background:#fff;margin:4px 0;font-weight:800}.drawerbox button:hover{background:#faf1f7}
-.small{font-size:12px;color:var(--muted)}
-@media(max-width:800px){.grid{grid-template-columns:1fr}.subjects{grid-template-columns:repeat(2,1fr)}.children{grid-template-columns:1fr}.petcare-grid{grid-template-columns:1fr}}
-@media(max-width:520px){main{padding:12px}.stats{grid-template-columns:1fr 1fr 1fr}.subjects{grid-template-columns:1fr 1fr}.subject{min-height:135px}.mission{grid-template-columns:38px 1fr auto}.mission .reward{display:none}.petcontrols{grid-template-columns:1fr 1fr}.petstats{grid-template-columns:1fr 1fr}.hero{padding:17px}.hero h1{font-size:34px}}
+html,body{margin:0;background:#191a20;color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:720px;min-height:100vh;margin:auto;background:linear-gradient(#fffafd,#faf7fb);padding-bottom:92px}
+.topbar{height:58px;background:#191a20;color:white;display:flex;align-items:center;padding:0 18px;font-weight:800;font-size:18px}
+.header{background:#fffafd;border-bottom:1px solid var(--line);padding:20px 24px 18px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:13px}.brand .star{font-size:54px;line-height:1}.brand h1{font-size:28px;margin:0 0 2px;letter-spacing:-.6px}.brand p{margin:0;color:#817985;font-size:16px}
+.iconbtn{border:0;background:white;border-radius:22px;width:58px;height:58px;box-shadow:var(--shadow);font-size:29px}
+main{padding:16px 18px}
+.child-tabs{display:flex;gap:8px;overflow:auto;margin:0 0 14px}.child-tab{border:1px solid var(--line);background:#fff;border-radius:18px;padding:10px 15px;min-width:108px;font-weight:800;color:var(--muted)}.child-tab.active{background:#fff0f6;border:2px solid var(--pink);color:var(--pink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow);padding:17px;margin:12px 0}
+.profile{display:flex;gap:16px;align-items:center;background:linear-gradient(135deg,#fff,#fff1f7);padding:19px}
+.avatar{width:94px;height:94px;border-radius:28px;background:#eee4ff;display:grid;place-items:center;font-size:59px;flex:none}
+.profile h2{margin:0;font-size:28px}.profile .age{color:var(--muted);font-size:17px;margin:2px 0 10px}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{background:#fff;border:1px solid var(--line);border-radius:18px;padding:7px 11px;font-weight:800;font-size:14px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.section-head h2{margin:0;font-size:23px}.outline{border:1px solid var(--line);background:#fff;border-radius:16px;padding:11px 16px;font-weight:800}
+.mission{display:grid;grid-template-columns:52px 1fr 44px;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #eee}.mission:last-child{border-bottom:0}.mi{width:52px;height:52px;border-radius:18px;background:#fff4bd;display:grid;place-items:center;font-size:29px}.mission h3{margin:0;font-size:17px}.mission p{margin:2px 0 0;color:var(--muted);font-size:14px}.meta{color:var(--green);font-weight:800;font-size:13px;margin-top:5px}.plus,.check{width:43px;height:43px;border:0;border-radius:50%;font-weight:900;font-size:25px}.plus{background:#eaf8f4;color:var(--green)}.check{background:#dff6ed;color:var(--green)}
+.banner{background:linear-gradient(135deg,#ffe889,#fff3c5);border:1px solid #efd66a;border-radius:21px;padding:14px;text-align:center;font-weight:900;font-size:16px}.banner span{font-size:29px;margin-left:10px}
+.learn-card{background:linear-gradient(135deg,#f5edff,#fff)}.pill{display:inline-block;background:#eee5fb;color:#6b46a7;border-radius:16px;padding:6px 10px;font-size:12px;font-weight:800}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:#fff;border:1px solid var(--line);border-radius:19px;padding:15px;text-align:left}.tile .ico{font-size:28px}.tile strong{display:block;margin-top:5px}.tile small{color:var(--muted)}
+.pet{background:linear-gradient(135deg,#ecfaff,#fff)}.petface{text-align:center;font-size:90px}.pet h2{text-align:center;margin:0}.petname{text-align:center;font-size:19px;font-weight:900}.bar{margin:8px 0}.barline{display:flex;justify-content:space-between;font-size:12px;font-weight:800}.meter{height:10px;border-radius:20px;background:#eee;overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--yellow))}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);height:82px;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:20}.bottom button{border:0;background:white;color:#746d75;font-size:12px;padding:6px}.bottom b{display:block;font-size:25px;margin-bottom:2px}.bottom .active{color:var(--pink);font-weight:900}
+.hidden{display:none!important}
+.btn{border:0;border-radius:15px;padding:12px 15px;background:var(--pink);color:white;font-weight:900}.btn.purple{background:var(--purple)}.btn.yellow{background:var(--yellow);color:#654d00}.btn.green{background:var(--green)}
+.modal{position:fixed;inset:0;background:rgba(25,20,30,.6);display:none;align-items:flex-end;z-index:50}.modal.show{display:flex}.sheet{width:min(720px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:28px 28px 0 0;padding:22px}.close{float:right;border:0;background:#f5edf6;border-radius:50%;width:40px;height:40px;font-size:23px}.pin{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.pin button{padding:16px;border:1px solid #efb3c7;background:#fff;border-radius:22px;color:#d94e7d;font-weight:900;font-size:19px}.dots{text-align:center;color:var(--pink);font-size:24px;letter-spacing:6px}
+.choice{width:100%;padding:12px;border:1px solid var(--line);background:#fff;border-radius:14px;text-align:left;margin:5px 0}.story{background:#fff3c9;border-radius:18px;padding:15px;line-height:1.55}
+.reward{position:fixed;inset:0;background:rgba(30,20,35,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:80}.reward.show{display:flex}.rewardbox{background:#fff;border-radius:32px;text-align:center;padding:26px;width:min(500px,100%);box-shadow:0 20px 60px #0005;animation:pop .4s}.bigstar{font-size:140px;line-height:1;animation:star 1s infinite alternate}.rewardbox h2{color:var(--pink);margin:8px}.rewardbox p{font-size:20px;font-weight:800}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}@keyframes star{to{transform:scale(1.08) rotate(4deg)}}
+input,select{width:100%;padding:12px;border:1px solid var(--line);border-radius:13px;margin:5px 0 10px;background:#fff;color:var(--ink)}
+label{font-size:12px;font-weight:900}
+@media(max-width:520px){.brand h1{font-size:25px}.brand .star{font-size:48px}.profile h2{font-size:25px}.avatar{width:86px;height:86px;font-size:53px}}
 </style>
 </head>
 <body>
 <div class="app">
-  <header class="topbar">
-    <button class="iconbtn" id="menuBtn" aria-label="Abrir menú">☰</button>
-    <div class="brand">🌟 Mis Pequeñas Misiones <small>EDICIÓN 7.0</small></div>
-    <button class="iconbtn" id="bellBtn" aria-label="Notificaciones">🔔</button>
+  <div class="topbar">‹ &nbsp; Mis Pequeñas Misiones 5.0</div>
+  <header class="header">
+    <div class="brand"><div class="star">⭐</div><div><h1>Mis Pequeñas Misiones</h1><p>Pequeñas acciones, grandes hábitos</p></div></div>
+    <button class="iconbtn" onclick="notify()">🔔</button>
   </header>
-
-  <main>
-    <section id="home" class="page active">
-      <div class="hero">
-        <div class="small">Pequeñas acciones · grandes hábitos</div>
-        <h1>Mis Pequeñas<br><span>Misiones</span> ✨</h1>
-        <p>Aprender, cuidar, jugar y avanzar. Una experiencia familiar dinámica, alegre y sin preguntas repetidas.</p>
-        <div class="stats">
-          <div class="stat"><b id="familyStars">128 ⭐</b><small>Estrellas familiares</small></div>
-          <div class="stat"><b id="familyStreak">7 🔥</b><small>Racha familiar</small></div>
-          <div class="stat"><b id="level">Nivel 6</b><small>Progreso</small></div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="sectionhead"><h2>👨‍👩‍👧‍👦 Mi equipo</h2><button class="linkbtn" onclick="showPage('parent')">Panel de Mamá →</button></div>
-        <div class="children">
-          <article class="child"><div class="childtop"><div class="avatar">👧🏽</div><div><h3>Violeta</h3><p>13 años · Exploradora</p></div></div><div class="progress"><i style="width:76%"></i></div><div class="childfoot"><span>⭐ 48</span><span>🔥 6 días</span></div></article>
-          <article class="child"><div class="childtop"><div class="avatar">👦🏽</div><div><h3>Elizeo</h3><p>9 años · Aventurero</p></div></div><div class="progress"><i style="width:64%"></i></div><div class="childfoot"><span>⭐ 42</span><span>🔥 8 días</span></div></article>
-          <article class="child"><div class="childtop"><div class="avatar">👦🏽</div><div><h3>Misael</h3><p>7 años · Descubridor</p></div></div><div class="progress"><i style="width:51%"></i></div><div class="childfoot"><span>⭐ 38</span><span>🔥 4 días</span></div></article>
-        </div>
-      </div>
-
-      <div class="section grid">
-        <div class="card">
-          <div class="sectionhead"><h2>📋 Misiones del día</h2><button class="linkbtn" onclick="showPage('missions')">Ver todas →</button></div>
-          <div class="missions" id="missionList"></div>
-        </div>
-        <div class="card">
-          <div class="sectionhead"><h2>🏆 Camino de progreso</h2><span class="small">Racha + aprendizaje</span></div>
-          <div class="road" id="road"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="academy" class="page">
-      <div class="hero"><div class="small">🎓 Academia inteligente</div><h1>Aprende <span>jugando</span></h1><p>Lecciones cortas, niveles, rachas, recompensas y preguntas variadas.</p></div>
-      <div class="section subjects" id="subjects"></div>
-      <div class="lesson" id="lessonBox">
-        <div class="sectionhead"><h3 id="lessonTitle">Elige una materia</h3><span id="lessonScore">0 ⭐</span></div>
-        <div class="lessonbar"><i id="lessonProgress"></i></div>
-        <div id="questionArea"><p class="small">Selecciona una materia para comenzar una mini-lección.</p></div>
-      </div>
-    </section>
-
-    <section id="missions" class="page">
-      <div class="hero"><div class="small">🎯 Hábitos y responsabilidades</div><h1>Misiones <span>activas</span></h1><p>Marca las tareas cumplidas y acumula estrellas.</p></div>
-      <div class="section card"><div class="missions" id="allMissions"></div></div>
-    </section>
-
-    <section id="pet" class="page">
-      <div class="hero"><div class="small">🐾 Pet Care</div><h1>Cuida a <span>Copio</span></h1><p>Tu mascota es 2D estilo dibujo animado, con movimiento suave y necesidades que responden a tus acciones.</p></div>
-      <div class="section card">
-        <div class="petstage" id="petStage">
-          <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div><div class="ground"></div>
-          <div class="pet2d" id="pet2d">
-            <div class="wing"></div><div class="body"></div><div class="head"><div class="eye"></div><div class="beak"></div></div>
-            <div class="leg l1"></div><div class="leg l2"></div><div class="leg l3"></div><div class="scarf"></div>
-          </div>
-          <div class="petmood" id="petMood">😴 Estoy dormido/a... Zzz</div>
-        </div>
-
-        <div class="petstats">
-          <div><div class="barlabel">🍎 Hambre <span id="hungerN">65</span></div><div class="barmini"><i id="hunger" style="width:65%"></i></div></div>
-          <div><div class="barlabel">💧 Agua <span id="waterN">72</span></div><div class="barmini"><i id="water" style="width:72%"></i></div></div>
-          <div><div class="barlabel">❤️ Ánimo <span id="joyN">58</span></div><div class="barmini"><i id="joy" style="width:58%"></i></div></div>
-          <div><div class="barlabel">⚡ Energía <span id="energyN">45</span></div><div class="barmini"><i id="energy" style="width:45%"></i></div></div>
-        </div>
-
-        <div class="petcontrols">
-          <button onclick="petAction('food')">🍎 Alimentar</button>
-          <button onclick="petAction('water')">💧 Dar agua</button>
-          <button onclick="petAction('play')">🎾 Jugar</button>
-          <button onclick="petAction('sleep')">🌙 Dormir</button>
-        </div>
-
-        <div class="section petcare-grid">
-          <div class="care">
-            <h3>🧼 Higiene</h3>
-            <p>Completa el cuidado diario para mantener feliz a Copio.</p>
-            <button onclick="petAction('clean')">Bañar / limpiar</button>
-          </div>
-          <div class="care">
-            <h3>🩺 Bienestar</h3>
-            <p>Observa hambre, agua, ánimo y energía. El sistema evita acciones imposibles.</p>
-            <button onclick="toast('¡Chequeo completo! Copio está bien cuidado 💚')">Hacer chequeo</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="chat" class="page">
-      <div class="hero"><div class="small">💬 Compañero educativo</div><h1>Chat <span>amigable</span></h1><p>Respuestas locales variadas para practicar, explicar y jugar. No repite la misma pregunta consecutivamente.</p></div>
-      <div class="section card chat">
-        <div class="messages" id="messages"></div>
-        <div class="quick">
-          <button onclick="sendChat('Quiero practicar español')">📚 Español</button>
-          <button onclick="sendChat('Quiero practicar matemáticas')">➗ Matemáticas</button>
-          <button onclick="sendChat('Quiero una pregunta de ciencias')">🔬 Ciencias</button>
-          <button onclick="sendChat('Quiero un reto')">🎮 Reto</button>
-        </div>
-        <div class="composer">
-          <input id="chatInput" placeholder="Escribe algo..." onkeydown="if(event.key==='Enter')sendChat()">
-          <button class="send" onclick="sendChat()">Enviar</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="rewards" class="page">
-      <div class="hero"><div class="small">🏆 Recompensas</div><h1>Premios <span>desbloqueables</span></h1><p>Convierte el esfuerzo en logros visibles y metas familiares.</p></div>
-      <div class="section subjects" id="rewardsGrid"></div>
-    </section>
-
-    <section id="parent" class="page">
-      <div class="hero"><div class="small">🔐 Área protegida</div><h1>Panel de <span>Mamá</span></h1><p>Administración de misiones, estrellas, progreso y preferencias.</p></div>
-
-      <div class="section card parent" id="pinCard">
-        <h2>Ingresa tu clave para continuar</h2>
-        <div class="pinview" id="pinView">○ ○ ○ ○</div>
-        <div class="pin" id="pinPad"></div>
-        <p class="small">Clave demo inicial: <b>2580</b>. Cámbiala en la configuración del archivo antes de publicar.</p>
-      </div>
-
-      <div class="section card parentdash" id="parentDash">
-        <div class="sectionhead"><h2>¡Hola, Mamá! 👋</h2><button class="linkbtn" onclick="lockParent()">Bloquear</button></div>
-        <p class="small">Administra la experiencia sin salir de la aplicación.</p>
-        <div class="parent-actions">
-          <button onclick="giveStars()">⭐ Otorgar estrellas</button>
-          <button onclick="showPage('missions')">📅 Misiones y horarios</button>
-          <button onclick="toast('Progreso actualizado 📊')">📊 Progreso de niños</button>
-          <button onclick="toast('Historial abierto 🕘')">🕘 Historial de estrellas</button>
-        </div>
-        <div class="section card" style="background:#fff8fc">
-          <b>Configuración local</b>
-          <p class="small">Los datos se guardan en este dispositivo con localStorage. No se envían a un servidor.</p>
-          <button class="linkbtn" onclick="resetDemo()">Restablecer demo</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <nav class="bottomnav">
-    <button class="navbtn active" data-page="home"><span>🏠</span>Inicio</button>
-    <button class="navbtn" data-page="academy"><span>🎓</span>Academia</button>
-    <button class="navbtn" data-page="rewards"><span>🏆</span>Premios</button>
-    <button class="navbtn" data-page="pet"><span>🐾</span>Mascota</button>
-    <button class="navbtn" data-page="parent"><span>🔐</span>Mamá</button>
+  <main id="screen"></main>
+  <nav class="bottom">
+    <button id="nav-home" onclick="go('home')"><b>🏠</b>Inicio</button>
+    <button id="nav-learn" onclick="go('learn')"><b>🎯</b>Aprender</button>
+    <button id="nav-prize" onclick="go('prize')"><b>🏆</b>Premios</button>
+    <button id="nav-pet" onclick="go('pet')"><b>🐾</b>Mascota</button>
+    <button id="nav-mom" onclick="openMom()"><b>🔐</b>Mamá</button>
   </nav>
 </div>
 
-<div class="drawer" id="drawer">
-  <div class="drawerbox">
-    <button onclick="closeDrawer()">✕ Cerrar</button>
-    <h2>Menú principal</h2>
-    <button onclick="showPage('home');closeDrawer()">🏠 Inicio</button>
-    <button onclick="showPage('academy');closeDrawer()">🎓 Academia</button>
-    <button onclick="showPage('missions');closeDrawer()">🎯 Misiones</button>
-    <button onclick="showPage('pet');closeDrawer()">🐾 Pet Care</button>
-    <button onclick="showPage('chat');closeDrawer()">💬 Chat</button>
-    <button onclick="showPage('rewards');closeDrawer()">🏆 Premios</button>
-    <button onclick="showPage('parent');closeDrawer()">🔐 Panel de Mamá</button>
-    <hr>
-    <p class="small">v7.0 · experiencia local sin dependencias externas</p>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
+<div id="modal" class="modal"><div id="sheet" class="sheet"></div></div>
+<div id="reward" class="reward"><div class="rewardbox"><div class="bigstar">⭐</div><h2>¡REGALO DESBLOQUEADO!</h2><p id="rewardText"></p><button class="btn" onclick="closeReward()">¡Genial! 🎉</button></div></div>
 
 <script>
-"use strict";
-
-/* =========================================================
-   MIS PEQUEÑAS MISIONES 7.0
-   Una sola página, sin librerías externas ni APIs obligatorias.
-   ========================================================= */
-
-const $ = s => document.querySelector(s);
-const $$ = s => [...document.querySelectorAll(s)];
-const storeKey = "mpm_v70_state";
-
-const defaultState = {
-  stars:128,
-  streak:7,
-  level:6,
-
-  missions:[
-    {
-      id:1,
-      icon:"🍎",
-      title:"Alimentación saludable",
-      desc:"Come frutas y toma agua",
-      time:"1:00 PM",
-      reward:2,
-      done:false
-    },
-    {
-      id:2,
-      icon:"🪥",
-      title:"Dientes y baño",
-      desc:"Cepíllate los dientes y báñate",
-      time:"6:00 PM",
-      reward:2,
-      done:false
-    },
-    {
-      id:3,
-      icon:"💡",
-      title:"Apagar luces y TV",
-      desc:"Apaga lo que no se usa",
-      time:"7:30 PM",
-      reward:2,
-      done:false
-    },
-    {
-      id:4,
-      icon:"🌙",
-      title:"Prepararse para dormir",
-      desc:"Pijama, dientes y a la cama",
-      time:"8:30 PM",
-      reward:3,
-      done:false
-    }
-  ],
-
-  pet:{
-    hunger:65,
-    water:72,
-    joy:58,
-    energy:45,
-    mood:"😴 Estoy dormido/a... Zzz"
-  },
-
-  pin:"2580",
-  parentUnlocked:false,
-  history:[],
-
-  lesson:{
-    subject:null,
-    index:0,
-    score:0,
-    lastQuestions:[]
-  }
+const KEY='MPM5_FINAL_DATA';
+const initial={
+ pin:'2580',
+ reward:'¡Ganaste un helado! 🍦',
+ child:'violeta',
+ lang:{language:'Inglés',level:'Básico',words:5,xp:120,streak:3},
+ kids:{
+  violeta:{name:'Violeta',age:13,level:7,stars:48,streak:6,ach:4,avatar:'👧',pet:{emoji:'🐶',name:'Luna',happy:80,food:78,energy:88,clean:92,accessory:'🕶️'}},
+  eliseo:{name:'Eliseo',age:9,level:5,stars:42,streak:8,ach:3,avatar:'👦',pet:{emoji:'🐱',name:'Milo',happy:91,food:85,energy:90,clean:88,accessory:'🧢'}},
+  misael:{name:'Misael',age:7,level:3,stars:38,streak:4,ach:2,avatar:'👦',pet:{emoji:'🐰',name:'Nube',happy:86,food:80,energy:92,clean:93,accessory:'🎩'}}
+ },
+ missions:[
+  {id:1,n:'Alimentación saludable',d:'Come frutas y toma agua',t:'13:00',s:2,i:'🍎',done:false},
+  {id:2,n:'Dientes y baño',d:'Cepíllate los dientes y báñate',t:'18:00',s:2,i:'🪥',done:false},
+  {id:3,n:'Apagar luces y TV',d:'Apaga lo que no se usa',t:'19:30',s:2,i:'💡',done:false},
+  {id:4,n:'Prepararse para dormir',d:'Pijama, dientes y a la cama',t:'20:30',s:3,i:'🌙',done:false},
+  {id:5,n:'Ve a la escuela',d:'Mochila lista y llegar a tiempo',t:'07:15',s:2,i:'🎒',done:false},
+  {id:6,n:'Hora de limpiar',d:'Ordena tus cosas y colabora en casa',t:'17:00',s:2,i:'🧹',done:false},
+  {id:7,n:'Hacer tareas / repasar',d:'Completa tus deberes escolares',t:'16:00',s:3,i:'📚',done:false},
+  {id:8,n:'Cena saludable',d:'Cena y descubre un tip',t:'19:00',s:2,i:'🥗',done:false},
+  {id:9,n:'Actividad física',d:'Muévete 15 minutos',t:'17:30',s:2,i:'🏃',done:false},
+  {id:10,n:'Cuidar animales',d:'Alimenta gallinas y periquitos',t:'08:00',s:2,i:'🐔',done:false}
+ ],
+ history:[]
 };
-
-let state = loadState();
-
-function loadState(){
-  try{
-    return {
-      ...structuredClone(defaultState),
-      ...JSON.parse(localStorage.getItem(storeKey)||"{}")
-    };
-  }catch(e){
-    return structuredClone(defaultState);
-  }
-}
-
-function save(){
-  localStorage.setItem(storeKey,JSON.stringify(state));
-}
-
-function toast(text){
-  const el=$("#toast");
-  el.textContent=text;
-  el.classList.add("show");
-
-  clearTimeout(window.__toast);
-
-  window.__toast=setTimeout(
-    ()=>el.classList.remove("show"),
-    2200
-  );
-}
-
-function showPage(id){
-  $$(".page").forEach(
-    p=>p.classList.toggle("active",p.id===id)
-  );
-
-  $$(".navbtn").forEach(
-    b=>b.classList.toggle("active",b.dataset.page===id)
-  );
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
+// Carga segura: completa datos antiguos para evitar que la pantalla quede vacía.
+function cloneInitial(){return JSON.parse(JSON.stringify(initial))}
+function normalizeData(raw){
+  const d=raw&&typeof raw==='object'?raw:cloneInitial();
+  const base=cloneInitial();
+  if(!d.kids||typeof d.kids!=='object') d.kids=base.kids;
+  Object.keys(base.kids).forEach(k=>{
+    const b=base.kids[k], c=d.kids[k]||{};
+    c.name=c.name||b.name; c.age=Number(c.age)||b.age; c.level=Number(c.level)||b.level;
+    c.stars=Number.isFinite(Number(c.stars))?Number(c.stars):b.stars;
+    c.streak=Number.isFinite(Number(c.streak))?Number(c.streak):b.streak;
+    c.ach=Number.isFinite(Number(c.ach))?Number(c.ach):b.ach;
+    c.avatar=c.avatar||b.avatar;
+    c.pet=Object.assign({},b.pet,c.pet||{});
+    ['happy','food','energy','clean'].forEach(k2=>c.pet[k2]=Number.isFinite(Number(c.pet[k2]))?Number(c.pet[k2]):b.pet[k2]);
+    c.pet.name=c.pet.name||b.pet.name; c.pet.emoji=c.pet.emoji||b.pet.emoji; c.pet.accessory=c.pet.accessory||b.pet.accessory;
+    d.kids[k]=c;
   });
-
-  if(id==="missions") renderMissions();
-  if(id==="parent") refreshParent();
+  d.pin=/^\d{4}$/.test(String(d.pin||''))?String(d.pin):base.pin;
+  d.reward=String(d.reward||base.reward);
+  d.child=d.kids[d.child]?d.child:base.child;
+  d.lang=Object.assign({},base.lang,d.lang||{});
+  d.lang.words=Number(d.lang.words)||base.lang.words; d.lang.xp=Number(d.lang.xp)||base.lang.xp; d.lang.streak=Number(d.lang.streak)||base.lang.streak;
+  d.lang.language=String(d.lang.language||base.lang.language);
+  d.missions=Array.isArray(d.missions)?d.missions:base.missions;
+  d.missions=d.missions.map((m,i)=>Object.assign({},base.missions[i%base.missions.length],m,{id:m.id||Date.now()+i,n:m.n||m.name||base.missions[i%base.missions.length].n,d:m.d||'Misión diaria',t:m.t||'17:00',s:Number(m.s)||1,i:m.i||'✨',done:Boolean(m.done)}));
+  d.history=Array.isArray(d.history)?d.history:[];
+  return d;
 }
-
-$("#menuBtn").onclick=()=>{
-  $("#drawer").classList.add("open");
-};
-
-$("#drawer").onclick=e=>{
-  if(e.target.id==="drawer") closeDrawer();
-};
-
-function closeDrawer(){
-  $("#drawer").classList.remove("open");
+let D;
+try{D=normalizeData(JSON.parse(localStorage.getItem(KEY)||'null'));localStorage.setItem(KEY,JSON.stringify(D))}
+catch(e){D=cloneInitial();localStorage.setItem(KEY,JSON.stringify(D))}
+function save(){localStorage.setItem(KEY,JSON.stringify(D))}
+function C(){return D.kids[D.child]||D.kids.violeta}
+function go(page){
+ document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
+ const n=document.getElementById('nav-'+(page==='home'?'home':page));
+ if(n)n.classList.add('active');
+ if(page==='home')home(); if(page==='learn')learn(); if(page==='prize')prize(); if(page==='pet')pet();
 }
-
-$("#bellBtn").onclick=()=>{
-  toast("No tienes nuevas alertas. ¡Todo en orden! 🔔");
-};
-
-$$(".navbtn").forEach(
-  b=>b.onclick=()=>showPage(b.dataset.page)
-);
-
-
-/* ---------- Misiones ---------- */
-
-function renderMissions(){
-
-  const html=state.missions.map(m=>`
-    <div class="mission ${m.done?"done":""}">
-      <div class="micon">${m.icon}</div>
-
-      <div>
-        <b>${m.title}</b>
-        <small>${m.desc} · ${m.time}</small>
-      </div>
-
-      <span class="reward">⭐ +${m.reward}</span>
-
-      <button
-        class="check"
-        onclick="toggleMission(${m.id})"
-      >
-        ${m.done?"✓":"○"}
-      </button>
-    </div>
-  `).join("");
-
-  $("#missionList").innerHTML=html;
-  $("#allMissions").innerHTML=html;
-
-  renderRoad();
+function childTabs(){
+ return `<div class="child-tabs">${Object.entries(D.kids).map(([k,c])=>`<button class="child-tab ${D.child===k?'active':''}" onclick="setChild('${k}')">${c.name}<br><small>${c.age} años</small></button>`).join('')}</div>`;
 }
-
-function toggleMission(id){
-
-  const m=state.missions.find(x=>x.id===id);
-
-  if(!m)return;
-
-  if(!m.done){
-
-    m.done=true;
-
-    state.stars+=m.reward;
-
-    state.streak=Math.min(
-      30,
-      state.streak+1
-    );
-
-    toast(
-      `¡Misión completada! +${m.reward} ⭐`
-    );
-
-  }else{
-
-    m.done=false;
-
-    state.stars=Math.max(
-      0,
-      state.stars-m.reward
-    );
-
-    toast("Misión desmarcada");
+function setChild(k){D.child=k;save();go('home')}
+function profile(){
+ const c=C();
+ return `<section class="card profile"><div class="avatar">${c.avatar}</div><div><h2>¡Hola, ${c.name}! 🌟</h2><div class="age">${c.age} años · Nivel ${c.level}</div><div class="chips"><span class="chip">⭐ ${c.stars} estrellas</span><span class="chip">🔥 ${c.streak} días</span><span class="chip">🏆 ${c.ach} logros</span></div></div></section>`;
+}
+function missionList(){
+ return `<section class="card"><div class="section-head"><h2>📋 Misiones del día</h2><button class="outline" onclick="showAll()">Ver todas</button></div>
+ ${D.missions.slice(0,6).map(m=>`<div class="mission"><div class="mi">${m.i}</div><div><h3>${m.n}</h3><p>${m.d}</p><div class="meta">⏰ ${fmt(m.t)} · ⭐ ${m.s}</div></div><button class="${m.done?'check':'plus'}" onclick="complete(${m.id})">${m.done?'✓':'+'}</button></div>`).join('')}</section>`;
+}
+function home(){
+ const c=C(),p=c.pet;
+ document.getElementById('screen').innerHTML=childTabs()+profile()+missionList()+
+ `<div class="banner">¡Completa todas tus misiones y gana estrellas extra! <span>🎁</span></div>
+ <section class="card learn-card"><div class="section-head"><h2>📚 Aprende hoy</h2><span class="pill">Adaptado a tu edad</span></div><p>Tu Academia de Idiomas tiene una práctica preparada para ti.</p><button class="btn purple" onclick="go('learn')">Continuar aprendizaje →</button></section>
+ <section class="card"><div class="section-head"><h2>💡 Consejo de hoy</h2><button class="outline" onclick="tip()">Otro consejo ✨</button></div><p id="tipText">${dailyTip(c.age)}</p></section>
+ <section class="card pet"><h2>🐾 Mi mascota</h2><div class="petface">${p.emoji}${p.accessory}</div><div class="petname">${p.name}</div><p>❤️ ${p.happy}% felicidad · 🍖 ${p.food}% alimentación</p><button class="btn green" onclick="go('pet')">Cuidarla →</button></section>`;
+}
+function dailyTip(age){
+ const a=age<10?['Ordena tus cosas después de jugar. 🧸','Toma agua durante el día. 💧','Cepíllate los dientes con calma. 🪥','Aprende una palabra nueva hoy. 📚']:['Organiza tu tiempo antes de empezar tus tareas. ⏱️','Ayudar en casa también es una forma de responsabilidad. 🏠','Practica un idioma 10 minutos hoy. 🌍','Antes de dormir, prepara lo que necesitarás mañana. 🎒'];
+ return a[new Date().getDate()%a.length];
+}
+function tip(){document.getElementById('tipText').textContent='✨ '+dailyTip(C().age)+' ¡Tú puedes!'}
+function fmt(t){let [h,m]=t.split(':').map(Number);return (h%12||12)+':'+String(m).padStart(2,'0')+' '+(h>=12?'PM':'AM')}
+function complete(id){
+ const m=D.missions.find(x=>x.id===id),c=C(); if(!m||m.done)return;
+ m.done=true;c.stars+=m.s;c.streak=Math.max(c.streak,1);c.ach++;
+ D.history.unshift({kid:D.child,text:'Completó '+m.n,stars:m.s,date:new Date().toLocaleString()});save();home();
+ if(D.missions.filter(x=>!x.done).length===0)showReward();
+}
+function showAll(){
+ document.getElementById('screen').innerHTML=childTabs()+`<section class="card"><div class="section-head"><h2>📋 Todas las misiones</h2><button class="outline" onclick="go('home')">← Inicio</button></div>${D.missions.map(m=>`<div class="mission"><div class="mi">${m.i}</div><div><h3>${m.n}</h3><p>${m.d}</p><div class="meta">⏰ ${fmt(m.t)} · ⭐ ${m.s}</div></div><button class="${m.done?'check':'plus'}" onclick="complete(${m.id})">${m.done?'✓':'+'}</button></div>`).join('')}</section>`;
+}
+const langs=['Inglés','Francés','Portugués','Italiano','Alemán','Japonés'];
+const vocab={Inglés:['apple|manzana','school|escuela','friend|amigo'],Francés:['bonjour|hola','école|escuela','ami|amigo'],Portugués:['casa|casa','amigo|amigo','água|agua'],Italiano:['ciao|hola','scuola|escuela','amico|amigo'],Alemán:['haus|casa','freund|amigo','schule|escuela'],Japonés:['neko|gato','mizu|agua','tomodachi|amigo']};
+function learn(){
+ const c=C(),L=D.lang,w=vocab[L.language][0].split('|');
+ document.getElementById('screen').innerHTML=`<section class="card"><div class="section-head"><h2>🌍 Academia de Idiomas</h2><span class="pill">Nivel ${L.level}</span></div>
+ <div class="tabs">${langs.map(x=>`<button class="outline" onclick="setLang('${x}')">${x}</button>`).join('')}</div>
+ <div class="card learn-card"><h3>🗺️ Ruta de aprendizaje</h3><p>Lecciones adaptadas automáticamente para ${c.name}, ${c.age} años.</p><div class="grid"><button class="tile" onclick="lesson()"><span class="ico">📘</span><strong>Lección del día</strong><small>+10 XP</small></button><button class="tile" onclick="conversation()"><span class="ico">💬</span><strong>Conversación</strong><small>Habla y responde</small></button><button class="tile" onclick="listen()"><span class="ico">🎧</span><strong>Escucha</strong><small>Comprensión auditiva</small></button><button class="tile" onclick="pronounce('${w[0]}')"><span class="ico">🎤</span><strong>Pronunciación</strong><small>Puntuación 0–100</small></button></div></div>
+ <section class="card"><h3>🧠 Palabra de hoy</h3><h2>${w[0]}</h2><p>${w[1]}</p><button class="btn" onclick="speak('${w[0]}')">🔊 Escuchar</button> <button class="btn purple" onclick="pronounce('${w[0]}')">🎤 Practicar</button></section>
+ <section class="card"><h3>📖 Historia</h3><div class="story"><b>${c.name} y su aventura</b><p>Today ${c.name} goes to school, helps at home and remembers to care for a pet.</p><button class="btn yellow" onclick="story()">Responder</button></div></section>
+ <section class="card"><h3>🔥 Desafío semanal</h3><p>5 prácticas · 10 palabras · 1 conversación</p><div class="meter"><i style="width:${Math.min(100,L.xp%100)}%"></i></div><p><b>${L.xp} XP</b> · Racha ${L.streak} días</p></section></section>`;
+}
+function setLang(x){D.lang.language=x;save();learn()}
+function lesson(){D.lang.xp+=10;C().stars+=1;save();alert('¡Lección completada! +10 XP y ⭐1');learn()}
+function conversation(){D.lang.xp+=5;save();alert('💬 Di en voz alta: “Hello, my name is '+C().name+'.”');learn()}
+function listen(){D.lang.xp+=5;save();alert('🎧 Escucha la palabra y selecciona su significado en el siguiente ejercicio.');learn()}
+function story(){D.lang.xp+=5;save();alert('¡Muy bien! +5 XP 📖');learn()}
+function speak(t){if(!('speechSynthesis'in window))return alert('Tu navegador no admite audio.');let map={Inglés:'en-US',Francés:'fr-FR',Portugués:'pt-BR',Italiano:'it-IT',Alemán:'de-DE',Japonés:'ja-JP'};let u=new SpeechSynthesisUtterance(t);u.lang=map[D.lang.language];speechSynthesis.speak(u)}
+function pronounce(target){
+ const R=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!R)return alert('El reconocimiento de voz no está disponible en este navegador. Puedes usar 🔊 Escuchar para practicar.');
+ const r=new R();r.lang={Inglés:'en-US',Francés:'fr-FR',Portugués:'pt-BR',Italiano:'it-IT',Alemán:'de-DE',Japonés:'ja-JP'}[D.lang.language];r.onresult=e=>{let said=e.results[0][0].transcript.toLowerCase(),t=target.toLowerCase();let score=said===t?100:Math.max(0,Math.round(100*(1-Math.abs(said.length-t.length)/Math.max(said.length,t.length))));D.lang.xp+=Math.round(score/10);save();alert('🎤 '+said+'\\nPuntuación: '+score+'/100');learn()};r.start()
+}
+function pet(){
+ const c=C(),p=c.pet;
+ document.getElementById('screen').innerHTML=childTabs()+`<section class="card pet"><h2>🐾 Mascota de ${c.name}</h2><div class="petface">${p.emoji}${p.accessory}</div><div class="petname">${p.name}</div><p>${petMood(p)}</p>${bar('❤️ Felicidad',p.happy)}${bar('🍖 Alimentación',p.food)}${bar('⚡ Energía',p.energy)}${bar('🧼 Higiene',p.clean)}
+ <div class="grid"><button class="btn green" onclick="care('food')">🍖 Alimentar</button><button class="btn purple" onclick="care('clean')">🧼 Bañar</button><button class="btn yellow" onclick="care('play')">🎾 Jugar</button><button class="btn" onclick="care('walk')">🦮 Pasear</button></div></section>
+ <section class="card"><h3>🎀 Personalizar mascota</h3><div class="grid">${['🎀','🕶️','🧢','🎩','👓','🧣','🦋','✨'].map(a=>`<button class="tile" onclick="C().pet.accessory='${a}';save();pet()"><span class="ico">${a}</span><strong>Usar</strong></button>`).join('')}</div>
+ <label>Nombre</label><input id="petname" value="${p.name}"><button class="btn" onclick="C().pet.name=document.getElementById('petname').value||'Luna';save();pet()">Guardar nombre</button></section>
+ <section class="card"><h3>🐶🐱🐰🦊🐼 Elegir mascota</h3><div class="grid">${[['🐶','Perrito'],['🐱','Gatito'],['🐰','Conejito'],['🦊','Zorrito'],['🐼','Panda']].map(a=>`<button class="tile" onclick="C().pet.emoji='${a[0]}';save();pet()"><span class="ico">${a[0]}</span><strong>${a[1]}</strong></button>`).join('')}</div></section>
+ <section class="card"><h3>🔔 Alerta de mascota</h3><p>“${alertText()}”</p><button class="btn purple" onclick="petSpeak()">🔊 Escuchar</button></section>`;
+}
+function bar(name,v){return `<div class="bar"><div class="barline"><span>${name}</span><span>${v}%</span></div><div class="meter"><i style="width:${v}%"></i></div></div>`}
+function petMood(p){let avg=(p.happy+p.food+p.energy+p.clean)/4;return avg>80?'🥰 ¡Estoy feliz y bien cuidada!':avg>55?'🙂 Necesito un poquito de atención.':'😟 ¡No me olvides! Necesito cuidados.'}
+function care(type){let p=C().pet;if(type==='food')p.food=Math.min(100,p.food+16);if(type==='clean')p.clean=Math.min(100,p.clean+16);if(type==='play'){p.happy=Math.min(100,p.happy+12);p.energy=Math.max(0,p.energy-5)}if(type==='walk'){p.happy=Math.min(100,p.happy+10);p.energy=Math.max(0,p.energy-8)}p.happy=Math.min(100,p.happy+3);save();pet()}
+function alertText(){return D.missions.some(m=>!m.done)?'Ve a revisar tu panel de actividades. Tienes tareas pendientes.':'¡Todo al día! ¿Jugamos juntos?'}
+function petSpeak(){let u=new SpeechSynthesisUtterance(alertText());u.lang='es-DO';speechSynthesis.speak(u)}
+function prize(){
+ document.getElementById('screen').innerHTML=`<section class="card"><h2>🏆 Premios y logros</h2><div class="grid"><div class="tile">🔥<strong>Rachas</strong><small>Premios por constancia</small></div><div class="tile">🌍<strong>Idiomas</strong><small>XP y desafíos</small></div><div class="tile">🏠<strong>Ayudante</strong><small>Misiones de casa</small></div><div class="tile">🐾<strong>Cuidador</strong><small>Mascota saludable</small></div></div></section>
+ <section class="card"><h3>🎁 Regalo final</h3><p>Al completar todas las misiones se abre una estrella gigante con el mensaje elegido por mamá.</p><button class="btn yellow" onclick="showReward()">Ver demostración ⭐</button></section>
+ <section class="card"><h3>📜 Historial de estrellas</h3>${D.history.slice(0,12).map(h=>`<p>⭐${h.stars} · ${D.kids[h.kid].name}<br><small>${h.text} · ${h.date}</small></p>`).join('')||'<p class="muted">Todavía no hay movimientos.</p>'}</section>`;
+}
+function openMom(){document.getElementById('modal').classList.add('show');pinUI()}
+let pinIn='';
+function pinUI(){pinIn='';document.getElementById('sheet').innerHTML=`<button class="close" onclick="closeModal()">×</button><h2>🔐 Panel de Mamá</h2><p>Ingresa tu clave de 4 dígitos para continuar.</p><div class="dots" id="dots">○ ○ ○ ○</div><div class="pin">${[1,2,3,4,5,6,7,8,9,'×',0,'⌫'].map(x=>`<button onclick="pin('${x}')">${x}</button>`).join('')}</div>`}
+function pin(x){if(x==='×'){pinUI();return}if(x==='⌫'){pinIn=pinIn.slice(0,-1)}else if(pinIn.length<4){pinIn+=x}document.getElementById('dots').textContent='• '.repeat(pinIn.length)+'○ '.repeat(4-pinIn.length);if(pinIn.length===4){if(pinIn===D.pin)dashboard();else{alert('Clave incorrecta');pinUI()}}}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function dashboard(){document.getElementById('sheet').innerHTML=`<button class="close" onclick="closeModal()">×</button><h2>💗 Panel de Mamá</h2><p>Administra misiones, horarios, estrellas, progreso y premios.</p>
+<div class="grid"><button class="tile" onclick="extraStars()">⭐<strong>Otorgar estrellas</strong><small>Acciones especiales</small></button><button class="tile" onclick="manage()">📅<strong>Misiones y horarios</strong><small>Crear y editar</small></button><button class="tile" onclick="progress()">📊<strong>Progreso</strong><small>Por niño</small></button><button class="tile" onclick="history()">🕘<strong>Historial</strong><small>Movimientos</small></button></div>
+<section class="card"><h3>🎁 Premio personalizable</h3><label>Mensaje de la estrella gigante</label><input id="rewardInput" value="${D.reward}"><button class="btn" onclick="D.reward=document.getElementById('rewardInput').value||'¡Premio!';save();dashboard()">Guardar premio</button></section>
+<section class="card"><h3>🔑 Cambiar clave</h3><input id="newpin" maxlength="4" inputmode="numeric" value="${D.pin}"><button class="btn purple" onclick="changePin()">Cambiar clave</button></section>`}
+function extraStars(){let k=prompt('Escribe: violeta, eliseo o misael','violeta');if(!D.kids[k])return alert('No encontrado');let n=Number(prompt('¿Cuántas estrellas? 1, 2, 3 o 5','3'));if(![1,2,3,5].includes(n))return;let reason=prompt('Motivo','Ayudó sin que se lo pidieran')||'Acción extra';D.kids[k].stars+=n;D.history.unshift({kid:k,text:reason,stars:n,date:new Date().toLocaleString()});save();dashboard()}
+function changePin(){let p=document.getElementById('newpin').value;if(!/^\d{4}$/.test(p))return alert('Usa exactamente 4 dígitos.');D.pin=p;save();dashboard()}
+function manage(){document.getElementById('sheet').innerHTML=`<button class="close" onclick="dashboard()">←</button><h2>📅 Misiones y horarios</h2>${D.missions.map(m=>`<div class="mission"><div class="mi">${m.i}</div><div><h3>${m.n}</h3><p>${m.d}</p><div class="meta">${fmt(m.t)} · ⭐${m.s}</div></div><button class="${m.done?'check':'plus'}" onclick="toggleMission(${m.id})">${m.done?'✓':'+'}</button></div>`).join('')}<section class="card"><h3>➕ Agregar nueva misión</h3><label>Nombre</label><input id="mn" placeholder="Ej. Leer 20 minutos"><label>Hora</label><input id="mt" type="time" value="17:00"><label>Estrellas</label><select id="ms"><option>1</option><option>2</option><option>3</option><option>5</option></select><button class="btn" onclick="addMission()">Agregar</button></section>`}
+function toggleMission(id){let m=D.missions.find(x=>x.id===id);if(m){m.done=!m.done;save();manage()}}
+function addMission(){let n=document.getElementById('mn').value.trim();if(!n)return;D.missions.push({id:Date.now(),n,d:'Misión personalizada',t:document.getElementById('mt').value,s:+document.getElementById('ms').value,i:'✨',done:false});save();manage()}
+function progress(){document.getElementById('sheet').innerHTML=`<button class="close" onclick="dashboard()">←</button><h2>📊 Progreso de los niños</h2>${Object.values(D.kids).map(c=>`<section class="card"><h3>${c.avatar} ${c.name}</h3><p>⭐ ${c.stars} · 🔥 ${c.streak} días · Nivel ${c.level}</p><label>Progreso de nivel</label><div class="meter"><i style="width:${(c.stars*3)%100}%"></i></div></section>`).join('')}`}
+function history(){document.getElementById('sheet').innerHTML=`<button class="close" onclick="dashboard()">←</button><h2>🕘 Historial</h2>${D.history.map(h=>`<section class="card"><b>${D.kids[h.kid].name} · ⭐${h.stars}</b><p>${h.text}</p><small>${h.date}</small></section>`).join('')||'<p>No hay movimientos.</p>'}`}
+function notify(){alert(C().pet.name+' dice:\\n\\n'+alertText())}
+function showReward(){document.getElementById('rewardText').textContent=D.reward;document.getElementById('reward').classList.add('show')}
+function closeReward(){document.getElementById('reward').classList.remove('show')}
+home();
+window.addEventListener('error',function(){
+  const screen=document.getElementById('screen');
+  if(screen && !screen.innerHTML.trim()){
+    screen.innerHTML='<section class="card"><h2>✨ Recuperación</h2><p>La aplicación encontró un problema al cargar datos anteriores.</p><button class="btn" onclick="localStorage.removeItem(KEY);location.reload()">Recargar</button></section>';
   }
-
-  save();
-  updateStats();
-  renderMissions();
-}
-
-function renderRoad(){
-
-  const icons=[
-    "🌱",
-    "📖",
-    "🧩",
-    "🎯",
-    "🏅",
-    "🌟",
-    "👑"
-  ];
-
-  $("#road").innerHTML=icons.map(
-    (x,i)=>`
-      <div class="node ${
-        i<state.level-1
-        ?"done"
-        :i===state.level-1
-        ?"active"
-        :""
-      }">
-        ${x}
-      </div>
-    `
-  ).join("");
-}
-
-function updateStats(){
-
-  $("#familyStars").textContent=
-    state.stars+" ⭐";
-
-  $("#familyStreak").textContent=
-    state.streak+" 🔥";
-
-  $("#level").textContent=
-    "Nivel "+state.level;
-}
-
-renderMissions();
-updateStats();
-
-
-/* ---------- Academia ---------- */
-
-const subjects=[
-
- {
-   id:"lengua",
-   emoji:"📚",
-   name:"Lengua Española",
-   desc:"Lectura, gramática, vocabulario y comprensión.",
-   tag:"Principal"
- },
-
- {
-   id:"mate",
-   emoji:"➗",
-   name:"Matemáticas",
-   desc:"Cálculo, lógica, patrones y problemas.",
-   tag:"Retos"
- },
-
- {
-   id:"ciencia",
-   emoji:"🔬",
-   name:"Ciencias",
-   desc:"Naturaleza, cuerpo, materia y experimentos.",
-   tag:"Explora"
- },
-
- {
-   id:"sociales",
-   emoji:"🌎",
-   name:"Ciencias Sociales",
-   desc:"Geografía, historia y ciudadanía.",
-   tag:"Descubre"
- },
-
- {
-   id:"ingles",
-   emoji:"🗣️",
-   name:"Inglés",
-   desc:"Palabras, frases y comprensión básica.",
-   tag:"Práctica"
- },
-
- {
-   id:"lectura",
-   emoji:"📘",
-   name:"Lectura",
-   desc:"Historias cortas, ideas principales y vocabulario.",
-   tag:"Fluidez"
- }
-
-];
-
-
-const banks={
-
- lengua:[
-
-  [
-   "¿Cuál palabra es un sustantivo?",
-   "correr|mesa|rápido|muy",
-   "mesa",
-   "Un sustantivo nombra personas, animales, lugares o cosas."
-  ],
-
-  [
-   "Completa: “Los niños ___ en el parque.”",
-   "juega|juegan|jugó|jugar",
-   "juegan",
-   "El sujeto plural “los niños” concuerda con “juegan”."
-  ],
-
-  [
-   "¿Cuál oración está correctamente escrita?",
-   "Mi mamá cocina arroz.|mi Mamá cocina arroz|Mi mamá cocina arroz|MI mamá cocina arroz",
-   "Mi mamá cocina arroz.",
-   "La oración comienza con mayúscula y mantiene la escritura normal."
-  ],
-
-  [
-   "¿Qué palabra es un adjetivo?",
-   "azul|cantar|escuela|rápidamente",
-   "azul",
-   "Un adjetivo describe una característica."
-  ],
-
-  [
-   "Antónimo de “alegre”:",
-   "feliz|contento|triste|amable",
-   "triste",
-   "Un antónimo expresa un significado contrario."
-  ]
-
- ],
-
- mate:[
-
-  [
-   "¿Cuánto es 7 + 8?",
-   "13|14|15|16",
-   "15",
-   "Suma 7 y 8: 15."
-  ],
-
-  [
-   "Si tienes 24 caramelos y repartes 6 por persona, ¿para cuántas personas alcanza?",
-   "3|4|5|6",
-   "4",
-   "24 ÷ 6 = 4."
-  ],
-
-  [
-   "¿Cuál número es mayor?",
-   "0.7|0.07|0.17|0.27",
-   "0.7",
-   "0.70 es mayor que 0.27, 0.17 y 0.07."
-  ],
-
-  [
-   "Completa el patrón: 3, 6, 9, __",
-   "10|11|12|13",
-   "12",
-   "El patrón aumenta de 3 en 3."
-  ],
-
-  [
-   "¿Cuál es el perímetro de un cuadrado de lado 5 cm?",
-   "10 cm|15 cm|20 cm|25 cm",
-   "20 cm",
-   "Un cuadrado tiene cuatro lados: 4 × 5 = 20 cm."
-  ]
-
- ],
-
- ciencia:[
-
-  [
-   "¿Qué necesitan las plantas para realizar la fotosíntesis?",
-   "Luz|Plástico|Metal|Arena únicamente",
-   "Luz",
-   "La luz es una fuente de energía fundamental para la fotosíntesis."
-  ],
-
-  [
-   "¿Cuál es un estado de la materia?",
-   "sonido|sólido|energía|color",
-   "sólido",
-   "Los estados comunes son sólido, líquido y gaseoso."
-  ],
-
-  [
-   "¿Qué órgano bombea la sangre?",
-   "Pulmón|Corazón|Estómago|Riñón",
-   "Corazón",
-   "El corazón impulsa la sangre por el cuerpo."
-  ],
-
-  [
-   "¿Qué ocurre con el agua al congelarse?",
-   "Se vuelve vapor|Se convierte en hielo|Desaparece|Se convierte en aire",
-   "Se convierte en hielo",
-   "Al congelarse, el agua pasa al estado sólido."
-  ]
-
- ],
-
- sociales:[
-
-  [
-   "¿Qué representa un mapa?",
-   "Un lugar o territorio|Una receta|Un animal|Una canción",
-   "Un lugar o territorio",
-   "Los mapas representan espacios geográficos."
-  ],
-
-  [
-   "¿Qué usamos para orientarnos?",
-   "Puntos cardinales|Notas musicales|Colores solamente|Rimas",
-   "Puntos cardinales",
-   "Norte, sur, este y oeste son puntos cardinales."
-  ],
-
-  [
-   "¿Qué es una comunidad?",
-   "Personas que comparten un entorno o vínculos|Una sola persona|Un objeto|Una operación",
-   "Personas que comparten un entorno o vínculos",
-   "Una comunidad reúne personas con elementos compartidos."
-  ]
-
- ],
-
- ingles:[
-
-  [
-   "What does “book” mean?",
-   "mesa|libro|casa|agua",
-   "libro",
-   "“Book” significa “libro”."
-  ],
-
-  [
-   "Choose the correct sentence:",
-   "She are happy.|She is happy.|She am happy.|She be happy.",
-   "She is happy.",
-   "Con “she” usamos “is” en esta estructura."
-  ],
-
-  [
-   "What is the opposite of “big”?",
-   "small|fast|green|happy",
-   "small",
-   "“Small” significa pequeño."
-  ]
-
- ],
-
- lectura:[
-
-  [
-   "Lee: “Ana llevó una sombrilla porque el cielo estaba oscuro.” ¿Por qué llevó la sombrilla?",
-   "Porque tenía frío|Porque esperaba lluvia|Porque iba a dormir|Porque quería cantar",
-   "Porque esperaba lluvia",
-   "El cielo oscuro sugiere que podía llover."
-  ],
-
-  [
-   "¿Cuál es la idea principal de un texto?",
-   "Un detalle cualquiera|La idea más importante|La última palabra|El título siempre",
-   "La idea más importante",
-   "La idea principal resume lo esencial del texto."
-  ]
-
- ]
-
-};
-
-
-function renderSubjects(){
-
-  $("#subjects").innerHTML=subjects.map(
-    s=>`
-      <button
-        class="subject"
-        onclick="startLesson('${s.id}')"
-      >
-        <span class="emoji">${s.emoji}</span>
-        <span class="badge">${s.tag}</span>
-        <h3>${s.name}</h3>
-        <p>${s.desc}</p>
-      </button>
-    `
-  ).join("");
-}
-
-renderSubjects();
-
-let lessonQuestions=[];
-
-function startLesson(id){
-
-  const pool=banks[id]||[];
-
-  lessonQuestions=shuffle([...pool])
-    .slice(
-      0,
-      Math.min(5,pool.length)
-    );
-
-  state.lesson={
-    subject:id,
-    index:0,
-    score:0,
-    lastQuestions:
-      lessonQuestions.map(q=>q[0])
-  };
-
-  save();
-  renderQuestion();
-
-  $("#lessonBox").scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
-}
-
-function renderQuestion(){
-
-  const s=subjects.find(
-    x=>x.id===state.lesson.subject
-  );
-
-  if(!s||!lessonQuestions.length){
-
-    $("#questionArea").innerHTML=
-      '<p class="small">Selecciona una materia para comenzar.</p>';
-
-    return;
-  }
-
-  const i=state.lesson.index;
-
-  if(i>=lessonQuestions.length){
-
-    const bonus=state.lesson.score*2;
-
-    state.stars+=bonus;
-
-    state.level=Math.min(
-      20,
-      state.level+
-      (state.lesson.score>=3?1:0)
-    );
-
-    save();
-    updateStats();
-
-    $("#questionArea").innerHTML=`
-      <div style="text-align:center;padding:18px">
-        <div style="font-size:45px">🎉</div>
-        <h2>¡Lección terminada!</h2>
-        <p>
-          Acertaste
-          <b>
-            ${state.lesson.score}/${lessonQuestions.length}
-          </b>.
-        </p>
-
-        <button
-          class="send"
-          style="padding:12px 18px"
-          onclick="startLesson('${s.id}')"
-        >
-          Otra ronda
-        </button>
-      </div>
-    `;
-
-    $("#lessonProgress").style.width="100%";
-
-    return;
-  }
-
-  const q=lessonQuestions[i];
-
-  const opts=shuffle(
-    q[1].split("|")
-  );
-
-  $("#lessonTitle").textContent=
-    s.emoji+" "+s.name;
-
-  $("#lessonScore").textContent=
-    state.lesson.score+" ⭐";
-
-  $("#lessonProgress").style.width=
-    ((i/lessonQuestions.length)*100)+"%";
-
-  $("#questionArea").innerHTML=`
-    <div class="question">
-      ${q[0]}
-    </div>
-
-    <div class="answers">
-
-      ${opts.map(
-        o=>`
-          <button
-            class="answer"
-            onclick="answerQuestion(
-              this,
-              ${JSON.stringify(o)},
-              ${JSON.stringify(q[2])}
-            )"
-          >
-            ${o}
-          </button>
-        `
-      ).join("")}
-
-    </div>
-  `;
-}
-
-function answerQuestion(btn,choice,correct){
-
-  $$(".answer").forEach(
-    b=>b.disabled=true
-  );
-
-  const q=
-    lessonQuestions[state.lesson.index];
-
-  if(choice===correct){
-
-    btn.classList.add("correct");
-
-    state.lesson.score++;
-
-    toast("¡Muy bien! +1 ⭐");
-
-  }else{
-
-    btn.classList.add("wrong");
-
-    $$(".answer")
-      .find(
-        b=>b.textContent===correct
-      )
-      ?.classList.add("correct");
-
-    toast(
-      "Casi. Mira la explicación."
-    );
-  }
-
-  setTimeout(
-    ()=>{
-      state.lesson.index++;
-      save();
-      renderQuestion();
-    },
-    850
-  );
-}
-
-
-/* ---------- Pet Care 2D ---------- */
-
-function renderPet(){
-
-  const p=state.pet;
-
-  [
-    "hunger",
-    "water",
-    "joy",
-    "energy"
-  ].forEach(k=>{
-
-    $("#"+k).style.width=
-      p[k]+"%";
-
-    $("#"+k+"N").textContent=
-      p[k];
-  });
-
-  $("#petMood").textContent=
-    p.mood;
-}
-
-function petAction(action){
-
-  const p=state.pet;
-
-  if(action==="food"){
-
-    p.hunger=
-      Math.min(
-        100,
-        p.hunger+24
-      );
-
-    p.joy=
-      Math.min(
-        100,
-        p.joy+5
-      );
-
-    p.mood=
-      "😋 ¡Qué rico! Estoy comiendo.";
-  }
-
-  if(action==="water"){
-
-    p.water=
-      Math.min(
-        100,
-        p.water+25
-      );
-
-    p.energy=
-      Math.min(
-        100,
-        p.energy+3
-      );
-
-    p.mood=
-      "💧 ¡Gracias por el agüita!";
-  }
-
-  if(action==="play"){
-
-    if(p.energy<18){
-
-      toast(
-        "Copio necesita descansar antes de jugar 😴"
-      );
-
-      return;
-    }
-
-    p.joy=
-      Math.min(
-        100,
-        p.joy+24
-      );
-
-    p.energy=
-      Math.max(
-        0,
-        p.energy-18
-      );
-
-    p.mood=
-      "🎾 ¡Vamos a jugar! ¡Qué divertido!";
-  }
-
-  if(action==="sleep"){
-
-    p.energy=
-      Math.min(
-        100,
-        p.energy+32
-      );
-
-    p.joy=
-      Math.min(
-        100,
-        p.joy+3
-      );
-
-    p.mood=
-      "😴 Estoy descansando... Zzz";
-  }
-
-  if(action==="clean"){
-
-    p.joy=
-      Math.min(
-        100,
-        p.joy+12
-      );
-
-    p.water=
-      Math.max(
-        0,
-        p.water-3
-      );
-
-    p.mood=
-      "🫧 ¡Estoy limpio y feliz!";
-  }
-
-  save();
-  renderPet();
-
-  toast(p.mood);
-}
-
-renderPet();
-
-setInterval(
-  ()=>{
-    const p=state.pet;
-
-    p.hunger=
-      Math.max(
-        0,
-        p.hunger-1
-      );
-
-    p.water=
-      Math.max(
-        0,
-        p.water-1
-      );
-
-    if(
-      p.hunger<25||
-      p.water<25
-    ){
-
-      p.joy=
-        Math.max(
-          0,
-          p.joy-1
-        );
-    }
-
-    if(p.energy<90){
-
-      p.energy=
-        Math.min(
-          100,
-          p.energy+1
-        );
-    }
-
-    renderPet();
-    save();
-
-  },
-  60000
-);
-
-
-/* ---------- Chat local, variado y anti-repetición ---------- */
-
-const chatQuestions=[
-
- [
-   "lengua",
-   "¿Cuál es el plural de “lápiz”?",
-   "lápices",
-   "Recuerda que algunas palabras cambian su terminación al formar el plural."
- ],
-
- [
-   "lengua",
-   "¿Qué palabra es un verbo: correr, azul o casa?",
-   "correr",
-   "Los verbos expresan acciones o estados."
- ],
-
- [
-   "mate",
-   "¿Cuánto es 9 × 4?",
-   "36",
-   "Puedes pensar en 9 grupos de 4."
- ],
-
- [
-   "mate",
-   "Si tienes 30 y gastas 12, ¿cuánto queda?",
-   "18",
-   "30 - 12 = 18."
- ],
-
- [
-   "ciencia",
-   "¿Qué planeta es conocido por sus anillos?",
-   "Saturno",
-   "Sus anillos son una de sus características más conocidas."
- ],
-
- [
-   "ciencia",
-   "¿Qué parte de la planta absorbe agua del suelo?",
-   "las raíces",
-   "Las raíces ayudan a absorber agua y minerales."
- ],
-
- [
-   "sociales",
-   "¿En qué dirección sale el Sol?",
-   "este",
-   "Usamos los puntos cardinales para orientarnos."
- ],
-
- [
-   "ingles",
-   "How do you say “casa” in English?",
-   "house",
-   "“House” significa casa."
- ],
-
- [
-   "lectura",
-   "¿Qué hacemos primero para comprender un texto?",
-   "leer con atención",
-   "La comprensión empieza leyendo atentamente y buscando las ideas importantes."
- ]
-
-];
-
-let chatUsed=[];
-
-function addMsg(
-  text,
-  who="ai"
-){
-
-  const el=
-    document.createElement("div");
-
-  el.className=
-    "msg "+who;
-
-  el.textContent=text;
-
-  $("#messages")
-    .appendChild(el);
-
-  $("#messages").scrollTop=
-    $("#messages").scrollHeight;
-}
-
-function initChat(){
-
-  if(
-    !$("#messages").children.length
-  ){
-
-    addMsg(
-      "¡Hola! 🌟 Soy tu compañero de aprendizaje. Puedo practicar contigo sin repetir la misma pregunta seguida. ¿Qué quieres hacer?"
-    );
-  }
-}
-
-initChat();
-
-function sendChat(text){
-
-  const input=
-    $("#chatInput");
-
-  text=
-    (text||input.value).trim();
-
-  if(!text)return;
-
-  addMsg(text,"me");
-
-  input.value="";
-
-  const lower=
-    text.toLowerCase();
-
-  setTimeout(
-    ()=>{
-
-      if(
-        lower.includes("español")
-      )
-        return chatSubject("lengua");
-
-      if(
-        lower.includes("matem")
-      )
-        return chatSubject("mate");
-
-      if(
-        lower.includes("ciencia")
-      )
-        return chatSubject("ciencia");
-
-      if(
-        lower.includes("inglés")||
-        lower.includes("ingles")
-      )
-        return chatSubject("ingles");
-
-      if(
-        lower.includes("reto")
-      )
-        return chatChallenge();
-
-      const generic=[
-
-        "¡Me gusta esa idea! 😊 Podemos convertirla en un reto corto.",
-
-        "¡Vamos! 🎯 Dime si prefieres una pregunta, una explicación o un juego.",
-
-        "Buena pregunta. Podemos practicar paso a paso y cambiar de tipo de ejercicio para que no sea monótono.",
-
-        "¡Perfecto! 🌟 Estoy listo para ayudarte. ¿Quieres español, matemáticas, ciencias o un reto sorpresa?"
-
-      ];
-
-      addMsg(
-        generic[
-          Math.floor(
-            Math.random()*
-            generic.length
-          )
-        ]
-      );
-
-    },
-    350
-  );
-}
-
-function chatSubject(subject){
-
-  const candidates=
-    chatQuestions.filter(
-      (q,i)=>
-        q[0]===subject &&
-        !chatUsed.includes(i)
-    );
-
-  if(!candidates.length){
-
-    chatUsed=[];
-
-    return chatSubject(subject);
-  }
-
-  const original=
-    chatQuestions.findIndex(
-      q=>q===candidates[
-        Math.floor(
-          Math.random()*
-          candidates.length
-        )
-      ]
-    );
-
-  chatUsed.push(original);
-
-  const q=
-    chatQuestions[original];
-
-  addMsg(
-    "¡Vamos con una diferente! 🎲\n\n"+
-    q[1]+
-    "\n\nPista: "+
-    q[3]
-  );
-}
-
-function chatChallenge(){
-
-  const i=
-    Math.floor(
-      Math.random()*
-      chatQuestions.length
-    );
-
-  const q=
-    chatQuestions[i];
-
-  addMsg(
-    "🎮 Reto sorpresa:\n"+
-    q[1]+
-    "\n\nEscribe tu respuesta y después te digo la solución."
-  );
-}
-
-function shuffle(a){
-
-  for(
-    let i=a.length-1;
-    i>0;
-    i--
-  ){
-
-    const j=
-      Math.floor(
-        Math.random()*(i+1)
-      );
-
-    [
-      a[i],
-      a[j]
-    ]=[
-      a[j],
-      a[i]
-    ];
-  }
-
-  return a;
-}
-
-
-/* ---------- Premios ---------- */
-
-const rewards=[
-
- [
-   "🎁",
-   "Caja sorpresa",
-   "Completa 3 misiones en un día.",
-   "3 misiones"
- ],
-
- [
-   "🏅",
-   "Medalla de constancia",
-   "Mantén una racha de 7 días.",
-   "7 días"
- ],
-
- [
-   "🦜",
-   "Accesorio para Copio",
-   "Completa 2 lecciones de academia.",
-   "2 lecciones"
- ],
-
- [
-   "🌈",
-   "Día arcoíris",
-   "Consigue 20 estrellas nuevas.",
-   "20 ⭐"
- ],
-
- [
-   "👑",
-   "Gran explorador",
-   "Alcanza el nivel 10.",
-   "Nivel 10"
- ],
-
- [
-   "🚀",
-   "Súper misión",
-   "Completa una misión + una lección el mismo día.",
-   "Combo"
- ]
-
-];
-
-$("#rewardsGrid").innerHTML=
-  rewards.map(
-    r=>`
-      <article class="subject">
-        <span class="emoji">${r[0]}</span>
-        <h3>${r[1]}</h3>
-        <p>${r[2]}</p>
-        <div class="badge">${r[3]}</div>
-      </article>
-    `
-  ).join("");
-
-
-/* ---------- Panel de mamá ---------- */
-
-let pinBuffer="";
-
-function renderPinPad(){
-
-  const keys=[
-    "1","2","3",
-    "4","5","6",
-    "7","8","9",
-    "⌫","0","×"
-  ];
-
-  $("#pinPad").innerHTML=
-    keys.map(
-      k=>`
-        <button
-          onclick="pinKey('${k}')"
-        >
-          ${k}
-        </button>
-      `
-    ).join("");
-}
-
-function pinKey(k){
-
-  if(k==="×"){
-
-    pinBuffer="";
-
-    updatePinView();
-
-    return;
-  }
-
-  if(k==="⌫"){
-
-    pinBuffer=
-      pinBuffer.slice(0,-1);
-
-    updatePinView();
-
-    return;
-  }
-
-  if(pinBuffer.length>=4)return;
-
-  pinBuffer+=k;
-
-  updatePinView();
-
-  if(pinBuffer.length===4)
-    setTimeout(
-      checkPin,
-      120
-    );
-}
-
-function updatePinView(){
-
-  $("#pinView").textContent=
-    pinBuffer
-      ?
-      ("● ".repeat(
-        pinBuffer.length
-      )).trim()
-      :
-      "○ ○ ○ ○";
-}
-
-function checkPin(){
-
-  if(pinBuffer===state.pin){
-
-    state.parentUnlocked=true;
-
-    pinBuffer="";
-
-    save();
-
-    refreshParent();
-
-    toast(
-      "Panel desbloqueado 🔓"
-    );
-
-  }else{
-
-    pinBuffer="";
-
-    updatePinView();
-
-    toast(
-      "Clave incorrecta. Inténtalo de nuevo."
-    );
-  }
-}
-
-function refreshParent(){
-
-  $("#pinCard").style.display=
-    state.parentUnlocked
-      ?"none"
-      :"block";
-
-  $("#parentDash")
-    .classList.toggle(
-      "show",
-      state.parentUnlocked
-    );
-}
-
-function lockParent(){
-
-  state.parentUnlocked=false;
-
-  save();
-
-  refreshParent();
-
-  toast(
-    "Panel bloqueado 🔒"
-  );
-}
-
-function giveStars(){
-
-  if(!state.parentUnlocked)
-    return;
-
-  state.stars+=5;
-
-  state.history.push({
-    date:new Date()
-      .toLocaleString("es-DO"),
-    amount:5
-  });
-
-  save();
-
-  updateStats();
-
-  toast(
-    "Se otorgaron +5 ⭐"
-  );
-}
-
-function resetDemo(){
-
-  if(
-    confirm(
-      "¿Restablecer la demo y borrar los datos locales?"
-    )
-  ){
-
-    localStorage.removeItem(
-      storeKey
-    );
-
-    location.reload();
-  }
-}
-
-renderPinPad();
-refreshParent();
-
-
-/* accesibilidad: Escape cierra menú */
-
-document.addEventListener(
-  "keydown",
-  e=>{
-    if(e.key==="Escape")
-      closeDrawer();
-  }
-);
-
+});
 </script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}</script>
 </body>
 </html>
