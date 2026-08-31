@@ -91,40 +91,9 @@ const initial={
  ],
  history:[]
 };
-// Carga segura: completa datos antiguos para evitar que la pantalla quede vacía.
-function cloneInitial(){return JSON.parse(JSON.stringify(initial))}
-function normalizeData(raw){
-  const d=raw&&typeof raw==='object'?raw:cloneInitial();
-  const base=cloneInitial();
-  if(!d.kids||typeof d.kids!=='object') d.kids=base.kids;
-  Object.keys(base.kids).forEach(k=>{
-    const b=base.kids[k], c=d.kids[k]||{};
-    c.name=c.name||b.name; c.age=Number(c.age)||b.age; c.level=Number(c.level)||b.level;
-    c.stars=Number.isFinite(Number(c.stars))?Number(c.stars):b.stars;
-    c.streak=Number.isFinite(Number(c.streak))?Number(c.streak):b.streak;
-    c.ach=Number.isFinite(Number(c.ach))?Number(c.ach):b.ach;
-    c.avatar=c.avatar||b.avatar;
-    c.pet=Object.assign({},b.pet,c.pet||{});
-    ['happy','food','energy','clean'].forEach(k2=>c.pet[k2]=Number.isFinite(Number(c.pet[k2]))?Number(c.pet[k2]):b.pet[k2]);
-    c.pet.name=c.pet.name||b.pet.name; c.pet.emoji=c.pet.emoji||b.pet.emoji; c.pet.accessory=c.pet.accessory||b.pet.accessory;
-    d.kids[k]=c;
-  });
-  d.pin=/^\d{4}$/.test(String(d.pin||''))?String(d.pin):base.pin;
-  d.reward=String(d.reward||base.reward);
-  d.child=d.kids[d.child]?d.child:base.child;
-  d.lang=Object.assign({},base.lang,d.lang||{});
-  d.lang.words=Number(d.lang.words)||base.lang.words; d.lang.xp=Number(d.lang.xp)||base.lang.xp; d.lang.streak=Number(d.lang.streak)||base.lang.streak;
-  d.lang.language=String(d.lang.language||base.lang.language);
-  d.missions=Array.isArray(d.missions)?d.missions:base.missions;
-  d.missions=d.missions.map((m,i)=>Object.assign({},base.missions[i%base.missions.length],m,{id:m.id||Date.now()+i,n:m.n||m.name||base.missions[i%base.missions.length].n,d:m.d||'Misión diaria',t:m.t||'17:00',s:Number(m.s)||1,i:m.i||'✨',done:Boolean(m.done)}));
-  d.history=Array.isArray(d.history)?d.history:[];
-  return d;
-}
-let D;
-try{D=normalizeData(JSON.parse(localStorage.getItem(KEY)||'null'));localStorage.setItem(KEY,JSON.stringify(D))}
-catch(e){D=cloneInitial();localStorage.setItem(KEY,JSON.stringify(D))}
+let D=JSON.parse(localStorage.getItem(KEY)||'null')||initial;
 function save(){localStorage.setItem(KEY,JSON.stringify(D))}
-function C(){return D.kids[D.child]||D.kids.violeta}
+function C(){return D.kids[D.child]}
 function go(page){
  document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
  const n=document.getElementById('nav-'+(page==='home'?'home':page));
@@ -227,12 +196,6 @@ function notify(){alert(C().pet.name+' dice:\\n\\n'+alertText())}
 function showReward(){document.getElementById('rewardText').textContent=D.reward;document.getElementById('reward').classList.add('show')}
 function closeReward(){document.getElementById('reward').classList.remove('show')}
 home();
-window.addEventListener('error',function(){
-  const screen=document.getElementById('screen');
-  if(screen && !screen.innerHTML.trim()){
-    screen.innerHTML='<section class="card"><h2>✨ Recuperación</h2><p>La aplicación encontró un problema al cargar datos anteriores.</p><button class="btn" onclick="localStorage.removeItem(KEY);location.reload()">Recargar</button></section>';
-  }
-});
 </script>
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}</script>
 </body>
