@@ -1,19 +1,1284 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#191a20"><title>Mis Pequeñas Misiones 6.0</title><style>
-:root{--p:#ec5b89;--v:#7953bd;--g:#21a789;--y:#ffd83d;--ink:#403647;--muted:#7c747d;--line:#e9dfe8;--bg:#fbf7fb}*{box-sizing:border-box}body{margin:0;background:#191a20;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}.app{max-width:720px;min-height:100vh;margin:auto;background:linear-gradient(#fffafd,#faf7fb);padding-bottom:88px;overflow:hidden}.top{height:58px;background:#191a20;color:#fff;padding:17px;font-weight:800}.head{padding:15px 20px;display:flex;justify-content:space-between;align-items:center;background:#fffafd}.brand{display:flex;gap:10px;align-items:center}.brand b{font-size:24px}.brand small{display:block;color:#817985}.bell{border:0;background:#fff;border-radius:20px;padding:12px;font-size:25px}main{padding:15px}.tabs{display:flex;gap:8px;overflow:auto}.tab,.outline{border:1px solid var(--line);background:#fff;border-radius:17px;padding:10px 14px;font-weight:800}.tab.active{border:2px solid var(--p);color:var(--p);background:#fff0f6}.card{background:#fff;border:1px solid var(--line);border-radius:25px;padding:17px;margin:12px 0;box-shadow:0 5px 20px #321e3c12}.profile{display:flex;gap:15px;align-items:center;background:linear-gradient(135deg,#fff,#fff1f7)}.avatar{width:84px;height:84px;border-radius:25px;background:#eee4ff;display:grid;place-items:center;font-size:52px}.chips{display:flex;gap:6px;flex-wrap:wrap}.chip,.pill{background:#eee5fb;border-radius:15px;padding:6px 9px;font-size:12px;font-weight:800}.mission{display:grid;grid-template-columns:50px 1fr 42px;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eee}.mi{width:50px;height:50px;border-radius:17px;background:#fff4bd;display:grid;place-items:center;font-size:28px}.mission h3{margin:0;font-size:16px}.mission p{margin:2px 0;color:var(--muted);font-size:13px}.meta{color:var(--g);font-size:12px;font-weight:800}.plus,.check{border:0;border-radius:50%;width:42px;height:42px;font-size:24px}.plus{background:#eaf8f4;color:var(--g)}.check{background:#dff6ed;color:var(--g)}.banner{background:linear-gradient(135deg,#ffe889,#fff3c5);border:1px solid #efd66a;border-radius:20px;padding:15px;text-align:center;font-weight:900}.btn{border:0;border-radius:15px;padding:12px 15px;background:var(--p);color:#fff;font-weight:900}.purple{background:var(--v)}.green{background:var(--g)}.yellow{background:var(--y);color:#654d00}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tile{border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px;text-align:left}.tile .ico{font-size:28px}.tile strong{display:block;margin-top:5px}.tile small{color:var(--muted)}.pet{background:linear-gradient(135deg,#ecfaff,#fff)}.petface{text-align:center;font-size:85px;position:relative}.petname{text-align:center;font-size:21px;font-weight:900}.status{text-align:center;font-weight:800}.bar{margin:8px 0}.barline{display:flex;justify-content:space-between;font-size:12px;font-weight:800}.meter{height:10px;background:#eee;border-radius:20px;overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--y))}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);height:80px;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:40}.bottom button{border:0;background:#fff;color:#746d75;font-size:12px}.bottom b{display:block;font-size:24px}.bottom .active{color:var(--p);font-weight:900}.modal{position:fixed;inset:0;background:#19141e99;display:none;align-items:flex-end;z-index:80}.modal.show{display:flex}.sheet{width:min(720px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:28px 28px 0 0;padding:20px}.close{float:right;border:0;background:#f5edf6;border-radius:50%;width:40px;height:40px;font-size:22px}.choice{width:100%;padding:13px;margin:5px 0;border:1px solid var(--line);background:#fff;border-radius:14px;text-align:left;font-weight:700}.choice.correct{background:#eaf8f4;border-color:var(--g)}.choice.wrong{background:#fff0f1;border-color:#e45867}.feedback{padding:13px;border-radius:17px;margin-top:10px;font-weight:700}.good{background:#eaf8f4;color:#167e68}.bad{background:#fff0f1;color:#a83848}.story{background:#fff3c9;border-radius:18px;padding:15px;line-height:1.55}.chat{background:#f7f2ff;border-radius:20px;padding:12px;min-height:210px;max-height:330px;overflow:auto}.bubble{padding:10px 13px;border-radius:18px;margin:7px 0;max-width:88%}.bubble.pet{background:#fff;border:1px solid #eadff3}.bubble.me{background:var(--v);color:#fff;margin-left:auto}.chatrow{display:flex;gap:7px}.chatrow input{margin:0}.quick{display:flex;gap:7px;overflow:auto;margin:8px 0}.quick button{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:14px;padding:8px}.runner{position:fixed;top:40%;left:-70px;font-size:50px;z-index:60;animation:run 9s linear forwards;cursor:pointer}@keyframes run{0%{left:-70px;transform:scaleX(1)}45%{transform:translateY(-12px)}50%{transform:scaleX(-1)}75%{transform:translateY(0)}100%{left:calc(100% + 70px);transform:scaleX(-1)}}.zzz{position:absolute;right:20%;top:-5px;font-size:20px;color:var(--v);animation:z 2s infinite}@keyframes z{50%{transform:translateY(-12px);opacity:.4}}input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:13px;margin:5px 0 10px}textarea{min-height:80px}.pin{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.pin button{padding:15px;border:1px solid #efb3c7;background:#fff;border-radius:20px;color:#d94e7d;font-weight:900}.dots{text-align:center;color:var(--p);font-size:24px}.reward{position:fixed;inset:0;background:#1e1423bb;display:none;align-items:center;justify-content:center;z-index:100;padding:20px}.reward.show{display:flex}.rewardbox{background:#fff;border-radius:30px;padding:25px;text-align:center;width:min(500px,100%)}.bigstar{font-size:120px}
-</style></head><body><div class="app"><div class="top">‹ &nbsp; Mis Pequeñas Misiones 6.0</div><header class="head"><div class="brand"><span style="font-size:45px">⭐</span><div><b>Mis Pequeñas Misiones</b><small>Pequeñas acciones, grandes hábitos</small></div></div><button class="bell" onclick="notify()">🔔</button></header><main id="screen"></main><nav class="bottom"><button id="n-home" onclick="go('home')"><b>🏠</b>Inicio</button><button id="n-learn" onclick="go('learn')"><b>🎯</b>Aprender</button><button id="n-prize" onclick="go('prize')"><b>🏆</b>Premios</button><button id="n-pet" onclick="go('pet')"><b>🐾</b>Mascota</button><button id="n-mom" onclick="openMom()"><b>🔐</b>Mamá</button></nav></div><div id="modal" class="modal"><div id="sheet" class="sheet"></div></div><div id="reward" class="reward"><div class="rewardbox"><div class="bigstar">⭐</div><h2>¡REGALO DESBLOQUEADO!</h2><p id="rewardText"></p><button class="btn" onclick="closeReward()">¡Genial! 🎉</button></div></div>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191a20">
+  <title>Mis Pequeñas Misiones 6.0</title>
+  <style>
+    :root {
+      --p: #ec5b89;
+      --v: #7953bd;
+      --g: #21a789;
+      --y: #ffd83d;
+      --ink: #403647;
+      --muted: #7c747d;
+      --line: #e9dfe8;
+      --bg: #191a20;
+      --card-bg: #ffffff;
+    }
+    
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+
+    .app {
+      max-width: 720px;
+      min-height: 100vh;
+      margin: auto;
+      background: linear-gradient(#fffafd, #faf7fb);
+      padding-bottom: 88px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top {
+      height: 58px;
+      background: #191a20;
+      color: #fff;
+      padding: 17px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+    }
+
+    .head {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fffafd;
+    }
+
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .brand b {
+      font-size: 20px;
+      display: block;
+    }
+
+    .brand small {
+      display: block;
+      color: #817985;
+      font-size: 12px;
+    }
+
+    .bell {
+      border: 0;
+      background: #fff;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: grid;
+      place-items: center;
+    }
+
+    main {
+      padding: 15px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .tab, .outline {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 17px;
+      padding: 10px 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      border: 2px solid var(--p);
+      color: var(--p);
+      background: #fff0f6;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      padding: 17px;
+      margin: 12px 0;
+      box-shadow: 0 5px 20px #321e3c12;
+    }
+
+    .profile {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      background: linear-gradient(135deg, #fff, #fff1f7);
+    }
+
+    .avatar {
+      width: 84px;
+      height: 84px;
+      border-radius: 25px;
+      background: #eee4ff;
+      display: grid;
+      place-items: center;
+      font-size: 52px;
+      flex-shrink: 0;
+    }
+
+    .chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+
+    .chip, .pill {
+      background: #eee5fb;
+      border-radius: 15px;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .mission {
+      display: grid;
+      grid-template-columns: 50px 1fr 42px;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .mi {
+      width: 50px;
+      height: 50px;
+      border-radius: 17px;
+      background: #fff4bd;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+    }
+
+    .mission h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .mission p {
+      margin: 2px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .meta {
+      color: var(--g);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .plus, .check {
+      border: 0;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .plus { background: #eaf8f4; color: var(--g); }
+    .check { background: #dff6ed; color: var(--g); }
+
+    .banner {
+      background: linear-gradient(135deg, #ffe889, #fff3c5);
+      border: 1px solid #efd66a;
+      border-radius: 20px;
+      padding: 15px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .btn {
+      width: 100%;
+      border: 0;
+      border-radius: 15px;
+      padding: 12px 15px;
+      background: var(--p);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .purple { background: var(--v); }
+    .green { background: var(--g); }
+    .yellow { background: var(--y); color: #654d00; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .tile {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 18px;
+      padding: 14px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .tile .ico { font-size: 28px; }
+    .tile strong { display: block; margin-top: 5px; }
+    .tile small { color: var(--muted); }
+
+    .pet { background: linear-gradient(135deg, #ecfaff, #fff); }
+    .petface { text-align: center; font-size: 85px; position: relative; }
+    .petname { text-align: center; font-size: 21px; font-weight: 900; }
+    .status { text-align: center; font-weight: 800; }
+
+    .bar { margin: 8px 0; }
+    .barline { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; }
+    .meter { height: 10px; background: #eee; border-radius: 20px; overflow: hidden; margin-top: 4px; }
+    .meter i { display: block; height: 100%; background: linear-gradient(90deg, var(--p), var(--y)); }
+
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(720px, 100%);
+      height: 80px;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      z-index: 40;
+    }
+
+    .bottom button {
+      border: 0;
+      background: #fff;
+      color: #746d75;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .bottom b { display: block; font-size: 24px; }
+    .bottom .active { color: var(--p); font-weight: 900; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(25, 20, 30, 0.6);
+      display: none;
+      align-items: flex-end;
+      z-index: 80;
+    }
+
+    .modal.show { display: flex; }
+
+    .sheet {
+      width: min(720px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 28px 28px 0 0;
+      padding: 20px;
+      margin: 0 auto;
+    }
+
+    .close {
+      float: right;
+      border: 0;
+      background: #f5edf6;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .choice {
+      width: 100%;
+      padding: 13px;
+      margin: 5px 0;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 14px;
+      text-align: left;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .choice.correct { background: #eaf8f4; border-color: var(--g); }
+    .choice.wrong { background: #fff0f1; border-color: #e45867; }
+
+    .feedback { padding: 13px; border-radius: 17px; margin-top: 10px; font-weight: 700; }
+    .good { background: #eaf8f4; color: #167e68; }
+    .bad { background: #fff0f1; color: #a83848; }
+
+    .story { background: #fff3c9; border-radius: 18px; padding: 15px; line-height: 1.55; }
+    .chat { background: #f7f2ff; border-radius: 20px; padding: 12px; min-height: 210px; max-height: 330px; overflow-y: auto; }
+    .bubble { padding: 10px 13px; border-radius: 18px; margin: 7px 0; max-width: 88%; word-break: break-word; }
+    .bubble.pet { background: #fff; border: 1px solid #eadff3; }
+    .bubble.me { background: var(--v); color: #fff; margin-left: auto; }
+
+    .chatrow { display: flex; gap: 7px; margin-top: 8px; }
+    .chatrow input { margin: 0; }
+    .quick { display: flex; gap: 7px; overflow-x: auto; margin: 8px 0; }
+    .quick button { white-space: nowrap; border: 1px solid var(--line); background: #fff; border-radius: 14px; padding: 8px; cursor: pointer; }
+
+    /* ANIMACIÓN DEL ANIMAL EN PANTALLA REALISTA */
+    .runner-animated {
+      position: fixed;
+      top: 50%;
+      left: -120px;
+      width: 100px;
+      height: 100px;
+      z-index: 60;
+      animation: runRight 10s linear forwards;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .runner-animated img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Movimiento de trote / marcha según especie */
+    .runner-animated.trot { animation: runRight 10s linear forwards, bounce 0.4s infinite alternate ease-in-out; }
+    .runner-animated.hop { animation: runRight 10s linear forwards, hop 0.6s infinite alternate ease-in-out; }
+    .runner-animated.fly { animation: runFly 9s linear forwards, flyWave 1.2s infinite ease-in-out; }
+
+    @keyframes runRight {
+      0% { left: -120px; }
+      100% { left: calc(100% + 120px); }
+    }
+
+    @keyframes runFly {
+      0% { left: -120px; top: 60%; }
+      50% { top: 25%; }
+      100% { left: calc(100% + 120px); top: 55%; }
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-12px); }
+    }
+
+    @keyframes hop {
+      0% { transform: translateY(0) scaleY(1); }
+      50% { transform: translateY(-28px) scaleY(1.05); }
+      100% { transform: translateY(0) scaleY(0.95); }
+    }
+
+    @keyframes flyWave {
+      0%, 100% { transform: translateY(0) rotate(2deg); }
+      50% { transform: translateY(-15px) rotate(-4deg); }
+    }
+
+    .zzz {
+      position: absolute;
+      right: 20%;
+      top: -5px;
+      font-size: 20px;
+      color: var(--v);
+      animation: z 2s infinite;
+    }
+
+    @keyframes z {
+      50% { transform: translateY(-12px); opacity: .4; }
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      margin: 5px 0 10px;
+      font-family: inherit;
+    }
+
+    textarea { min-height: 80px; }
+
+    .pin { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 10px; }
+    .pin button { padding: 15px; border: 1px solid #efb3c7; background: #fff; border-radius: 20px; color: #d94e7d; font-weight: 900; font-size: 18px; cursor: pointer; }
+    .dots { text-align: center; color: var(--p); font-size: 24px; margin: 10px 0; }
+
+    .reward {
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 20, 35, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .reward.show { display: flex; }
+    .rewardbox { background: #fff; border-radius: 30px; padding: 25px; text-align: center; width: min(500px, 100%); }
+    .bigstar { font-size: 100px; line-height: 1; }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <div class="top">‹ &nbsp; Mis Pequeñas Misiones 6.0</div>
+  <header class="head">
+    <div class="brand">
+      <span style="font-size:45px">⭐</span>
+      <div>
+        <b>Mis Pequeñas Misiones</b>
+        <small>Pequeñas acciones, grandes hábitos</small>
+      </div>
+    </div>
+    <button class="bell" onclick="notify()">🔔</button>
+  </header>
+  
+  <main id="screen"></main>
+
+  <nav class="bottom">
+    <button id="n-home" class="active" onclick="go('home')"><b>🏠</b>Inicio</button>
+    <button id="n-learn" onclick="go('learn')"><b>🎯</b>Aprender</button>
+    <button id="n-prize" onclick="go('prize')"><b>🏆</b>Premios</button>
+    <button id="n-pet" onclick="go('pet')"><b>🐾</b>Mascota</button>
+    <button id="n-mom" onclick="openMom()"><b>🔐</b>Mamá</button>
+  </nav>
+</div>
+
+<div id="modal" class="modal">
+  <div id="sheet" class="sheet"></div>
+</div>
+
+<div id="reward" class="reward">
+  <div class="rewardbox">
+    <div class="bigstar">⭐</div>
+    <h2>¡REGALO DESBLOQUEADO!</h2>
+    <p id="rewardText"></p>
+    <button class="btn" onclick="closeReward()">¡Genial! 🎉</button>
+  </div>
+</div>
+
 <script>
-const KEY='MPM5_FINAL_DATA',langs={Inglés:['🇺🇸',['apple|manzana','school|escuela','friend|amigo','water|agua','book|libro','happy|feliz','house|casa','play|jugar','family|familia','garden|jardín','animal|animal']],Francés:['🇫🇷',['bonjour|hola','école|escuela','ami|amigo','eau|agua','livre|libro','heureux|feliz','maison|casa','jouer|jugar','famille|familia','jardin|jardín','animal|animal']],Portugués:['🇧🇷',['casa|casa','amigo|amigo','água|agua','livro|libro','feliz|feliz','escola|escuela','manhã|mañana','brincar|jugar','família|familia','jardim|jardín','animal|animal']],Italiano:['🇮🇹',['ciao|hola','scuola|escuela','amico|amigo','acqua|agua','libro|libro','felice|feliz','casa|casa','giocare|jugar','famiglia|familia','giardino|jardín','animale|animal']],Alemán:['🇩🇪',['hallo|hola','schule|escuela','freund|amigo','wasser|agua','buch|libro','glücklich|feliz','haus|casa','spielen|jugar','familie|familia','garten|jardín','tier|animal']],Japonés:['🇯🇵',['neko|gato','mizu|agua','tomodachi|amigo','gakkō|escuela','hon|libro','ureshii|feliz','ie|casa','asobu|jugar','kazoku|familia','niwa|jardín','dōbutsu|animal'] ]};
-const initial={pin:'2580',reward:'¡Ganaste un helado! 🍦',child:'violeta',lang:{language:'Inglés',level:'Básico',xp:120,streak:3,weekly:{practices:0,words:0,conversations:0,stories:0}},kids:{violeta:{name:'Violeta',age:13,level:7,stars:48,streak:6,ach:4,avatar:'👧',pet:{emoji:'🐶',name:'Luna',happy:80,food:78,energy:88,clean:92,healthy:true,toy:'🎾'}},eliseo:{name:'Eliseo',age:9,level:5,stars:42,streak:8,ach:3,avatar:'👦',pet:{emoji:'🐱',name:'Milo',happy:91,food:85,energy:90,clean:88,healthy:true,toy:'🧶'}},misael:{name:'Misael',age:7,level:3,stars:38,streak:4,ach:2,avatar:'👦',pet:{emoji:'🐰',name:'Nube',happy:86,food:80,energy:92,clean:93,healthy:true,toy:'🥕'}}},missions:[['Alimentación saludable','Come frutas y toma agua','13:00',2,'🍎'],['Dientes y baño','Cepíllate los dientes y báñate','18:00',2,'🪥'],['Apagar luces y TV','Apaga lo que no se usa','19:30',2,'💡'],['Prepararse para dormir','Pijama, dientes y a la cama','20:30',3,'🌙'],['Ve a la escuela','Mochila lista y llegar a tiempo','07:15',2,'🎒'],['Hora de limpiar','Ordena tus cosas y colabora en casa','17:00',2,'🧹'],['Hacer tareas / repasar','Completa tus deberes escolares','16:00',3,'📚'],['Cena saludable','Cena y descubre un tip','19:00',2,'🥗'],['Actividad física','Muévete 15 minutos','17:30',2,'🏃'],['Cuidar animales','Alimenta gallinas y periquitos','08:00',2,'🐔']].map((x,i)=>({id:i+1,n:x[0],d:x[1],t:x[2],s:x[3],i:x[4],done:false})),history:[],petChat:[]};
-function clone(x){return JSON.parse(JSON.stringify(x))}function norm(d){d=d||clone(initial);d.pin=/^\d{4}$/.test(d.pin||'')?d.pin:'2580';d.kids=d.kids||clone(initial.kids);Object.keys(initial.kids).forEach(k=>{d.kids[k]=Object.assign(clone(initial.kids[k]),d.kids[k]||{});d.kids[k].pet=Object.assign(clone(initial.kids[k].pet),d.kids[k].pet||{});delete d.kids[k].pet.accessory});d.child=d.kids[d.child]?d.child:'violeta';d.lang=Object.assign(clone(initial.lang),d.lang||{});d.lang.weekly=Object.assign(clone(initial.lang.weekly),d.lang.weekly||{});d.missions=Array.isArray(d.missions)?d.missions:clone(initial.missions);d.history=d.history||[];d.petChat=d.petChat||[];return d}let D=norm(JSON.parse(localStorage.getItem(KEY)||'null'));save();function save(){localStorage.setItem(KEY,JSON.stringify(D))}function C(){return D.kids[D.child]}
-function go(p){document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));let n=document.getElementById('n-'+p);if(n)n.classList.add('active');if(p==='home')home();if(p==='learn')learn();if(p==='prize')prize();if(p==='pet')pet()}function childTabs(){return `<div class="tabs">${Object.entries(D.kids).map(([k,c])=>`<button class="tab ${D.child===k?'active':''}" onclick="D.child='${k}';save();home()">${c.name}<br><small>${c.age} años</small></button>`).join('')}</div>`}function fmt(t){let[h,m]=t.split(':').map(Number);return(h%12||12)+':'+String(m).padStart(2,'0')+' '+(h>=12?'PM':'AM')}function bar(n,v){return `<div class="bar"><div class="barline"><span>${n}</span><span>${Math.round(v)}%</span></div><div class="meter"><i style="width:${Math.max(0,Math.min(100,v))}%"></i></div></div>`}
-function state(){let h=new Date().getHours();return{sleep:h>=20||h<7,school:h>=7&&h<14,play:h>=15&&h<19}}function petMood(p){let s=state();if(!p.healthy)return'🤒 No me siento bien. Necesito cuidados.';if(p.food<30)return'🥺 Tengo hambre... ¿me das de comer?';if(p.clean<30)return'🧼 Necesito limpieza.';if(s.sleep)return'😴 Estoy dormido/a... Zzz';if(s.school)return'🎒 ¡Hora de escuela!';if(s.play)return`🎾 ¡Hora de jugar con mi ${p.toy}!`;return'🥰 ¡Estoy feliz y bien cuidada!'}
-function missionStatus(m){if(m.done)return'Completada ✓';let[h,mi]=m.t.split(':').map(Number),d=new Date();d.setHours(h,mi,0,0);let x=d-new Date();if(x<0)return'⚠️ Vencida';if(x<3600000)return`⏰ Vence en ${Math.max(1,Math.round(x/60000))} min`;return`⏰ ${fmt(m.t)}`}function advice(m){let n=m.n.toLowerCase();if(n.includes('limpiar'))return'🧹 Acuérdate: falta poco para tu tarea de limpieza.';if(n.includes('aliment'))return'🍎 ¡Hora de comer saludable!';if(n.includes('dorm'))return'🌙 Ya casi es hora de dormir.';if(n.includes('escuela'))return'🎒 ¡Prepara tu mochila!';if(n.includes('tarea'))return'📚 ¿Hacemos la tarea juntos?';return'🐾 Recuerda tu misión. ¡Tú puedes!'}
-function home(){let c=C(),p=c.pet,s=state();document.getElementById('screen').innerHTML=childTabs()+`<section class="card profile"><div class="avatar">${c.avatar}</div><div><h2>¡Hola, ${c.name}! 🌟</h2><p>${c.age} años · Nivel ${c.level}</p><div class="chips"><span class="chip">⭐ ${c.stars}</span><span class="chip">🔥 ${c.streak}</span><span class="chip">🏆 ${c.ach}</span></div></div></section><section class="card"><div class="section-head"><h2>📋 Misiones del día</h2><button class="outline" onclick="showAll()">Ver todas</button></div>${D.missions.slice(0,6).map(m=>`<div class="mission"><div class="mi">${m.i}</div><div onclick="bubble(advice(D.missions.find(x=>x.id===${m.id})))"><h3>${m.n}</h3><p>${m.d}</p><div class="meta">${missionStatus(m)} · ⭐${m.s}</div></div><button class="${m.done?'check':'plus'}" onclick="complete(${m.id})">${m.done?'✓':'+'}</button></div>`).join('')}</section><div class="banner">¡Completa tus misiones y gana estrellas extra! 🎁</div><section class="card"><h2>📚 Academia de Idiomas</h2><p>Palabras variadas, niveles Básico · Intermedio · Profesional, historias y retos semanales. Todo escrito o seleccionado.</p><button class="btn purple" onclick="go('learn')">Entrar a la Academia →</button></section><section class="card"><h2>💡 Consejo de hoy</h2><p>${dailyTip()}</p><button class="outline" onclick="bubble('✨ '+dailyTip())">Otro consejo</button></section><section class="card pet"><h2 style="text-align:center">🐾 Mi mascota</h2><div class="petface">${p.emoji}${s.sleep?'<span class="zzz">Z<br>z<br>z</span>':''}</div><div class="petname">${p.name}</div><p class="status">${petMood(p)}</p>${bar('❤️ Felicidad',p.happy)}${bar('🍖 Alimentación',p.food)}<button class="btn green" onclick="go('pet')">Cuidarla →</button></section>`}
-function dailyTip(){return['Ordena tus cosas después de jugar. 🧸','Toma agua durante el día. 💧','Cepíllate los dientes con calma. 🪥','Aprende una palabra nueva hoy. 📚','Ayuda en casa con una pequeña tarea. 🏠'][new Date().getDate()%5]}function complete(id){let m=D.missions.find(x=>x.id===id);if(!m||m.done)return;m.done=true;C().stars+=m.s;C().ach++;D.history.unshift({kid:D.child,text:'Completó '+m.n,stars:m.s,date:new Date().toLocaleString()});save();home();if(D.missions.every(x=>x.done))showReward()}function showAll(){document.getElementById('screen').innerHTML=childTabs()+`<section class="card"><button class="outline" onclick="go('home')">← Inicio</button><h2>📋 Todas las misiones</h2>${D.missions.map(m=>`<div class="mission"><div class="mi">${m.i}</div><div onclick="bubble(advice(D.missions.find(x=>x.id===${m.id})))"><h3>${m.n}</h3><p>${m.d}</p><div class="meta">${missionStatus(m)} · ⭐${m.s}</div></div><button class="${m.done?'check':'plus'}" onclick="complete(${m.id})">${m.done?'✓':'+'}</button></div>`).join('')}</section>`}
-/* ACADEMIA: contenido cambia después de cada respuesta */let Q=null;function makeQ(){let pool=langs[D.lang.language][1].map(x=>x.split('|')),i=(D.lang.xp+D.lang.weekly.practices+new Date().getDate())%pool.length,a=pool[i],b=pool[(i+3)%pool.length],c=pool[(i+5)%pool.length],opts=[a[1],b[1],c[1]].sort(()=>Math.random()-.5);if(D.lang.level!=='Básico'&&(D.lang.weekly.practices+i)%3===1){opts=[a[0],b[0],c[0]].sort(()=>Math.random()-.5);return{q:`Elige la palabra en ${D.lang.language} para “${a[1]}”.`,opts,ans:a[0],ex:`La respuesta correcta es ${a[0]}.`}}return{q:`¿Qué significa “${a[0]}”?`,opts,ans:a[1],ex:`“${a[0]}” significa “${a[1]}”.`}}function learn(){Q=makeQ();let L=D.lang,w=L.weekly;document.getElementById('screen').innerHTML=childTabs()+`<section class="card"><div class="section-head"><h2>🌍 Academia de Idiomas</h2><span class="pill">${langs[L.language][0]} ${L.language} · ${L.level}</span></div><p><b>Sin micrófono:</b> todo se practica escribiendo, seleccionando y leyendo.</p><div class="tabs">${Object.keys(langs).map(x=>`<button class="tab" onclick="D.lang.language='${x}';save();learn()">${langs[x][0]} ${x}</button>`).join('')}</div><div class="grid">${['Básico','Intermedio','Profesional'].map(x=>`<button class="tile" onclick="D.lang.level='${x}';save();learn()"><span class="ico">${x==='Básico'?'🌱':x==='Intermedio'?'🚀':'🏆'}</span><strong>${x}</strong><small>Ruta completa</small></button>`).join('')}</div></section><section class="card learn-card"><h2>🧠 Práctica adaptativa</h2><h3>${Q.q}</h3>${Q.opts.map((x,i)=>`<button class="choice" onclick="answer(${i})">${x}</button>`).join('')}<div id="fb"></div></section><section class="card"><h3>🔥 Desafío semanal</h3><p>✓ ${Math.min(5,w.practices)}/5 prácticas · ✓ ${Math.min(10,w.words)}/10 palabras · ✓ ${Math.min(1,w.conversations)}/1 conversación · ✓ ${Math.min(1,w.stories)}/1 historia</p><div class="meter"><i style="width:${Math.min(100,w.practices*20)}%"></i></div><div class="grid"><button class="tile" onclick="academyChat()">💬<strong>Conversación</strong><small>Escrita</small></button><button class="tile" onclick="story()">📖<strong>Historia</strong><small>Cambia al completarla</small></button></div></section>`}function answer(i){let bs=[...document.querySelectorAll('.choice')],ok=Q.opts.indexOf(Q.ans);bs.forEach((b,n)=>{b.disabled=true;if(n===ok)b.classList.add('correct')});if(i===ok){C().stars++;D.lang.xp+=10;D.lang.weekly.practices++;D.lang.weekly.words++;document.getElementById('fb').innerHTML=`<div class="feedback good">🎉 ¡Correcto! +10 XP y ⭐1.<br>${Q.ex}<br><button class="btn green" onclick="learn()">Siguiente pregunta →</button></div>`}else{C().stars=Math.max(0,C().stars-1);D.lang.xp=Math.max(0,D.lang.xp-5);document.getElementById('fb').innerHTML=`<div class="feedback bad">💡 Incorrecto: -1 ⭐ y -5 XP.<br><b>Respuesta correcta: ${Q.ans}</b><br>${Q.ex}<br><button class="btn purple" onclick="learn()">Nueva pregunta →</button></div>`}save()}
-function academyChat(){let q={Inglés:'What is your favorite animal?',Francés:'Quel est ton animal préféré?',Portugués:'Qual é o seu animal favorito?',Italiano:'Qual è il tuo animale preferito?',Alemán:'Was ist dein Lieblingstier?',Japonés:'好きな動物は何ですか？'}[D.lang.language];document.getElementById('screen').innerHTML=childTabs()+`<section class="card"><button class="outline" onclick="learn()">← Academia</button><h2>💬 Conversación escrita</h2><p>${q}</p><textarea id="a" placeholder="Escribe tu respuesta..."></textarea><button class="btn purple" onclick="D.lang.weekly.conversations++;D.lang.xp+=8;C().stars++;save();document.getElementById('r').innerHTML='<div class=\'feedback good\'>🌟 ¡Muy bien! +8 XP y ⭐1. Puedes seguir practicando.</div>'">Enviar</button><div id="r"></div></section>`}function story(){let stories=[['Misael y una aventura',`Hoy ${C().name} va a la escuela, ayuda en casa y recuerda cuidar a su mascota.`,'¿Qué recuerda hacer?',['Cuidar a su mascota','Perder la mochila','No estudiar'],'Cuidar a su mascota'],['El paseo de Luna',`${C().name} lleva a su mascota al jardín. Juegan con una pelota y luego vuelven a casa.`,`¿Con qué juegan?`,['Una pelota','Un libro','Una taza'],'Una pelota']];let s=stories[(D.lang.weekly.stories+new Date().getDate())%stories.length];document.getElementById('screen').innerHTML=childTabs()+`<section class="card"><button class="outline" onclick="learn()">← Academia</button><h2>📖 ${s[0]}</h2><div class="story"><p>${s[1]}</p><h3>${s[2]}</h3>${s[3].map((x,i)=>`<button class="choice" onclick="storyAns('${encodeURIComponent(x)}','${encodeURIComponent(s[4])}')">${x}</button>`).join('')}</div><div id="sf"></div></section>`}function storyAns(x,y){let bs=document.querySelectorAll('.story .choice');bs.forEach(b=>b.disabled=true);if(decodeURIComponent(x)===decodeURIComponent(y)){D.lang.weekly.stories++;D.lang.xp+=12;C().stars+=2;document.getElementById('sf').innerHTML='<div class="feedback good">📖 ¡Historia completada! +12 XP y ⭐2.<br><button class="btn green" onclick="learn()">Nueva historia →</button></div>'}else{C().stars=Math.max(0,C().stars-1);D.lang.xp=Math.max(0,D.lang.xp-5);document.getElementById('sf').innerHTML=`<div class="feedback bad">💡 Incorrecto: -1 ⭐. La respuesta correcta era <b>${decodeURIComponent(y)}</b>.<br><button class="btn purple" onclick="story()">Otra historia →</button></div>`}save()}
-/* MASCOTAS: solo juguetes, sin gorros/ropa */function pet(){let c=C(),p=c.pet,s=state(),toys=['🎾','🧶','🥕','🪵','🪶','🧸','🪢','🦴'];document.getElementById('screen').innerHTML=childTabs()+`<section class="card pet"><h2 style="text-align:center">🐾 Mascota de ${c.name}</h2><div class="petface">${p.emoji}${s.sleep?'<span class="zzz">Z<br>z<br>z</span>':''}</div><div class="petname">${p.name}</div><p class="status">${petMood(p)}</p>${bar('❤️ Felicidad',p.happy)}${bar('🍖 Alimentación',p.food)}${bar('⚡ Energía',p.energy)}${bar('🧼 Higiene',p.clean)}<div class="grid"><button class="btn green" onclick="care('food')">🍖 Alimentar</button><button class="btn purple" onclick="care('clean')">🧼 Bañar</button><button class="btn yellow" onclick="care('play')">🎾 Jugar</button><button class="btn" onclick="care('walk')">🦮 Pasear</button></div></section><section class="card"><h3>🧸 Juguetes</h3><p>Los accesorios se reemplazaron por juguetes para que no se vean mal adaptados al tamaño del animal.</p><div class="grid">${toys.map(t=>`<button class="tile" onclick="C().pet.toy='${t}';save();pet()"><div style="font-size:45px;text-align:center">${t}</div><strong>${p.toy===t?'✓ En uso':'Elegir'}</strong></button>`).join('')}</div></section><section class="card"><h3>🐾 Animalitos</h3><div class="grid">${[['🐶','Perrito'],['🐱','Gatito'],['🐰','Conejito'],['🦊','Zorrito'],['🐼','Panda'],['🦜','Loro Copio']].map(a=>`<button class="tile" onclick="C().pet.emoji='${a[0]}';if('${a[0]}'==='🦜')C().pet.name='Copio';save();pet()"><span class="ico">${a[0]}</span><strong>${a[1]}</strong></button>`).join('')}</div></section><section class="card"><h3>💬 Chat con ${p.name}</h3><p>Conversación escrita natural, divertida y sin micrófono.</p><button class="btn purple" onclick="petChat()">Abrir chat →</button></section>`}function care(t){let p=C().pet;if(t==='food'){p.food=Math.min(100,p.food+18);p.happy=Math.min(100,p.happy+4)}if(t==='clean'){p.clean=Math.min(100,p.clean+18);p.healthy=true}if(t==='play'){p.happy=Math.min(100,p.happy+14);p.energy=Math.max(0,p.energy-7)}if(t==='walk'){p.happy=Math.min(100,p.happy+10);p.energy=Math.max(0,p.energy-8)}if(p.food>45&&p.clean>45)p.healthy=true;save();pet();bubble(t==='food'?'🍖 ¡Gracias! Ya no tengo tanta hambre.':t==='clean'?'🧼 ¡Qué limpia/o estoy! ¡Gracias!':'🎾 ¡Me divertí muchísimo!')}function petChat(){let p=C().pet,h=D.petChat.filter(x=>x.kid===D.child&&x.pet===p.name).slice(-10),g=p.emoji==='🐶'?'¡Guauuu! 🐶 ¡Hola! Soy '+p.name+'. ¿Cómo estás?':p.emoji==='🦜'?'¡Hola! 🦜 Soy Copio. ¡Yo lo repito todo!':p.emoji==='🐱'?'Miauu 😺 ¡Hola! Soy '+p.name+'.':'¡Hola! 🐾 Soy '+p.name+'.';document.getElementById('screen').innerHTML=childTabs()+`<section class="card"><button class="outline" onclick="go('pet')">← Mascota</button><h2>💬 Chat con ${p.emoji} ${p.name}</h2><p>No usa micrófono. Puedes escribir preguntas y recibir ayuda paso a paso.</p><div class="chat" id="chat">${h.length?h.map(x=>`<div class="bubble ${x.me?'me':'pet'}">${x.text}</div>`).join(''):`<div class="bubble pet">${g}</div>`}</div><div class="quick"><button onclick="quick('No sé la respuesta')">No sé la respuesta</button><button onclick="quick('Ayúdame con mi tarea')">Ayúdame</button><button onclick="quick('Cuéntame algo divertido')">Algo divertido</button></div><div class="chatrow"><input id="msg" placeholder="Escribe aquí..."><button class="btn purple" onclick="send()">Enviar</button></div></section>`}function quick(t){document.getElementById('msg').value=t;send()}function send(){let i=document.getElementById('msg'),t=i.value.trim();if(!t)return;let p=C().pet,r=reply(t,p);D.petChat.push({kid:D.child,pet:p.name,me:true,text:t},{kid:D.child,pet:p.name,me:false,text:r});save();petChat()}function reply(t,p){t=t.toLowerCase();let g=p.emoji==='🐶'?'¡Guauuu! 😄':p.emoji==='🦜'?'¡Hola hola! 🦜':p.emoji==='🐱'?'Miauu 😺':'¡Hola! 🐾';if(/hola|hey/.test(t))return g+' ¡Qué alegría verte!';if(/no sé|no se|respuesta|pregunta/.test(t))return'No pasa nada 💜. Lee la pregunta, identifica las palabras importantes y elimina las opciones que no tengan sentido. Si me escribes el ejercicio, lo razonamos juntos.';if(/tarea|matem|español|ciencia|inglés|idioma/.test(t))return'¡Claro! 📚 Escríbeme el ejercicio. Primero te ayudaré a entenderlo y después comprobamos la respuesta.';if(/divert|jugar/.test(t))return'¡SÍ! 🎾 ¡Voy corriendo! ¡Atrápame si puedes! 😜';if(/comida|hambre/.test(t))return'🍖 Mi pancita dice que tengo hambre. ¡Acuérdate de mi comida!';if(/limpiar/.test(t))return'🧹 Acuérdate de tu tarea de limpieza. ¡Falta poco o ya se venció!';if(/dormir|sueño/.test(t))return'😴 Cuando llegue mi hora cierro mis ojitos y salen mis ZZZ.';return g+' Entiendo. Cuéntame un poquito más y lo pensamos juntos. 🧠🐾'}
-/* PADRES: clave original 2580, editable */function openMom(){document.getElementById('modal').classList.add('show');pinIn='';document.getElementById('sheet').innerHTML=`<button class="close" onclick="closeModal()">×</button><h2>🔐 Panel de Mamá</h2><p>Ingresa tu clave de 4 dígitos.</p><div class="dots" id="dots">○ ○ ○ ○</div><div class="pin">${[1,2,3,4,5,6,7,8,9,'×',0,'⌫'].map(x=>`<button onclick="pin('${x}')">${x}</button>`).join('')}</div>`}let pinIn='';function pin(x){if(x==='×'){openMom();return}if(x==='⌫')pinIn=pinIn.slice(0,-1);else if(pinIn.length<4)pinIn+=x;document.getElementById('dots').textContent='• '.repeat(pinIn.length)+'○ '.repeat(4-pinIn.length);if(pinIn.length===4){if(pinIn===D.pin)dashboard();else{bubble('🔐 Clave incorrecta');setTimeout(openMom,800)}}}function dashboard(){document.getElementById('sheet').innerHTML=`<button class="close" onclick="closeModal()">×</button><h2>💗 Panel de Mamá</h2><div class="grid"><button class="tile" onclick="extra()">⭐<strong>Dar estrellas</strong></button><button class="tile" onclick="manage()">📅<strong>Misiones</strong></button><button class="tile" onclick="progress()">📊<strong>Progreso</strong></button><button class="tile" onclick="hist()">🕘<strong>Historial</strong></button></div><section class="card"><h3>🔑 Cambiar clave</h3><input id="np" maxlength="4" inputmode="numeric" value="${D.pin}"><button class="btn purple" onclick="changePin()">Guardar clave</button></section><section class="card"><h3>🐾 Salud</h3>${Object.values(D.kids).map(c=>`<p>${c.pet.emoji} ${c.pet.name}: ${c.pet.healthy?'😊 saludable':'🤒 necesita cuidados'} · 🍖${Math.round(c.pet.food)} · 🧼${Math.round(c.pet.clean)}</p>`).join('')}</section>`}function changePin(){let p=document.getElementById('np').value;if(/^\d{4}$/.test(p)){D.pin=p;save();dashboard()}else bubble('Usa exactamente 4 dígitos.')}function extra(){let k=prompt('violeta, eliseo o misael','violeta'),n=Number(prompt('1, 2, 3 o 5 estrellas','3'));if(D.kids[k]&&[1,2,3,5].includes(n)){D.kids[k].stars+=n;D.history.unshift({kid:k,text:'Estrellas otorgadas por mamá',stars:n,date:new Date().toLocaleString()});save();dashboard()}}function manage(){document.getElementById('sheet').innerHTML=`<button class="close" onclick="dashboard()">←</button><h2>📅 Misiones y horarios</h2>${D.missions.map(m=>`<div class="mission"><div class="mi">${m.i}</div><div><h3>${m.n}</h3><p>${m.d}</p><div class="meta">${fmt(m.t)} · ⭐${m.s}</div></div><button class="${m.done?'check':'plus'}" onclick="mDone(${m.id})">${m.done?'✓':'+'}</button></div>`).join('')}<section class="card"><h3>➕ Nueva misión</h3><input id="mn" placeholder="Ej. Leer 20 minutos"><input id="mt" type="time" value="17:00"><button class="btn" onclick="addM()">Agregar</button></section>`}function mDone(id){let m=D.missions.find(x=>x.id===id);if(m)m.done=!m.done;save();manage()}function addM(){let n=document.getElementById('mn').value.trim();if(!n)return;D.missions.push({id:Date.now(),n,d:'Misión personalizada',t:document.getElementById('mt').value,s:2,i:'✨',done:false});save();manage()}function progress(){document.getElementById('sheet').innerHTML=`<button class="close" onclick="dashboard()">←</button><h2>📊 Progreso</h2>${Object.values(D.kids).map(c=>`<section class="card"><b>${c.avatar} ${c.name}</b><p>⭐${c.stars} · 🔥${c.streak} días · Nivel ${c.level}</p>${bar('Progreso',c.stars%100)}</section>`).join('')}`}function hist(){document.getElementById('sheet').innerHTML=`<button class="close" onclick="dashboard()">←</button><h2>🕘 Historial</h2>${D.history.slice(0,20).map(h=>`<p>⭐${h.stars} · ${D.kids[h.kid].name}<br><small>${h.text} · ${h.date}</small></p>`).join('')||'<p>Sin movimientos.</p>'}`}
-function prize(){document.getElementById('screen').innerHTML=`<section class="card"><h2>🏆 Premios y logros</h2><div class="grid"><div class="tile">🔥<strong>Rachas</strong><small>Constancia</small></div><div class="tile">🌍<strong>Idiomas</strong><small>XP y retos</small></div><div class="tile">🐾<strong>Cuidador</strong><small>Mascota saludable</small></div><div class="tile">🎁<strong>Premios</strong><small>Metas</small></div></div></section><section class="card"><button class="btn yellow" onclick="showReward()">Ver premio ⭐</button></section>`}function showReward(){document.getElementById('rewardText').textContent=D.reward;document.getElementById('reward').classList.add('show')}function closeReward(){document.getElementById('reward').classList.remove('show')}function bubble(t){document.getElementById('modal').classList.add('show');document.getElementById('sheet').innerHTML=`<button class="close" onclick="closeModal()">×</button><div style="font-size:55px;text-align:center">${C().pet.emoji}</div><h2>${C().pet.name}</h2><div class="card" style="font-size:18px">${t}</div><button class="btn purple" onclick="closeModal()">Entendido 💜</button>`}function closeModal(){document.getElementById('modal').classList.remove('show')}function notify(){bubble(C().pet.food<35?'🍖 Tengo hambre... acuérdate de mi comida.':C().pet.clean<35?'🧼 Ya me toca limpieza.':(D.missions.find(m=>!m.done)?advice(D.missions.find(m=>!m.done)):'🥰 ¡Todo al día! ¿Jugamos?'))}
-function spawn(){if(!state().play)return;let e=document.createElement('div');e.className='runner';e.textContent=C().pet.emoji;e.onclick=()=>{e.remove();bubble('¡Me atrapaste! 😜')};document.body.appendChild(e);setTimeout(()=>e.remove(),9200)}function decay(){Object.values(D.kids).forEach(c=>{let p=c.pet;p.food=Math.max(0,p.food-.5);p.clean=Math.max(0,p.clean-.2);if(p.food<25||p.clean<25)p.healthy=false});save()}home();setInterval(spawn,18000);setInterval(decay,60000);
-</script></body></html>
+const KEY = 'MPM5_FINAL_DATA';
+
+// MAPA DE ANIMACIONES VECTORIALES SEGÚN ESPECIE
+const PET_ANIMATIONS = {
+  '🐶': { type: 'trot', url: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWd0YW83ZnR3dmsyeW11MHR3ZnF3bXpnbDR2cnlhNHJqcm9rbmE3ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/k8puvh6Y4tA3u/giphy.gif' },
+  '🐱': { type: 'trot', url: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmE0YTRvMmhpbWZrdnpicndtbnpqb3U5NnI3cTl2aDV1OWVtbXgyYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VpXaaIeFfM7k0EicfN/giphy.gif' },
+  '🐰': { type: 'hop', url: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjFua2ZtYmZlYXF2OXAydHRrNWhrMGQxaWZhbmd4a2J0bHRubTJxeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/jIn8yZzp2W73W/giphy.gif' },
+  '🦊': { type: 'trot', url: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWZsbHRxZXZia2sxaHJnNGgwdWpsYzM5bzZ4eXRnOGt0MnpxOHp5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26u4lOMA8JKSnL9Uk/giphy.gif' },
+  '🐼': { type: 'hop', url: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXdtbmswbnBvdGlsZnYyeWhraHpza2NteGNmbXB5dTNvbW14emx2biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Lp4LVeLV3w69q/giphy.gif' },
+  '🦜': { type: 'fly', url: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdW4xdWpxdHQ3azdudWZ4dWxsazc2YXh1N3UyeDV2bWVucm0xOWdrZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/134VhmZDQ3v2mI/giphy.gif' }
+};
+
+const langs = {
+  Inglés: ['🇺🇸', ['apple|manzana', 'school|escuela', 'friend|amigo', 'water|agua', 'book|libro', 'happy|feliz', 'house|casa', 'play|jugar', 'family|familia', 'garden|jardín', 'animal|animal']],
+  Francés: ['🇫🇷', ['bonjour|hola', 'école|escuela', 'ami|amigo', 'eau|agua', 'livre|libro', 'heureux|feliz', 'maison|casa', 'jouer|jugar', 'famille|familia', 'jardin|jardín', 'animal|animal']],
+  Portugués: ['🇧🇷', ['casa|casa', 'amigo|amigo', 'água|agua', 'livro|libro', 'feliz|feliz', 'escola|escuela', 'manhã|mañana', 'brincar|jugar', 'família|familia', 'jardim|jardín', 'animal|animal']],
+  Italiano: ['🇮🇹', ['ciao|hola', 'scuola|escuela', 'amico|amigo', 'acqua|agua', 'libro|libro', 'felice|feliz', 'casa|casa', 'giocare|jugar', 'famiglia|familia', 'giardino|jardín', 'animale|animal']],
+  Alemán: ['🇩🇪', ['hallo|hola', 'schule|escuela', 'freund|amigo', 'wasser|agua', 'buch|libro', 'glücklich|feliz', 'haus|casa', 'spielen|jugar', 'familie|familia', 'garten|jardín', 'tier|animal']],
+  Japonés: ['🇯🇵', ['neko|gato', 'mizu|agua', 'tomodachi|amigo', 'gakkō|escuela', 'hon|libro', 'ureshii|feliz', 'ie|casa', 'asobu|jugar', 'kazoku|familia', 'niwa|jardín', 'dōbutsu|animal']]
+};
+
+const initial = {
+  pin: '2580',
+  reward: '¡Ganaste un helado! 🍦',
+  child: 'violeta',
+  lang: {
+    language: 'Inglés',
+    level: 'Básico',
+    xp: 120,
+    streak: 3,
+    weekly: { practices: 0, words: 0, conversations: 0, stories: 0 }
+  },
+  kids: {
+    violeta: { name: 'Violeta', age: 13, level: 7, stars: 48, streak: 6, ach: 4, avatar: '👧', pet: { emoji: '🐶', name: 'Luna', happy: 80, food: 78, energy: 88, clean: 92, healthy: true, toy: '🎾' } },
+    eliseo: { name: 'Eliseo', age: 9, level: 5, stars: 42, streak: 8, ach: 3, avatar: '👦', pet: { emoji: '🐱', name: 'Milo', happy: 91, food: 85, energy: 90, clean: 88, healthy: true, toy: '🧶' } },
+    misael: { name: 'Misael', age: 7, level: 3, stars: 38, streak: 4, ach: 2, avatar: '👦', pet: { emoji: '🐰', name: 'Nube', happy: 86, food: 80, energy: 92, clean: 93, healthy: true, toy: '🥕' } }
+  },
+  missions: [
+    ['Alimentación saludable', 'Come frutas y toma agua', '13:00', 2, '🍎'],
+    ['Dientes y baño', 'Cepíllate los dientes y báñate', '18:00', 2, '🪥'],
+    ['Apagar luces y TV', 'Apaga lo que no se usa', '19:30', 2, '💡'],
+    ['Prepararse para dormir', 'Pijama, dientes y a la cama', '20:30', 3, '🌙'],
+    ['Ve a la escuela', 'Mochila lista y llegar a tiempo', '07:15', 2, '🎒'],
+    ['Hora de limpiar', 'Ordena tus cosas y colabora en casa', '17:00', 2, '🧹'],
+    ['Hacer tareas / repasar', 'Completa tus deberes escolares', '16:00', 3, '📚'],
+    ['Cena saludable', 'Cena y descubre un tip', '19:00', 2, '🥗'],
+    ['Actividad física', 'Muévete 15 minutos', '17:30', 2, '🏃'],
+    ['Cuidar animales', 'Alimenta gallinas y periquitos', '08:00', 2, '🐔']
+  ].map((x, i) => ({ id: i + 1, n: x[0], d: x[1], t: x[2], s: x[3], i: x[4], done: false })),
+  history: [],
+  petChat: []
+};
+
+function clone(x) { return JSON.parse(JSON.stringify(x)); }
+
+function norm(d) {
+  d = d || clone(initial);
+  d.pin = /^\d{4}$/.test(d.pin || '') ? d.pin : '2580';
+  d.kids = d.kids || clone(initial.kids);
+  Object.keys(initial.kids).forEach(k => {
+    d.kids[k] = Object.assign(clone(initial.kids[k]), d.kids[k] || {});
+    d.kids[k].pet = Object.assign(clone(initial.kids[k].pet), d.kids[k].pet || {});
+  });
+  d.child = d.kids[d.child] ? d.child : 'violeta';
+  d.lang = Object.assign(clone(initial.lang), d.lang || {});
+  d.lang.weekly = Object.assign(clone(initial.lang.weekly), d.lang.weekly || {});
+  d.missions = Array.isArray(d.missions) ? d.missions : clone(initial.missions);
+  d.history = d.history || [];
+  d.petChat = d.petChat || [];
+  return d;
+}
+
+let D = norm(JSON.parse(localStorage.getItem(KEY) || 'null'));
+save();
+
+function save() {
+  localStorage.setItem(KEY, JSON.stringify(D));
+}
+
+function C() {
+  return D.kids[D.child];
+}
+
+function go(p) {
+  document.querySelectorAll('.bottom button').forEach(b => b.classList.remove('active'));
+  let n = document.getElementById('n-' + p);
+  if (n) n.classList.add('active');
+  if (p === 'home') home();
+  if (p === 'learn') learn();
+  if (p === 'prize') prize();
+  if (p === 'pet') pet();
+}
+
+function childTabs() {
+  return `<div class="tabs">${Object.entries(D.kids).map(([k, c]) => `
+    <button class="tab ${D.child === k ? 'active' : ''}" onclick="D.child='${k}';save();home()">${c.name}<br><small>${c.age} años</small></button>
+  `).join('')}</div>`;
+}
+
+function fmt(t) {
+  let [h, m] = t.split(':').map(Number);
+  return (h % 12 || 12) + ':' + String(m).padStart(2, '0') + ' ' + (h >= 12 ? 'PM' : 'AM');
+}
+
+function bar(n, v) {
+  return `<div class="bar">
+    <div class="barline"><span>${n}</span><span>${Math.round(v)}%</span></div>
+    <div class="meter"><i style="width:${Math.max(0, Math.min(100, v))}%"></i></div>
+  </div>`;
+}
+
+function state() {
+  let h = new Date().getHours();
+  return { sleep: h >= 20 || h < 7, school: h >= 7 && h < 14, play: h >= 15 && h < 19 };
+}
+
+function petMood(p) {
+  let s = state();
+  if (!p.healthy) return '🤒 No me siento bien. Necesito cuidados.';
+  if (p.food < 30) return '🥺 Tengo hambre... ¿me das de comer?';
+  if (p.clean < 30) return '🧼 Necesito limpieza.';
+  if (s.sleep) return '😴 Estoy dormido/a... Zzz';
+  if (s.school) return '🎒 ¡Hora de escuela!';
+  if (s.play) return `🎾 ¡Hora de jugar con mi ${p.toy}!`;
+  return '🥰 ¡Estoy feliz y bien cuidada!';
+}
+
+function missionStatus(m) {
+  if (m.done) return 'Completada ✓';
+  let [h, mi] = m.t.split(':').map(Number), d = new Date();
+  d.setHours(h, mi, 0, 0);
+  let x = d - new Date();
+  if (x < 0) return '⚠️ Vencida';
+  if (x < 3600000) return `⏰ Vence en ${Math.max(1, Math.round(x / 60000))} min`;
+  return `⏰ ${fmt(m.t)}`;
+}
+
+function advice(m) {
+  let n = m.n.toLowerCase();
+  if (n.includes('limpiar')) return '🧹 Acuérdate: falta poco para tu tarea de limpieza.';
+  if (n.includes('aliment')) return '🍎 ¡Hora de comer saludable!';
+  if (n.includes('dorm')) return '🌙 Ya casi es hora de dormir.';
+  if (n.includes('escuela')) return '🎒 ¡Prepara tu mochila!';
+  if (n.includes('tarea')) return '📚 ¿Hacemos la tarea juntos?';
+  return '🐾 Recuerda tu misión. ¡Tú puedes!';
+}
+
+function home() {
+  let c = C(), p = c.pet, s = state();
+  document.getElementById('screen').innerHTML = childTabs() + `
+    <section class="card profile">
+      <div class="avatar">${c.avatar}</div>
+      <div>
+        <h2>¡Hola, ${c.name}! 🌟</h2>
+        <p>${c.age} años · Nivel ${c.level}</p>
+        <div class="chips">
+          <span class="chip">⭐ ${c.stars}</span>
+          <span class="chip">🔥 ${c.streak} días</span>
+          <span class="chip">🏆 ${c.ach} Logros</span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="card">
+      <div class="section-head">
+        <h2>📋 Misiones del día</h2>
+        <button class="outline" onclick="showAll()">Ver todas</button>
+      </div>
+      ${D.missions.slice(0, 6).map(m => `
+        <div class="mission">
+          <div class="mi">${m.i}</div>
+          <div onclick="bubble(advice(D.missions.find(x=>x.id===${m.id})))">
+            <h3>${m.n}</h3>
+            <p>${m.d}</p>
+            <div class="meta">${missionStatus(m)} · ⭐${m.s}</div>
+          </div>
+          <button class="${m.done ? 'check' : 'plus'}" onclick="complete(${m.id})">${m.done ? '✓' : '+'}</button>
+        </div>
+      `).join('')}
+    </section>
+    
+    <div class="banner">¡Completa tus misiones y gana estrellas extra! 🎁</div>
+    
+    <section class="card">
+      <h2>📚 Academia de Idiomas</h2>
+      <p>Palabras variadas, niveles y retos semanales para aprender jugando.</p>
+      <button class="btn purple" onclick="go('learn')">Entrar a la Academia →</button>
+    </section>
+    
+    <section class="card">
+      <h2>💡 Consejo de hoy</h2>
+      <p>${dailyTip()}</p>
+      <button class="outline" onclick="bubble('✨ '+dailyTip())">Otro consejo</button>
+    </section>
+    
+    <section class="card pet">
+      <h2 style="text-align:center">🐾 Mi mascota</h2>
+      <div class="petface">${p.emoji}${s.sleep ? '<span class="zzz">Z<br>z<br>z</span>' : ''}</div>
+      <div class="petname">${p.name}</div>
+      <p class="status">${petMood(p)}</p>
+      ${bar('❤️ Felicidad', p.happy)}
+      ${bar('🍖 Alimentación', p.food)}
+      <button class="btn green" onclick="go('pet')">Cuidarla →</button>
+    </section>
+  `;
+}
+
+function dailyTip() {
+  const tips = [
+    'Ordena tus cosas después de jugar. 🧸',
+    'Toma suficiente agua durante el día. 💧',
+    'Cepíllate los dientes con calma y atención. 🪥',
+    'Aprende una palabra nueva en otro idioma hoy. 📚',
+    'Ayuda en casa con una pequeña tarea sin que te lo pidan. 🏠'
+  ];
+  return tips[new Date().getDate() % tips.length];
+}
+
+function complete(id) {
+  let m = D.missions.find(x => x.id === id);
+  if (!m || m.done) return;
+  m.done = true;
+  C().stars += m.s;
+  C().ach++;
+  D.history.unshift({ kid: D.child, text: 'Completó ' + m.n, stars: m.s, date: new Date().toLocaleString() });
+  save();
+  home();
+  if (D.missions.every(x => x.done)) showReward();
+}
+
+function showAll() {
+  document.getElementById('screen').innerHTML = childTabs() + `
+    <section class="card">
+      <button class="outline" onclick="go('home')">← Inicio</button>
+      <h2>📋 Todas las misiones</h2>
+      ${D.missions.map(m => `
+        <div class="mission">
+          <div class="mi">${m.i}</div>
+          <div onclick="bubble(advice(D.missions.find(x=>x.id===${m.id})))">
+            <h3>${m.n}</h3>
+            <p>${m.d}</p>
+            <div class="meta">${missionStatus(m)} · ⭐${m.s}</div>
+          </div>
+          <button class="${m.done ? 'check' : 'plus'}" onclick="complete(${m.id})">${m.done ? '✓' : '+'}</button>
+        </div>
+      `).join('')}
+    </section>
+  `;
+}
+
+let Q = null;
+function makeQ() {
+  let pool = langs[D.lang.language][1].map(x => x.split('|'));
+  let i = (D.lang.xp + D.lang.weekly.practices + new Date().getDate()) % pool.length;
+  let a = pool[i], b = pool[(i + 3) % pool.length], c = pool[(i + 5) % pool.length];
+  let opts = [a[1], b[1], c[1]].sort(() => Math.random() - .5);
+  
+  if (D.lang.level !== 'Básico' && (D.lang.weekly.practices + i) % 3 === 1) {
+    opts = [a[0], b[0], c[0]].sort(() => Math.random() - .5);
+    return { q: `Elige la palabra en ${D.lang.language} para “${a[1]}”.`, opts, ans: a[0], ex: `La respuesta correcta es ${a[0]}.` };
+  }
+  return { q: `¿Qué significa “${a[0]}”?`, opts, ans: a[1], ex: `“${a[0]}” significa “${a[1]}”.` };
+}
+
+function learn() {
+  Q = makeQ();
+  let L = D.lang, w = L.weekly;
+  document.getElementById('screen').innerHTML = childTabs() + `
+    <section class="card">
+      <div class="section-head">
+        <h2>🌍 Academia de Idiomas</h2>
+        <span class="pill">${langs[L.language][0]} ${L.language} · ${L.level}</span>
+      </div>
+      <p><b>Modo Lectura:</b> Practica leyendo y seleccionando respuestas correctas.</p>
+      <div class="tabs">
+        ${Object.keys(langs).map(x => `
+          <button class="tab ${L.language === x ? 'active' : ''}" onclick="D.lang.language='${x}';save();learn()">${langs[x][0]} ${x}</button>
+        `).join('')}
+      </div>
+      <div class="grid" style="margin-top:10px">
+        ${['Básico', 'Intermedio', 'Profesional'].map(x => `
+          <button class="tile" onclick="D.lang.level='${x}';save();learn()">
+            <span class="ico">${x === 'Básico' ? '🌱' : x === 'Intermedio' ? '🚀' : '🏆'}</span>
+            <strong>${x}</strong>
+            <small>Nivel de dificultad</small>
+          </button>
+        `).join('')}
+      </div>
+    </section>
+    
+    <section class="card">
+      <h2>🧠 Práctica adaptativa</h2>
+      <h3>${Q.q}</h3>
+      ${Q.opts.map((x) => `<button class="choice" onclick="answer(this, '${x.replace(/'/g, "\\'")}')">${x}</button>`).join('')}
+      <div id="fb"></div>
+    </section>
+    
+    <section class="card">
+      <h3>🔥 Desafío semanal</h3>
+      <p>✓ ${Math.min(5, w.practices)}/5 prácticas · ✓ ${Math.min(10, w.words)}/10 palabras</p>
+      <div class="meter"><i style="width:${Math.min(100, w.practices * 20)}%"></i></div>
+      <div class="grid" style="margin-top:10px">
+        <button class="tile" onclick="academyChat()">💬<strong>Conversación</strong><small>Escrita</small></button>
+        <button class="tile" onclick="story()">📖<strong>Historia</strong><small>Comprensión</small></button>
+      </div>
+    </section>
+  `;
+}
+
+function answer(btn, selectedOption) {
+  let choices = document.querySelectorAll('.choice');
+  choices.forEach(b => b.disabled = true);
+  
+  if (selectedOption === Q.ans) {
+    btn.classList.add('correct');
+    C().stars++;
+    D.lang.xp += 10;
+    D.lang.weekly.practices++;
+    D.lang.weekly.words++;
+    document.getElementById('fb').innerHTML = `
+      <div class="feedback good">
+        🎉 ¡Correcto! +10 XP y ⭐1.<br>${Q.ex}<br>
+        <button class="btn green" onclick="learn()">Siguiente pregunta →</button>
+      </div>`;
+  } else {
+    btn.classList.add('wrong');
+    choices.forEach(b => {
+      if (b.textContent === Q.ans) b.classList.add('correct');
+    });
+    C().stars = Math.max(0, C().stars - 1);
+    D.lang.xp = Math.max(0, D.lang.xp - 5);
+    document.getElementById('fb').innerHTML = `
+      <div class="feedback bad">
+        💡 Incorrecto: -1 ⭐ y -5 XP.<br><b>Respuesta correcta: ${Q.ans}</b><br>${Q.ex}<br>
+        <button class="btn purple" onclick="learn()">Intentar otra →</button>
+      </div>`;
+  }
+  save();
+}
+
+function academyChat() {
+  let q = {
+    Inglés: 'What is your favorite animal?',
+    Francés: 'Quel est ton animal préféré?',
+    Portugués: 'Qual é o seu animal favorito?',
+    Italiano: 'Qual è il tuo animale preferito?',
+    Alemán: 'Was ist dein Lieblingstier?',
+    Japonés: '好きな動物は何ですか？'
+  }[D.lang.language];
+  
+  document.getElementById('screen').innerHTML = childTabs() + `
+    <section class="card">
+      <button class="outline" onclick="learn()">← Academia</button>
+      <h2>💬 Conversación escrita</h2>
+      <p>${q}</p>
+      <textarea id="a" placeholder="Escribe tu respuesta aquí..."></textarea>
+      <button class="btn purple" onclick="submitAcademyChat()">Enviar</button>
+      <div id="r"></div>
+    </section>
+  `;
+}
+
+function submitAcademyChat() {
+  let val = document.getElementById('a').value.trim();
+  if(!val) return;
+  D.lang.weekly.conversations++;
+  D.lang.xp += 8;
+  C().stars++;
+  save();
+  document.getElementById('r').innerHTML = '<div class="feedback good">🌟 ¡Excelente trabajo! +8 XP y ⭐1. ¡Sigue practicando!</div>';
+}
+
+function story() {
+  let stories = [
+    ['Una aventura diaria', `Hoy ${C().name} prepara su mochila, colabora en casa y recuerda cuidar a su mascota con cariño.`, '¿Qué debe recordar hacer?', ['Cuidar a su mascota', 'Olvidar la tarea', 'No comer'], 'Cuidar a su mascota'],
+    ['El juego en el parque', `${C().name} lleva a su mascota al parque. Juegan con una pelota amarilla hasta el atardecer.`, '¿De qué color es la pelota?', ['Amarilla', 'Azul', 'Roja'], 'Amarilla']
+  ];
+  let s = stories[(D.lang.weekly.stories + new Date().getDate()) % stories.length];
+  
+  document.getElementById('screen').innerHTML = childTabs() + `
+    <section class="card">
+      <button class="outline" onclick="learn()">← Academia</button>
+      <h2>📖 ${s[0]}</h2>
+      <div class="story">
+        <p>${s[1]}</p>
+        <h3>${s[2]}</h3>
+        ${s[3].map(x => `<button class="choice" onclick="storyAns(this, '${x.replace(/'/g, "\\'")}', '${s[4].replace(/'/g, "\\'")}')">${x}</button>`).join('')}
+      </div>
+      <div id="sf"></div>
+    </section>
+  `;
+}
+
+function storyAns(btn, selected, target) {
+  let choices = document.querySelectorAll('.story .choice');
+  choices.forEach(b => b.disabled = true);
+  
+  if (selected === target) {
+    btn.classList.add('correct');
+    D.lang.weekly.stories++;
+    D.lang.xp += 12;
+    C().stars += 2;
+    document.getElementById('sf').innerHTML = '<div class="feedback good">📖 ¡Historia completada! +12 XP y ⭐2.<br><button class="btn green" onclick="learn()">Continuar →</button></div>';
+  } else {
+    btn.classList.add('wrong');
+    C().stars = Math.max(0, C().stars - 1);
+    D.lang.xp = Math.max(0, D.lang.xp - 5);
+    document.getElementById('sf').innerHTML = `<div class="feedback bad">💡 Incorrecto: -1 ⭐. La respuesta correcta era: <b>${target}</b>.<br><button class="btn purple" onclick="story()">Reintentar →</button></div>`;
+  }
+  save();
+}
+
+function pet() {
+  let c = C(), p = c.pet, s = state();
+  let toys = ['🎾', '🧶', '🥕', '🪵', '🪶', '🧸', '🪢', '🦴'];
+  
+  document.getElementById('screen').innerHTML = childTabs() + `
+    <section class="card pet">
+      <h2 style="text-align:center">🐾 Mascota de ${c.name}</h2>
+      <div class="petface">${p.emoji}${s.sleep ? '<span class="zzz">Z<br>z<br>z</span>' : ''}</div>
+      <div class="petname">${p.name}</div>
+      <p class="status">${petMood(p)}</p>
+      ${bar('❤️ Felicidad', p.happy)}
+      ${bar('🍖 Alimentación', p.food)}
+      ${bar('⚡ Energía', p.energy)}
+      ${bar('🧼 Higiene', p.clean)}
+      <div class="grid" style="margin-top:10px">
+        <button class="btn green" onclick="care('food')">🍖 Alimentar</button>
+        <button class="btn purple" onclick="care('clean')">🧼 Bañar</button>
+        <button class="btn yellow" onclick="care('play')">🎾 Jugar</button>
+        <button class="btn" onclick="care('walk')">🦮 Pasear</button>
+      </div>
+    </section>
+    
+    <section class="card">
+      <h3>🧸 Juguetes seleccionados</h3>
+      <div class="grid">
+        ${toys.map(t => `
+          <button class="tile" onclick="C().pet.toy='${t}';save();pet()">
+            <div style="font-size:35px;text-align:center">${t}</div>
+            <strong style="text-align:center">${p.toy === t ? '✓ En uso' : 'Elegir'}</strong>
+          </button>
+        `).join('')}
+      </div>
+    </section>
+    
+    <section class="card">
+      <h3>🐾 Tipo de Mascota</h3>
+      <div class="grid">
+        ${[['🐶', 'Perrito'], ['🐱', 'Gatito'], ['🐰', 'Conejito'], ['🦊', 'Zorrito'], ['🐼', 'Panda'], ['🦜', 'Loro']].map(a => `
+          <button class="tile" onclick="setPetType('${a[0]}', '${a[1]}')">
+            <span class="ico">${a[0]}</span>
+            <strong>${a[1]}</strong>
+          </button>
+        `).join('')}
+      </div>
+    </section>
+    
+    <section class="card">
+      <h3>💬 Chat interactivo</h3>
+      <button class="btn purple" onclick="petChat()">Hablar con ${p.name} →</button>
+    </section>
+  `;
+}
+
+function setPetType(emoji, defaultName) {
+  let p = C().pet;
+  p.emoji = emoji;
+  if (emoji === '🦜') p.name = 'Copio';
+  save();
+  pet();
+}
+
+function care(type) {
+  let p = C().pet;
+  if (type === 'food') { p.food = Math.min(100, p.food + 18); p.happy = Math.min(100, p.happy + 4); }
+  if (type === 'clean') { p.clean = Math.min(100, p.clean + 18); p.healthy = true; }
+  if (type === 'play') { p.happy = Math.min(100, p.happy + 14); p.energy = Math.max(0, p.energy - 7); }
+  if (type === 'walk') { p.happy = Math.min(100, p.happy + 10); p.energy = Math.max(0, p.energy - 8); }
+  if (p.food > 45 && p.clean > 45) p.healthy = true;
+  
+  save();
+  pet();
+  
+  let msgs = {
+    food: '🍖 ¡Ñam ñam! Muchas gracias, estaba delicioso.',
+    clean: '🧼 ¡Quedé impecable y super fresco!',
+    play: '🎾 ¡Qué divertido! Me encanta jugar contigo.',
+    walk: '🦮 ¡Qué buen paseo! Gracias por sacarme.'
+  };
+  bubble(msgs[type]);
+}
+
+function petChat() {
+  let p = C().pet;
+  let history = D.petChat.filter(x => x.kid === D.child && x.pet === p.name).slice(-10);
+  let greeting = p.emoji === '🐶' ? `¡Guau! 🐶 Hola, soy ${p.name}. ¿Cómo estás?` :
+                 p.emoji === '🦜' ? `¡Hola! 🦜 Soy ${p.name}, ¡repito lo que me dices!` :
+                 p.emoji === '🐱' ? `Miau 😺 ¡Hola! Soy ${p.name}.` : `¡Hola! 🐾 Soy ${p.name}.`;
+
+  document.getElementById('screen').innerHTML = childTabs() + `
+    <section class="card">
+      <button class="outline" onclick="go('pet')">← Mascota</button>
+      <h2>💬 Chat con ${p.emoji} ${p.name}</h2>
+      <div class="chat" id="chat">
+        ${history.length ? history.map(x => `<div class="bubble ${x.me ? 'me' : 'pet'}">${x.text}</div>`).join('') : `<div class="bubble pet">${greeting}</div>`}
+      </div>
+      <div class="quick">
+        <button onclick="quick('No sé la respuesta')">No sé la respuesta</button>
+        <button onclick="quick('Ayúdame con mi tarea')">Ayúdame</button>
+        <button onclick="quick('Cuéntame algo divertido')">Algo divertido</button>
+      </div>
+      <div class="chatrow">
+        <input id="msg" placeholder="Escribe un mensaje...">
+        <button class="btn purple" style="width:auto;margin:0" onclick="send()">Enviar</button>
+      </div>
+    </section>
+  `;
+  let chatBox = document.getElementById('chat');
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function quick(t) {
+  document.getElementById('msg').value = t;
+  send();
+}
+
+function send() {
+  let input = document.getElementById('msg');
+  let text = input.value.trim();
+  if (!text) return;
+  
+  let p = C().pet;
+  let r = reply(text, p);
+  D.petChat.push(
+    { kid: D.child, pet: p.name, me: true, text: text },
+    { kid: D.child, pet: p.name, me: false, text: r }
+  );
+  save();
+  petChat();
+}
+
+function reply(t, p) {
+  t = t.toLowerCase();
+  let prefix = p.emoji === '🐶' ? '¡Guau! 😄' : p.emoji === '🦜' ? '¡Hola! 🦜' : p.emoji === '🐱' ? 'Miau 😺' : '¡Hola! 🐾';
+  
+  if (/hola|hey/.test(t)) return prefix + ' ¡Qué alegría hablar contigo!';
+  if (/no sé|no se|respuesta|pregunta/.test(t)) return 'No te preocupes 💜. Lee despacio la pregunta, busca las palabras clave y descarta las opciones incorrectas. ¡Tú puedes!';
+  if (/tarea|matem|español|ciencia|inglés|idioma/.test(t)) return '¡Claro que sí! 📚 Escribe el problema aquí y lo revisamos paso a paso.';
+  if (/divert|jugar/.test(t)) return '¡SÍ! 🎾 ¡Vamos a jugar un rato! ¡Atrápame!';
+  if (/comida|hambre/.test(t)) return '🍖 Mi pancita me dice que es hora de comer algo rico.';
+  if (/limpiar/.test(t)) return '🧹 Mantener todo ordenado nos ayuda a concentrarnos mejor.';
+  if (/dormir|sueño/.test(t)) return '😴 Descansar bien nos da energía para jugar mañana. ¡Zzz!';
+  return prefix + ' Entiendo. Cuéntame un poco más para que lo pensemos juntos. 🧠🐾';
+}
+
+function openMom() {
+  document.getElementById('modal').classList.add('show');
+  pinIn = '';
+  document.getElementById('sheet').innerHTML = `
+    <button class="close" onclick="closeModal()">×</button>
+    <h2>🔐 Panel de Control de Padres</h2>
+    <p>Ingresa el PIN de 4 dígitos:</p>
+    <div class="dots" id="dots">○ ○ ○ ○</div>
+    <div class="pin">
+      ${[1,2,3,4,5,6,7,8,9,'×',0,'⌫'].map(x => `<button onclick="pressPin('${x}')">${x}</button>`).join('')}
+    </div>
+  `;
+}
+
+let pinIn = '';
+function pressPin(x) {
+  if (x === '×') { openMom(); return; }
+  if (x === '⌫') pinIn = pinIn.slice(0, -1);
+  else if (pinIn.length < 4) pinIn += x;
+  
+  document.getElementById('dots').textContent = '• '.repeat(pinIn.length) + '○ '.repeat(4 - pinIn.length);
+  
+  if (pinIn.length === 4) {
+    if (pinIn === D.pin) dashboard();
+    else {
+      bubble('🔐 PIN incorrecto');
+      setTimeout(openMom, 800);
+    }
+  }
+}
+
+function dashboard() {
+  document.getElementById('sheet').innerHTML = `
+    <button class="close" onclick="closeModal()">×</button>
+    <h2>💗 Panel de Administración</h2>
+    <div class="grid">
+      <button class="tile" onclick="extra()">⭐<strong>Dar estrellas</strong></button>
+      <button class="tile" onclick="manage()">📅<strong>Misiones</strong></button>
+      <button class="tile" onclick="progress()">📊<strong>Progreso</strong></button>
+      <button class="tile" onclick="hist()">🕘<strong>Historial</strong></button>
+    </div>
+    
+    <section class="card" style="margin-top:15px">
+      <h3>🔑 Cambiar PIN de acceso</h3>
+      <input id="np" maxlength="4" inputmode="numeric" value="${D.pin}">
+      <button class="btn purple" onclick="changePin()">Guardar PIN</button>
+    </section>
+    
+    <section class="card">
+      <h3>🐾 Estado de Salud de las Mascotas</h3>
+      ${Object.values(D.kids).map(c => `
+        <p><b>${c.name}:</b> ${c.pet.emoji} ${c.pet.name} (${c.pet.healthy ? '😊 Saludable' : '🤒 Necesita atención'}) · Comida: ${Math.round(c.pet.food)}%</p>
+      `).join('')}
+    </section>
+  `;
+}
+
+function changePin() {
+  let p = document.getElementById('np').value;
+  if (/^\d{4}$/.test(p)) {
+    D.pin = p;
+    save();
+    dashboard();
+  } else {
+    bubble('El PIN debe contener exactamente 4 dígitos.');
+  }
+}
+
+function extra() {
+  let k = prompt('Escribe el usuario (violeta, eliseo o misael):', 'violeta');
+  let n = Number(prompt('Cantidad de estrellas a otorgar (1, 2, 3 o 5):', '3'));
+  if (D.kids[k] && [1, 2, 3, 5].includes(n)) {
+    D.kids[k].stars += n;
+    D.history.unshift({ kid: k, text: 'Estrellas otorgadas por los padres', stars: n, date: new Date().toLocaleString() });
+    save();
+    dashboard();
+  }
+}
+
+function manage() {
+  document.getElementById('sheet').innerHTML = `
+    <button class="close" onclick="dashboard()">←</button>
+    <h2>📅 Misiones y Horarios</h2>
+    ${D.missions.map(m => `
+      <div class="mission">
+        <div class="mi">${m.i}</div>
+        <div>
+          <h3>${m.n}</h3>
+          <p>${m.d}</p>
+          <div class="meta">${fmt(m.t)} · ⭐${m.s}</div>
+        </div>
+        <button class="${m.done ? 'check' : 'plus'}" onclick="mDone(${m.id})">${m.done ? '✓' : '+'}</button>
+      </div>
+    `).join('')}
+    
+    <section class="card" style="margin-top:15px">
+      <h3>➕ Agregar nueva misión</h3>
+      <input id="mn" placeholder="Ej: Leer 20 minutos">
+      <input id="mt" type="time" value="17:00">
+      <button class="btn" onclick="addM()">Agregar Misión</button>
+    </section>
+  `;
+}
+
+function mDone(id) {
+  let m = D.missions.find(x => x.id === id);
+  if (m) m.done = !m.done;
+  save();
+  manage();
+}
+
+function addM() {
+  let n = document.getElementById('mn').value.trim();
+  if (!n) return;
+  D.missions.push({ id: Date.now(), n: n, d: 'Misión personalizada', t: document.getElementById('mt').value, s: 2, i: '✨', done: false });
+  save();
+  manage();
+}
+
+function progress() {
+  document.getElementById('sheet').innerHTML = `
+    <button class="close" onclick="dashboard()">←</button>
+    <h2>📊 Progreso General</h2>
+    ${Object.values(D.kids).map(c => `
+      <section class="card">
+        <b>${c.avatar} ${c.name}</b>
+        <p>⭐ ${c.stars} Estrellas · 🔥 ${c.streak} Días de Racha · Nivel ${c.level}</p>
+        ${bar('Progreso de Nivel', c.stars % 100)}
+      </section>
+    `).join('')}
+  `;
+}
+
+function hist() {
+  document.getElementById('sheet').innerHTML = `
+    <button class="close" onclick="dashboard()">←</button>
+    <h2>🕘 Historial de Actividad</h2>
+    ${D.history.slice(0, 20).map(h => `
+      <p style="border-bottom: 1px solid #eee; padding-bottom: 5px;">
+        ⭐${h.stars} · <b>${D.kids[h.kid] ? D.kids[h.kid].name : h.kid}</b><br>
+        <small>${h.text} · ${h.date}</small>
+      </p>
+    `).join('') || '<p>No hay registros guardados.</p>'}
+  `;
+}
+
+function prize() {
+  document.getElementById('screen').innerHTML = `
+    <section class="card">
+      <h2>🏆 Premios y Logros</h2>
+      <div class="grid">
+        <div class="tile">🔥<strong>Rachas</strong><small>Constancia diaria</small></div>
+        <div class="tile">🌍<strong>Idiomas</strong><small>Nivel de XP</small></div>
+        <div class="tile">🐾<strong>Cuidador</strong><small>Salud de la mascota</small></div>
+        <div class="tile">🎁<strong>Premios</strong><small>Metas alcanzadas</small></div>
+      </div>
+    </section>
+    <section class="card">
+      <button class="btn yellow" onclick="showReward()">Ver Recompensa Activa ⭐</button>
+    </section>
+  `;
+}
+
+function showReward() {
+  document.getElementById('rewardText').textContent = D.reward;
+  document.getElementById('reward').classList.add('show');
+}
+
+function closeReward() {
+  document.getElementById('reward').classList.remove('show');
+}
+
+function bubble(t) {
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('sheet').innerHTML = `
+    <button class="close" onclick="closeModal()">×</button>
+    <div style="font-size:55px;text-align:center;margin-top:10px">${C().pet.emoji}</div>
+    <h2 style="text-align:center">${C().pet.name}</h2>
+    <div class="card" style="font-size:16px;text-align:center;line-height:1.4">${t}</div>
+    <button class="btn purple" onclick="closeModal()">Entendido 💜</button>
+  `;
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+function notify() {
+  let p = C().pet;
+  if (p.food < 35) bubble('🍖 Tengo algo de hambre... ¡Recuerda alimentar a tu mascota!');
+  else if (p.clean < 35) bubble('🧼 ¡Hora de un buen baño!');
+  else {
+    let pending = D.missions.find(m => !m.done);
+    if (pending) bubble(advice(pending));
+    else bubble('🥰 ¡Estás al día con tus misiones! ¡Excelente trabajo!');
+  }
+}
+
+// NUEVA FUNCIÓN DE ANIMACIÓN CON ANIMALES MOVIÉNDOSE SEGÚN SU ESPECIE
+function spawn() {
+  if (!state().play) return;
+  
+  let petEmoji = C().pet.emoji;
+  let animData = PET_ANIMATIONS[petEmoji] || PET_ANIMATIONS['🐶'];
+  
+  let container = document.createElement('div');
+  container.className = `runner-animated ${animData.type}`;
+  
+  let img = document.createElement('img');
+  img.src = animData.url;
+  img.alt = C().pet.name;
+  
+  container.appendChild(img);
+  
+  container.onclick = () => {
+    container.remove();
+    bubble(`¡Atrapaste a ${C().pet.name}! 🎾 ¡Es súper veloz y se divirtió muchísimo contigo!`);
+  };
+  
+  document.body.appendChild(container);
+  setTimeout(() => container.remove(), 10000);
+}
+
+function decay() {
+  Object.values(D.kids).forEach(c => {
+    let p = c.pet;
+    p.food = Math.max(0, p.food - 0.5);
+    p.clean = Math.max(0, p.clean - 0.2);
+    if (p.food < 25 || p.clean < 25) p.healthy = false;
+  });
+  save();
+}
+
+home();
+setInterval(spawn, 18000);
+setInterval(decay, 60000);
+</script>
+</body>
+</html>
